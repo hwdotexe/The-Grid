@@ -1,0 +1,14 @@
+name: Core
+version: 0.2.4
+main: me.xfyrewolfx.thegrid.Main
+Author: xFyreWolfx
+commands:
+  spawn:
+  addsystem:
+  addoutlet:
+  removesystem:
+  shop:
+  ?:
+  help:
+  pl:
+  plugins:
