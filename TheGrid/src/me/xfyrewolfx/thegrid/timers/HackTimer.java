@@ -111,7 +111,7 @@ public class HackTimer extends BukkitRunnable{
 							
 							Random r = new Random();
 							int ri = r.nextInt(4);
-							int exp = plugin.generateEXP(firewallLevel, 2);
+							int exp = plugin.generateEXP(firewallLevel, 1);
 							
 							plugin.setPlayerBitcoins(p.getName(), pbtc+ri);
 							msg="Your system is temporarily disabled";
@@ -146,7 +146,7 @@ public class HackTimer extends BukkitRunnable{
 					if(v.isSimilar(Items.cryptolockerVirus()) || v.isSimilar(Items.adwareVirus())){
 						Random r = new Random();
 						int ri = r.nextInt(4);
-						int exp = plugin.generateEXP(firewallLevel, 2);
+						int exp = plugin.generateEXP(firewallLevel, 1);
 						
 						plugin.setPlayerBitcoins(p.getName(), plugin.getPlayerBitcoin(p.getName())+ri);
 						p.sendMessage("§8[§2!§8] §7You generated §6"+ri+" BTC §7from the Virus!");
