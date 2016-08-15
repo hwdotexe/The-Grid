@@ -22,6 +22,3 @@ This plugin isn't fancy. I don't use Maven or anything, and cURLing won't really
 
 ## License
 This plugin was made by me. You didn't help. I published this for free on GitHub, where others may download it if they so desire. As long as you give me credit, you're free to use this as you please. But by no means may you take credit for my work or attach your name to its list of authors unless you become a recognized contributor to the project.
-
-# Try It Out!
-I am currently running The Grid on my server [104.219.0.98:25583] - feel free to join it, play on it, and recommend new features, as it is being actively developed. I welcome your input!
