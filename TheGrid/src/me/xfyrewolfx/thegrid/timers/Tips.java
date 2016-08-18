@@ -13,11 +13,11 @@ public class Tips extends BukkitRunnable{
 	int i;
 	public Tips(){
 		ann = new ArrayList<String>();
-		ann.add("ยง8[ยง6Tipยง8] ยง7Use ยง6/help ยง7for beginner's tips");
-		ann.add("ยง8[ยง6Tipยง8] ยง7Use ยง6/shop ยง7to buy new gear.");
-		ann.add("ยง8[ยง6Tipยง8] ยง7The ยง6Traceroute ยง7can detect nearby systems");
-		ann.add("ยง8[ยง6Tipยง8] ยง7The ยง6Firewall ยง7can help prevent attacks, but uses a lot of energy.");
-		ann.add("ยง8[ยง6Tipยง8] ยง7Press ยง6F3 ยง7to see your coordinates.");
+		ann.add("ง8[ง6Tipง8] ง7Use ง6/help ง7for beginner's tips");
+		ann.add("ง8[ง6Tipง8] ง7Use ง6/shop ง7to buy new gear.");
+		ann.add("ง8[ง6Tipง8] ง7The ง6Traceroute ง7can detect nearby systems");
+		ann.add("ง8[ง6Tipง8] ง7The ง6Firewall ง7can help prevent attacks, but uses a lot of energy.");
+		ann.add("ง8[ง6Tipง8] ง7Press ง6F3 ง7to see your coordinates.");
 		
 		i=0;
 	}

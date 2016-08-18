@@ -60,7 +60,7 @@ public class PlayerListener implements Listener{
 			plugin.giveNewScoreboard(e.getPlayer());
 		}
 		
-		e.getPlayer().sendMessage("ยง8> ยง7Server version ยงa"+plugin.getDescription().getVersion());
+		e.getPlayer().sendMessage("ง8> ง7Server version งa"+plugin.getDescription().getVersion());
 	}
 	
 	@EventHandler
@@ -91,8 +91,8 @@ public class PlayerListener implements Listener{
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent e){
 		int lvl = plugin.getPlayerLevel(e.getPlayer().getName());
-		e.getPlayer().setDisplayName("ยง8[ ยง2"+lvl+" ยง8] ยง7"+e.getPlayer().getName());
-		e.setMessage("ยงf"+e.getMessage());
+		e.getPlayer().setDisplayName("ง8[ ง2"+lvl+" ง8] ง7"+e.getPlayer().getName());
+		e.setMessage("งf"+e.getMessage());
 		e.setFormat(e.getPlayer().getDisplayName()+": "+e.getMessage());
 	}
 	

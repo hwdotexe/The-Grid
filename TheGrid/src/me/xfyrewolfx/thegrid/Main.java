@@ -50,17 +50,17 @@ public class Main extends JavaPlugin{
 	    sys = new HashMap<Location, Integer>();
 	    out = new ArrayList<Location>();
 	    
-	    scoreboardObj = "{Â§aÂ§lTheGridÂ§f}";
+	    scoreboardObj = "{§a§lTheGrid§f}";
 	    
 	    reloadsystems();
 	    reloadoutlets();
 	    
 	    if(this.getConfig().contains("motd")){
-			motd=this.getConfig().getString("motd").replaceAll("&", "Â§");
+			motd=this.getConfig().getString("motd").replaceAll("&", "§");
 		}else{
 			this.getConfig().set("motd", "       &f-- &a&kii&8&l [&2&lTheGrid&8&l] &a&kii&f --");
 			this.saveConfig();
-			motd="       Â§f-- Â§aÂ§kiiÂ§8Â§l [Â§2Â§lTheGridÂ§8Â§l] Â§aÂ§kiiÂ§f --";
+			motd="       §f-- §a§kii§8§l [§2§lTheGrid§8§l] §a§kii§f --";
 		}
 	    
 	    for(String n : this.getoutlets().getStringList("outlets")){
@@ -120,24 +120,24 @@ public class Main extends JavaPlugin{
 		
 		if(cmd.getName().equalsIgnoreCase("?") || cmd.getName().equalsIgnoreCase("help") || cmd.getName().equalsIgnoreCase("pl") || cmd.getName().equalsIgnoreCase("plugins")){
 			Player p = (Player)sender;
-			p.sendMessage("Â§7----------{ Â§aÂ§kiÂ§a Â§ntÂ§ohE GÂ§mrÂ§aid Â§kiÂ§7 }----------");
-			p.sendMessage("Â§2Â§lThe Grid Â§7is an open-world Hacking game.");
-			p.sendMessage("Â§8Â§l[?] Hacking");
+			p.sendMessage("§7----------{ §a§ki§a §nt§ohE G§mr§aid §ki§7 }----------");
+			p.sendMessage("§2§lThe Grid §7is an open-world Hacking game.");
+			p.sendMessage("§8§l[?] Hacking");
 			
 			String name = "System";
 			if(p.getInventory().getItem(0).hasItemMeta()){
 				name = p.getInventory().getItem(0).getItemMeta().getDisplayName();
 			}
-			p.sendMessage("   Â§7Right-click a Player or System with your "+name);
-			p.sendMessage("Â§8Â§l[?] Leveling Up");
-			p.sendMessage("   Â§7Gain Â§3EXP Â§7from hacking others");
-			p.sendMessage("Â§8Â§l[?] Charging the Battery");
-			p.sendMessage("   Â§7Find an Â§6Outlet Â§7around town and right-click");
-			p.sendMessage("Â§8Â§l[?] Preventing Hacks");
-			p.sendMessage("   Â§7Enable your Â§6Firewall Â§7to slow/prevent attacks");
-			p.sendMessage("Â§8Â§l[?] Buying Items");
-			p.sendMessage("   Â§7Use Â§6/shop Â§7to buy new gear");
-			p.sendMessage("Â§7----------{ Â§8Â§lEND Â§7}----------");
+			p.sendMessage("   §7Right-click a Player or System with your "+name);
+			p.sendMessage("§8§l[?] Leveling Up");
+			p.sendMessage("   §7Gain §3EXP §7from hacking others");
+			p.sendMessage("§8§l[?] Charging the Battery");
+			p.sendMessage("   §7Find an §6Outlet §7around town and right-click");
+			p.sendMessage("§8§l[?] Preventing Hacks");
+			p.sendMessage("   §7Enable your §6Firewall §7to slow/prevent attacks");
+			p.sendMessage("§8§l[?] Buying Items");
+			p.sendMessage("   §7Use §6/shop §7to buy new gear");
+			p.sendMessage("§7----------{ §8§lEND §7}----------");
 		}
 		
 		if(cmd.getName().equalsIgnoreCase("removesystem")){
@@ -203,7 +203,7 @@ public class Main extends JavaPlugin{
 				int plevel = this.getPlayerLevel(p.getName());
 				int pbattery = p.getLevel();
 				
-				p.sendMessage("Â§a~$: connected to "+system+" ("+cpulevel+")");
+				p.sendMessage("§a~$: connected to "+system+" ("+cpulevel+")");
 				p.playSound(p.getLocation(), Sound.ENTITY_CREEPER_HURT, 5, 1);
 				
 				if(pbattery > 0){
@@ -224,7 +224,7 @@ public class Main extends JavaPlugin{
 		int plevel = this.getPlayerLevel(p.getName());
 		int pbattery = p.getLevel();
 		
-		p.sendMessage("Â§a~$: connected to "+t.getName()+" ("+tlevel+")");
+		p.sendMessage("§a~$: connected to "+t.getName()+" ("+tlevel+")");
 		p.playSound(p.getLocation(), Sound.ENTITY_CREEPER_HURT, 5, 1);
 		
 		if(pbattery > 0){
@@ -311,7 +311,7 @@ public class Main extends JavaPlugin{
 		}
 	}
 	
-	public int generateEXP(int firewall, int vexp){ //vexp is EXP based on virus used. multiplier.
+	public int generateEXP(int firewall, int vexp){
 		float i1 = (firewall * 30)/2;
 		int i2 = Math.round(i1);
 		int exp = i2 * vexp;
@@ -362,7 +362,7 @@ public class Main extends JavaPlugin{
 				lvl=lvl+1;
 				
 				if(lvl == 5){
-					p.sendMessage("      Â§7> Unlocked Â§6Traceroute");
+					p.sendMessage("      §7> Unlocked §6Traceroute");
 					p.getInventory().setContents(this.getPlayerInventory(name));
 				}else{
 					if(lvl == 10){
@@ -389,7 +389,7 @@ public class Main extends JavaPlugin{
 							}else{
 								if(lvl == 40){
 									//Surpassed current tiers
-									p.sendMessage("Â§8[ Â§2! Â§8] Â§7You have surpassed all current tiers!");
+									p.sendMessage("§8[ §2! §8] §7You have surpassed all current tiers!");
 									/** FUTURE CONTENT POTENTIAL (unlock Master tier & unlock battles/NPC for master only) **/
 								}
 							}

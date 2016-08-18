@@ -31,10 +31,10 @@ public class Traceroute extends BukkitRunnable{
 				ticks=ticks-1;
 				
 				if(console){
-					TitleAPI.sendTitle(p, 0, 0, 15, "Â§kiÂ§eÂ§l Traceroute Â§fÂ§ki", "Â§6tracing");
+					TitleAPI.sendTitle(p, 0, 0, 15, "§ki§e§l Traceroute §f§ki", "§6tracing");
 					console=false;
 				}else{
-					TitleAPI.sendTitle(p, 0, 0, 15, "Â§kiÂ§eÂ§l Traceroute Â§fÂ§ki", "Â§etracing");
+					TitleAPI.sendTitle(p, 0, 0, 15, "§ki§e§l Traceroute §f§ki", "§etracing");
 					console=true;
 				}
 			}else{
@@ -62,10 +62,10 @@ public class Traceroute extends BukkitRunnable{
 				
 				if(loc.size()>0){
 					for(Location l : loc){
-						p.sendMessage("Â§8[Â§eTracerouteÂ§8] Â§7Found system at xÂ§e"+l.getBlockX()+" Â§7yÂ§e"+l.getBlockY()+" Â§7zÂ§e"+l.getBlockZ()+" Â§8[Level "+plugin.sys.get(l)+"]");
+						p.sendMessage("§8[§eTraceroute§8] §7Found system at x§e"+l.getBlockX()+" §7y§e"+l.getBlockY()+" §7z§e"+l.getBlockZ()+" §8[Level "+plugin.sys.get(l)+"]");
 					}
 				}else{
-					p.sendMessage("Â§8[Â§eTracerouteÂ§8] Â§7No systems were found in this area.");
+					p.sendMessage("§8[§eTraceroute§8] §7No systems were found in this area.");
 				}
 				
 				p.removeMetadata("Grid_TR", plugin);

@@ -18,13 +18,14 @@ import me.xfyrewolfx.thegrid.statics.MSG;
 public class HackTimer extends BukkitRunnable{
 	
 	Player p;
-	Player t;
+	Player t; //can be null if hacking an NPC
 	Location tl;
 	ItemStack v;
 	int secs;
 	boolean tHadValue; //used to check if target logs out
 	Main plugin;
 	int firewallLevel;
+	Random r;
 	public HackTimer(Player hacker, Player target, Location targetLocation, ItemStack virusUsed, Main c, int firewall){
 		p=hacker;
 		t=target;
@@ -39,6 +40,8 @@ public class HackTimer extends BukkitRunnable{
 		}else{
 			tHadValue=false;
 		}
+		
+		r = new Random();
 	}
 	
 	public void run(){
@@ -70,107 +73,174 @@ public class HackTimer extends BukkitRunnable{
 				
 				StringBuilder sb = new StringBuilder();
 				String bar="";
-				sb.append(v.getItemMeta().getDisplayName()+" ยงf[");
+				sb.append(v.getItemMeta().getDisplayName()+" งf[");
 				
 				for(int i=0; i<(15-secs); i++){
-					sb.append("ยงa|");
+					sb.append("งa|");
 				}
 				for(int i=0; i<secs; i++){
-					sb.append("ยงf|");
+					sb.append("งf|");
 				}
 				
-				sb.append("ยงf]");
+				sb.append("งf]");
 				bar=sb.toString();
 				TitleAPI.sendTitle(p, 0, 0, 25, "", bar);
-			}else{
+			}else{ //Hacking completed
 				if(t != null){
 					t.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS,100,1));
 					t.addPotionEffect(new PotionEffect(PotionEffectType.SLOW,100,1));
-					String msg = "";
+					String msg = this.checkViruses(t);
 					
-					if(v.isSimilar(Items.cryptolockerVirus())){
-						int vbtc = plugin.getPlayerBitcoin(t.getName());
-						
-						if(vbtc > 1){
-							plugin.setPlayerBitcoins(t.getName(), vbtc-1);
-							plugin.setPlayerBitcoins(p.getName(), plugin.getPlayerBitcoin(p.getName())+1);
-							msg=p.getName()+" stole 1 BTC from you";
-							p.sendMessage("ยง8[ยง2!ยง8] ยง7You stole ยง61 BTC ยง7from ยง6"+t.getName());
-						}else{
-							msg=p.getName()+"Your system is temporarily disabled";
-							p.sendMessage("ยง8[ยง2!ยง8] ยง6"+t.getName()+" ยง7could not afford to pay the ransom!");
-						}
-						
-						int exp = plugin.generateEXP(firewallLevel, 3);
-						p.sendMessage("ยง8[ยง2!ยง8] ยง7You generated ยง3"+exp+" EXP ยง7from the Cryptolocker!");
-						plugin.addExp(p.getName(), exp);
-						
-					}else{
-						if(v.isSimilar(Items.adwareVirus())){
-							int pbtc = plugin.getPlayerBitcoin(p.getName());
-							
-							Random r = new Random();
-							int ri = r.nextInt(4);
-							int exp = plugin.generateEXP(firewallLevel, 1);
-							
-							plugin.setPlayerBitcoins(p.getName(), pbtc+ri);
-							msg="Your system is temporarily disabled";
-							p.sendMessage("ยง8[ยง2!ยง8] ยง7You generated ยง6"+ri+" BTC ยง7from the Adware!");
-							p.sendMessage("ยง8[ยง2!ยง8] ยง7You generated ยง3"+exp+" EXP ยง7from the Adware!");
-							plugin.addExp(p.getName(), exp);
-						}else{
-							if(v.isSimilar(Items.killdiscVirus())){
-								int exp = plugin.generateEXP(firewallLevel, 2);
-								msg="Your system is temporarily disabled";
-								p.sendMessage("ยง8[ยง2!ยง8] ยง7You generated ยง3"+exp+" EXP ยง7from the Killdisc!");
-								plugin.addExp(p.getName(), exp);
-							}else{
-								int exp = plugin.generateEXP(firewallLevel, 1);
-								msg="Your system is temporarily disabled";
-								p.sendMessage("ยง8[ยง2!ยง8] ยง7You generated ยง3"+exp+" EXP ยง7from the Virus!");
-								plugin.addExp(p.getName(), exp);
-							}
-						}
-					}
-					
-					TitleAPI.sendTitle(t, 10, 10, 100, "ยงcยงlYou Were Hacked", msg);
+					TitleAPI.sendTitle(t, 10, 10, 100, "งcงlYou Were Hacked", msg);
 					
 					plugin.cooldownList.add(p.getName());
 					plugin.cooldownList.add(t.getName());
-					new Cooldown(120, t, plugin).runTaskTimer(plugin, 0, 20);
-					new Cooldown(60, p, plugin).runTaskTimer(plugin, 0, 20);
+					new Cooldown(this.getVariableCooldown(plugin.getPlayerLevel(t.getName())), t, plugin).runTaskTimer(plugin, 0, 20);
+					new Cooldown(this.getVariableCooldown(plugin.getPlayerLevel(p.getName())), p, plugin).runTaskTimer(plugin, 0, 20);
+					
+					p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 5, 1);
+					p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION,10,1));
 					
 					p.removeMetadata("hacking", plugin);
 					this.cancel();
 				}else{
-					if(v.isSimilar(Items.cryptolockerVirus()) || v.isSimilar(Items.adwareVirus())){
-						Random r = new Random();
-						int ri = r.nextInt(4);
-						int exp = plugin.generateEXP(firewallLevel, 1);
-						
-						plugin.setPlayerBitcoins(p.getName(), plugin.getPlayerBitcoin(p.getName())+ri);
-						p.sendMessage("ยง8[ยง2!ยง8] ยง7You generated ยง6"+ri+" BTC ยง7from the Virus!");
-						p.sendMessage("ยง8[ยง2!ยง8] ยง7You generated ยง3"+exp+" EXP ยง7from the Virus!");
-						plugin.addExp(p.getName(), exp);
-					}else{
-						int exp = plugin.generateEXP(firewallLevel, 1);
-						p.sendMessage("ยง8[ยง2!ยง8] ยง7You generated ยง3"+exp+" EXP ยง7from the Virus!");
-						plugin.addExp(p.getName(), exp);
-					}
+					this.checkVirusesNPC();
 					
 					plugin.cooldownList.add(p.getName());
-					new Cooldown(60, p, plugin).runTaskTimer(plugin, 0, 20);
-					
+					new Cooldown(this.getVariableCooldown(plugin.getPlayerLevel(p.getName())), p, plugin).runTaskTimer(plugin, 0, 20);
 					p.removeMetadata("hacking", plugin);
 					this.cancel();
 				}
-				
-				p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 5, 1);
-				p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION,10,1));
 			}
 		}else{
 			p.removeMetadata("hacking", plugin);
 			this.cancel();
 		}
+	}
+	
+	private String checkViruses(Player t){
+		String msg="";
+		
+		//CryptoLocker (3)
+		if(v.isSimilar(Items.cryptolockerVirus())){
+			int vbtc = plugin.getPlayerBitcoin(t.getName());
+			int btc = r.nextInt(3)+1;
+			
+			if(vbtc >= btc){
+				plugin.setPlayerBitcoins(t.getName(), vbtc-btc);
+				plugin.setPlayerBitcoins(p.getName(), plugin.getPlayerBitcoin(p.getName())+btc);
+				msg=p.getName()+" stole "+btc+" BTC from you";
+				p.sendMessage("ง8[ง2!ง8] ง7You stole ง6"+btc+" BTC ง7from ง6"+t.getName());
+			}else{
+				msg=p.getName()+" stole "+vbtc+" BTC from you";
+				plugin.setPlayerBitcoins(t.getName(), 0);
+				plugin.setPlayerBitcoins(p.getName(), plugin.getPlayerBitcoin(p.getName())+vbtc);
+				p.sendMessage("ง8[ง2!ง8] ง7You stole ง6"+vbtc+" BTC ง7from ง6"+t.getName());
+			}
+			
+			int exp = plugin.generateEXP(firewallLevel, 3);
+			p.sendMessage("ง8[ง2!ง8] ง7You generated ง3"+exp+" EXP ง7from the Cryptolocker!");
+			plugin.addExp(p.getName(), exp);
+		}
+		
+		//Adware (2)
+		if(v.isSimilar(Items.adwareVirus())){
+			int pbtc = plugin.getPlayerBitcoin(p.getName());
+			
+			int ri = r.nextInt(7)+1;
+			
+			plugin.setPlayerBitcoins(p.getName(), pbtc+ri);
+			msg="Your system is temporarily disabled";
+			p.sendMessage("ง8[ง2!ง8] ง7You generated ง6"+ri+" BTC ง7from the Adware!");
+		}
+		
+		//Killdisc (2)
+		if(v.isSimilar(Items.killdiscVirus())){
+			int exp = plugin.generateEXP(firewallLevel, 2);
+			msg="Your system is temporarily disabled";
+			p.sendMessage("ง8[ง2!ง8] ง7You generated ง3"+exp+" EXP ง7from the Killdisc!");
+			plugin.addExp(p.getName(), exp);
+		}
+		
+		//DDoS (2)
+		if(v.isSimilar(Items.ddosVirus())){
+			int exp = plugin.generateEXP(firewallLevel, 2);
+			msg="Your system is temporarily disabled";
+			p.sendMessage("ง8[ง2!ง8] ง7You generated ง3"+exp+" EXP ง7from the DDoS attack!");
+			plugin.addExp(p.getName(), exp);
+		}
+		
+		//SQL Slammer (1)
+		if(v.isSimilar(Items.sqlVirus())){
+			int exp = plugin.generateEXP(firewallLevel, 1);
+			msg="Your system is temporarily disabled";
+			p.sendMessage("ง8[ง2!ง8] ง7You generated ง3"+exp+" EXP ง7from the SQL Slammer!");
+			plugin.addExp(p.getName(), exp);
+		}
+		
+		//Shutdown.vbs (1)
+		if(v.isSimilar(Items.shutdownVirus())){
+			int exp = plugin.generateEXP(firewallLevel, 1);
+			msg="Your system is temporarily disabled";
+			p.sendMessage("ง8[ง2!ง8] ง7You generated ง3"+exp+" EXP ง7from the Shutdown virus!");
+			plugin.addExp(p.getName(), exp);
+		}
+		
+		return msg;
+	}
+	
+	private void checkVirusesNPC(){	
+		//CryptoLocker (3)
+		if(v.isSimilar(Items.cryptolockerVirus())){
+			int btc = r.nextInt(3)+1;
+			int exp = plugin.generateEXP(firewallLevel, 3);
+			
+			plugin.setPlayerBitcoins(p.getName(), plugin.getPlayerBitcoin(p.getName())+btc);
+			plugin.addExp(p.getName(), exp);
+			p.sendMessage("ง8[ง2!ง8] ง7You generated ง3"+exp+" EXP ง7from the Cryptolocker!");
+			p.sendMessage("ง8[ง2!ง8] ง7You generated ง3"+btc+" BTC ง7from the Cryptolocker!");
+		}
+		
+		//Adware (2)
+		if(v.isSimilar(Items.adwareVirus())){
+			int pbtc = plugin.getPlayerBitcoin(p.getName());
+			int ri = r.nextInt(5)+1;
+			
+			plugin.setPlayerBitcoins(p.getName(), pbtc+ri);
+			p.sendMessage("ง8[ง2!ง8] ง7You generated ง6"+ri+" BTC ง7from the Adware!");
+		}
+		
+		//Killdisc (2)
+		if(v.isSimilar(Items.killdiscVirus())){
+			int exp = plugin.generateEXP(firewallLevel, 2);
+			p.sendMessage("ง8[ง2!ง8] ง7You generated ง3"+exp+" EXP ง7from the Killdisc!");
+			plugin.addExp(p.getName(), exp);
+		}
+		
+		//DDoS (2)
+		if(v.isSimilar(Items.ddosVirus())){
+			int exp = plugin.generateEXP(firewallLevel, 2);
+			p.sendMessage("ง8[ง2!ง8] ง7You generated ง3"+exp+" EXP ง7from the DDoS attack!");
+			plugin.addExp(p.getName(), exp);
+		}
+		
+		//SQL Slammer (1)
+		if(v.isSimilar(Items.sqlVirus())){
+			int exp = plugin.generateEXP(firewallLevel, 1);
+			p.sendMessage("ง8[ง2!ง8] ง7You generated ง3"+exp+" EXP ง7from the SQL Slammer!");
+			plugin.addExp(p.getName(), exp);
+		}
+		
+		//Shutdown.vbs (1)
+		if(v.isSimilar(Items.shutdownVirus())){
+			int exp = plugin.generateEXP(firewallLevel, 1);
+			p.sendMessage("ง8[ง2!ง8] ง7You generated ง3"+exp+" EXP ง7from the Shutdown virus!");
+			plugin.addExp(p.getName(), exp);
+		}
+	}
+	
+	private int getVariableCooldown(int pLevel){
+		int seconds = (pLevel * 5)+r.nextInt(30);
+		return seconds;
 	}
 }

@@ -15,6 +15,8 @@ public class Cooldown extends BukkitRunnable{
 		secs=seconds;
 		p=pl;
 		plugin=c;
+		
+		p.sendMessage("ง8[ ง4Cooldown ง8] ง7Cooling down in งa"+secs+" ง7seconds.");
 	}
 	
 	public void run(){
@@ -30,7 +32,7 @@ public class Cooldown extends BukkitRunnable{
 				
 				plugin.getConfig().set(p.getUniqueId().toString()+".icecubes", cubes);
 				plugin.saveConfig();
-				p.sendMessage("ยง8[ ยง2! ยง8] ยง7Used an ยงbIce Cubeยง7! ยง8[ยง6"+cubes+" ยง8remaining]");
+				p.sendMessage("ง8[ ง2! ง8] ง7Used an งbIce Cubeง7! ง8[ง6"+cubes+" ง8remaining]");
 				this.end();
 			}
 			
