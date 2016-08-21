@@ -1,5 +1,5 @@
-name: Core
-version: 0.2.4
+name: The-Grid
+version: 0.2.5
 main: me.xfyrewolfx.thegrid.Main
 Author: xFyreWolfx
 commands:
