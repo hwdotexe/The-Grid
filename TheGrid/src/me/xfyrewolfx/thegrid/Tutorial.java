@@ -3,7 +3,6 @@ package me.xfyrewolfx.thegrid;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -38,7 +37,9 @@ public class Tutorial extends BukkitRunnable{
 			
 			i++;
 		}else{
-			p.teleport(new Location(p.getWorld(),-402.5, 21, 771.5));
+			if(plugin.swnLoc != null)
+				p.teleport(plugin.swnLoc);
+			
 			p.getInventory().setContents(plugin.getPlayerInventory(p.getName()));
 			p.setLevel(plugin.getPlayerBattery(p.getName()));
 			new BatteryTick(p, plugin).runTaskTimer(plugin, 600, 600);

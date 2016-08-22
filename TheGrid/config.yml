@@ -1,0 +1,10 @@
+tutorialLocation:
+  x: 0
+  y: 60
+  z: 0
+  w: world
+spawnLocation:
+  x: 0
+  y: 60
+  z: 0
+  w: world

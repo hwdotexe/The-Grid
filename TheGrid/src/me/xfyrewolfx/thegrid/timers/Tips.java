@@ -15,7 +15,7 @@ public class Tips extends BukkitRunnable{
 		ann = new ArrayList<String>();
 		ann.add("§8[§6Tip§8] §7Use §6/help §7for beginner's tips");
 		ann.add("§8[§6Tip§8] §7Use §6/shop §7to buy new gear.");
-		ann.add("§8[§6Tip§8] §7The §6Traceroute §7can detect nearby systems");
+		ann.add("§8[§6Tip§8] §7The §6Traceroute §7can detect nearby systems.");
 		ann.add("§8[§6Tip§8] §7The §6Firewall §7can help prevent attacks, but uses a lot of energy.");
 		ann.add("§8[§6Tip§8] §7Press §6F3 §7to see your coordinates.");
 		

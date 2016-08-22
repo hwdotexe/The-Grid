@@ -35,6 +35,9 @@ public class Main extends JavaPlugin{
 	private File outletsFile;
 	public List<String> cooldownList;
 	
+	public Location tutLoc;
+	public Location swnLoc;
+	
 	public HashMap<Location, Integer> sys;
 	public List<Location> out;
 	
@@ -42,6 +45,8 @@ public class Main extends JavaPlugin{
 	String scoreboardObj;
 	
 	public void onEnable(){
+		this.saveDefaultConfig();
+		this.reloadConfig();
 	    this.systems = null;
 	    this.systemsFile = null;
 	    this.outlets = null;
@@ -51,6 +56,24 @@ public class Main extends JavaPlugin{
 	    out = new ArrayList<Location>();
 	    
 	    scoreboardObj = "{§a§lTheGrid§f}";
+	    
+	    if(Bukkit.getWorld(this.getConfig().getString("tutorialLocation.w")) != null){
+		    if(this.getConfig().contains("tutorialLocation.x")){
+		    	tutLoc = new Location(Bukkit.getWorld(this.getConfig().getString("tutorialLocation.w")), this.getConfig().getDouble("tutorialLocation.x"), this.getConfig().getDouble("tutorialLocation.y"), this.getConfig().getDouble("tutorialLocation.z"));
+		    }else{
+		    	tutLoc = null;
+		    }
+		    
+		    if(this.getConfig().contains("spawnLocation.x")){
+		    	swnLoc = new Location(Bukkit.getWorld(this.getConfig().getString("spawnLocation.w")), this.getConfig().getDouble("spawnLocation.x"), this.getConfig().getDouble("spawnLocation.y"), this.getConfig().getDouble("spawnLocation.z"));
+		    }else{
+		    	swnLoc = null;
+		    }
+	    }else{
+	    	System.out.print("[THE GRID] - Spawn world(s) not found! Teleportation will not work!");
+	    	swnLoc=null;
+	    	tutLoc=null;
+	    }
 	    
 	    reloadsystems();
 	    reloadoutlets();

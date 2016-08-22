@@ -2,7 +2,6 @@ package me.xfyrewolfx.thegrid;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.Location;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -52,7 +51,9 @@ public class PlayerListener implements Listener{
 			e.getPlayer().setMetadata("tutorial", new FixedMetadataValue(plugin, true));
 			new Tutorial(plugin, e.getPlayer()).runTaskTimer(plugin, 20, 150);
 			plugin.createNewPlayerEntries(e.getPlayer().getName());
-			e.getPlayer().teleport(new Location(e.getPlayer().getWorld(),454.5, 5, 869));
+			
+			if(plugin.tutLoc != null)
+				e.getPlayer().teleport(plugin.tutLoc);
 		}else{
 			e.getPlayer().getInventory().setContents(plugin.getPlayerInventory(e.getPlayer().getName()));
 			new BatteryTick(e.getPlayer(), plugin).runTaskTimer(plugin, 600, 600);
