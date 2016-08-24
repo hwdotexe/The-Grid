@@ -87,13 +87,13 @@ public class ShopGUI implements Listener{
 							p.sendMessage("§6-$5 BTC");
 							
 							int cubes=0;
-							if(plugin.getConfig().contains(p.getUniqueId().toString()+".icecubes"))
-								cubes = plugin.getConfig().getInt(p.getUniqueId().toString()+".icecubes");
+							if(plugin.pdata.get(p).getplayer().contains(p.getUniqueId().toString()+".icecubes"))
+								cubes = plugin.pdata.get(p).getplayer().getInt(p.getUniqueId().toString()+".icecubes");
 							
 							cubes = cubes+1;
 							
-							plugin.getConfig().set(p.getUniqueId().toString()+".icecubes", cubes);
-							plugin.saveConfig();
+							plugin.pdata.get(p).getplayer().set(p.getUniqueId().toString()+".icecubes", cubes);
+							plugin.pdata.get(p).saveplayer();
 							
 							
 							p.sendMessage("§8[ §2! §8] §7You purchased an Ice Cube!");
@@ -102,6 +102,8 @@ public class ShopGUI implements Listener{
 							p.sendMessage("§8[ §2! §8] §7Insufficient funds!");
 						}
 					}
+					
+					plugin.updateScoreboard(p);
 				}
 			}
 		}

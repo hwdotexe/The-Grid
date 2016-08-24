@@ -18,6 +18,7 @@ public class Tips extends BukkitRunnable{
 		ann.add("§8[§6Tip§8] §7The §6Traceroute §7can detect nearby systems.");
 		ann.add("§8[§6Tip§8] §7The §6Firewall §7can help prevent attacks, but uses a lot of energy.");
 		ann.add("§8[§6Tip§8] §7Press §6F3 §7to see your coordinates.");
+		ann.add("§8[§6Tip§8] §7Your gear will upgrade every §a10 levels§7!");
 		
 		i=0;
 	}

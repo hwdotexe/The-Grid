@@ -20,6 +20,7 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
@@ -42,6 +43,8 @@ public class PlayerListener implements Listener{
 	public void onJoin(PlayerJoinEvent e){
 		e.setJoinMessage(MSG.joinMessage(e.getPlayer().getName()));
 		e.getPlayer().setGameMode(GameMode.ADVENTURE);
+		
+		plugin.pdata.put(e.getPlayer(), new PlayerData(plugin, e.getPlayer()));
 		
 		int level = e.getPlayer().getLevel();
 		e.getPlayer().setExp(0f);
@@ -67,6 +70,12 @@ public class PlayerListener implements Listener{
 	@EventHandler
 	public void onLeave(PlayerQuitEvent e){
 		e.setQuitMessage(MSG.leaveMessage(e.getPlayer().getName()));
+		plugin.pdata.remove(e.getPlayer());
+	}
+	@EventHandler
+	public void onKick(PlayerKickEvent e){
+		e.setLeaveMessage(MSG.leaveMessage(e.getPlayer().getName()));
+		plugin.pdata.remove(e.getPlayer());
 	}
 	
 	@EventHandler

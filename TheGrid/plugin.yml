@@ -12,3 +12,5 @@ commands:
   help:
   pl:
   plugins:
+  setspawn:
+  settutorial:

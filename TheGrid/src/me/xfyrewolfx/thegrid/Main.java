@@ -39,6 +39,7 @@ public class Main extends JavaPlugin{
 	public Location swnLoc;
 	
 	public HashMap<Location, Integer> sys;
+	public HashMap<Player, PlayerData> pdata;
 	public List<Location> out;
 	
 	String motd;
@@ -54,6 +55,7 @@ public class Main extends JavaPlugin{
 	    cooldownList = new ArrayList<String>();
 	    sys = new HashMap<Location, Integer>();
 	    out = new ArrayList<Location>();
+	    pdata = new HashMap<Player, PlayerData>();
 	    
 	    scoreboardObj = "{§a§lTheGrid§f}";
 	    
@@ -117,7 +119,7 @@ public class Main extends JavaPlugin{
 		if(cmd.getName().equalsIgnoreCase("spawn")){
 			Player p = (Player)sender;
 			if(!p.hasMetadata("tutorial")){
-				p.teleport(new Location(p.getWorld(),-402.5, 21, 771.5));
+				p.teleport(this.swnLoc);
 			}
 			
 			return true;
@@ -202,6 +204,34 @@ public class Main extends JavaPlugin{
 			return true;
 		}
 		
+		if(cmd.getName().equalsIgnoreCase("setspawn")){
+			if(sender.isOp()){
+				if(args.length==0){
+					Player p = (Player)sender;
+					this.getConfig().set("spawnLocation.x", p.getLocation().getX());
+					this.getConfig().set("spawnLocation.y", p.getLocation().getY());
+					this.getConfig().set("spawnLocation.z", p.getLocation().getZ());
+					this.saveConfig();
+					p.sendMessage("Spawn set!");
+				}
+			}
+			return true;
+		}
+		
+		if(cmd.getName().equalsIgnoreCase("settutorial")){
+			if(sender.isOp()){
+				if(args.length==0){
+					Player p = (Player)sender;
+					this.getConfig().set("tutorialLocation.x", p.getLocation().getX());
+					this.getConfig().set("tutorialLocation.y", p.getLocation().getY());
+					this.getConfig().set("tutorialLocation.z", p.getLocation().getZ());
+					this.saveConfig();
+					p.sendMessage("Tutorial set!");
+				}
+			}
+			return true;
+		}
+		
 		return false;
 	}
 	
@@ -276,23 +306,8 @@ public class Main extends JavaPlugin{
 		ScoreboardAPI.setScore(p, "EXP", getPlayerExp(p.getName()));
 		
 		int lvl = getPlayerLevel(p.getName());
-		int ltn = 0;
-		
-		if(lvl < 10){
-			ltn = 10-lvl;
-		}
-		if(lvl < 20 && lvl >= 10){
-			ltn = 20-lvl;
-		}
-		if(lvl < 30 && lvl >= 20){
-			ltn = 30-lvl;
-		}
-		if(lvl >= 40){
-			ltn = 0;
-		}
 		
 		ScoreboardAPI.setScore(p, "Level", lvl);
-		ScoreboardAPI.setScore(p, "ToNextUpgrade", ltn);
 		ScoreboardAPI.setScore(p, "Bitcoins", this.getPlayerBitcoin(p.getName()));
 	}
 	
@@ -300,37 +315,22 @@ public class Main extends JavaPlugin{
 		ScoreboardAPI.setScore(p, "EXP", getPlayerExp(p.getName()));
 		
 		int lvl = getPlayerLevel(p.getName());
-		int ltn = 0;
-		
-		if(lvl < 10){
-			ltn = 10-lvl;
-		}
-		if(lvl < 20 && lvl >= 10){
-			ltn = 20-lvl;
-		}
-		if(lvl < 30 && lvl >= 20){
-			ltn = 30-lvl;
-		}
-		if(lvl >= 40){
-			ltn = 0;
-		}
 		
 		ScoreboardAPI.setScore(p, "Level", lvl);
-		ScoreboardAPI.setScore(p, "ToNextUpgrade", ltn);
 		ScoreboardAPI.setScore(p, "Bitcoins", this.getPlayerBitcoin(p.getName()));
 	}
 	
 	public void createNewPlayerEntries(String name){
 		if(Bukkit.getPlayer(name)!=null){
-			String UUID = Bukkit.getPlayer(name).getUniqueId().toString();
-			this.getConfig().set(UUID+".level", 1);
-			this.getConfig().set(UUID+".exp", 0);
-			this.getConfig().set(UUID+".bitcoin", 5);
-			this.getConfig().set(UUID+".battery", 12);
+			PlayerData pd = pdata.get(Bukkit.getPlayer(name));
+			pd.getplayer().set(pd.p.getUniqueId().toString()+".level",1);
+			pd.getplayer().set(pd.p.getUniqueId().toString()+".exp",0);
+			pd.getplayer().set(pd.p.getUniqueId().toString()+".bitcoin",5);
+			pd.getplayer().set(pd.p.getUniqueId().toString()+".battery",12);
 			List<String> v = new ArrayList<String>();
 			v.add("shutdown");
-			this.getConfig().set(UUID+".viruses", v);
-			this.saveConfig();
+			pd.getplayer().set(pd.p.getUniqueId().toString()+".viruses",v);
+			pd.saveplayer();
 		}
 	}
 	
@@ -443,36 +443,36 @@ public class Main extends JavaPlugin{
 	//Get
 	public int getPlayerLevel(String name){
 		if(Bukkit.getPlayer(name)!=null){
-			String UUID = Bukkit.getPlayer(name).getUniqueId().toString();
-			return this.getConfig().getInt(UUID+".level");
+			PlayerData pd = pdata.get(Bukkit.getPlayer(name));
+			return pd.getplayer().getInt(pd.p.getUniqueId().toString()+".level");
 		}
 		return 0;
 	}
 	public int getPlayerExp(String name){
 		if(Bukkit.getPlayer(name)!=null){
-			String UUID = Bukkit.getPlayer(name).getUniqueId().toString();
-			return this.getConfig().getInt(UUID+".exp");
+			PlayerData pd = pdata.get(Bukkit.getPlayer(name));
+			return pd.getplayer().getInt(pd.p.getUniqueId().toString()+".exp");
 		}
 		return 0;
 	}
 	public int getPlayerBitcoin(String name){
 		if(Bukkit.getPlayer(name)!=null){
-			String UUID = Bukkit.getPlayer(name).getUniqueId().toString();
-			return this.getConfig().getInt(UUID+".bitcoin");
+			PlayerData pd = pdata.get(Bukkit.getPlayer(name));
+			return pd.getplayer().getInt(pd.p.getUniqueId().toString()+".bitcoin");
 		}
 		return 0;
 	}
 	public int getPlayerBattery(String name){
 		if(Bukkit.getPlayer(name)!=null){
-			String UUID = Bukkit.getPlayer(name).getUniqueId().toString();
-			return this.getConfig().getInt(UUID+".battery");
+			PlayerData pd = pdata.get(Bukkit.getPlayer(name));
+			return pd.getplayer().getInt(pd.p.getUniqueId().toString()+".battery");
 		}
 		return 0;
 	}
 	public List<String> getPlayerViruses(String name){
 		if(Bukkit.getPlayer(name)!=null){
-			String UUID = Bukkit.getPlayer(name).getUniqueId().toString();
-			return this.getConfig().getStringList(UUID+".viruses");
+			PlayerData pd = pdata.get(Bukkit.getPlayer(name));
+			return pd.getplayer().getStringList(pd.p.getUniqueId().toString()+".viruses");
 		}
 		return null;
 	}
@@ -507,37 +507,37 @@ public class Main extends JavaPlugin{
 	//Set
 	public void setPlayerLevel(String name, int level){
 		if(Bukkit.getPlayer(name)!=null){
-			String UUID = Bukkit.getPlayer(name).getUniqueId().toString();
-			this.getConfig().set(UUID+".level", level);
-			this.saveConfig();
+			PlayerData pd = pdata.get(Bukkit.getPlayer(name));
+			pd.getplayer().set(pd.p.getUniqueId().toString()+".level",level);
+			pd.saveplayer();
 		}
 	}
 	public void setPlayerExp(String name, int exp){
 		if(Bukkit.getPlayer(name)!=null){
-			String UUID = Bukkit.getPlayer(name).getUniqueId().toString();
-			this.getConfig().set(UUID+".exp", exp);
-			this.saveConfig();
+			PlayerData pd = pdata.get(Bukkit.getPlayer(name));
+			pd.getplayer().set(pd.p.getUniqueId().toString()+".exp",exp);
+			pd.saveplayer();
 		}
 	}
 	public void setPlayerBitcoins(String name, int btc){
 		if(Bukkit.getPlayer(name)!=null){
-			String UUID = Bukkit.getPlayer(name).getUniqueId().toString();
-			this.getConfig().set(UUID+".bitcoin", btc);
-			this.saveConfig();
+			PlayerData pd = pdata.get(Bukkit.getPlayer(name));
+			pd.getplayer().set(pd.p.getUniqueId().toString()+".bitcoin",btc);
+			pd.saveplayer();
 		}
 	}
 	public void setPlayerBattery(String name, int bat){
 		if(Bukkit.getPlayer(name)!=null){
-			String UUID = Bukkit.getPlayer(name).getUniqueId().toString();
-			this.getConfig().set(UUID+".battery", bat);
-			this.saveConfig();
+			PlayerData pd = pdata.get(Bukkit.getPlayer(name));
+			pd.getplayer().set(pd.p.getUniqueId().toString()+".battery",bat);
+			pd.saveplayer();
 		}
 	}
 	public void setPlayerViruses(String name, List<String> viruses){
 		if(Bukkit.getPlayer(name)!=null){
-			String UUID = Bukkit.getPlayer(name).getUniqueId().toString();
-			this.getConfig().set(UUID+".viruses", viruses);
-			this.saveConfig();
+			PlayerData pd = pdata.get(Bukkit.getPlayer(name));
+			pd.getplayer().set(pd.p.getUniqueId().toString()+".viruses",viruses);
+			pd.saveplayer();
 		}
 	}
 	
