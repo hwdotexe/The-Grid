@@ -73,16 +73,16 @@ public class HackTimer extends BukkitRunnable{
 				
 				StringBuilder sb = new StringBuilder();
 				String bar="";
-				sb.append(v.getItemMeta().getDisplayName()+" งf[");
+				sb.append(v.getItemMeta().getDisplayName()+" ยงf[");
 				
 				for(int i=0; i<(15-secs); i++){
-					sb.append("งa|");
+					sb.append("ยงa|");
 				}
 				for(int i=0; i<secs; i++){
-					sb.append("งf|");
+					sb.append("ยงf|");
 				}
 				
-				sb.append("งf]");
+				sb.append("ยงf]");
 				bar=sb.toString();
 				TitleAPI.sendTitle(p, 0, 0, 25, "", bar);
 			}else{ //Hacking completed
@@ -91,7 +91,7 @@ public class HackTimer extends BukkitRunnable{
 					t.addPotionEffect(new PotionEffect(PotionEffectType.SLOW,100,1));
 					String msg = this.checkViruses(t);
 					
-					TitleAPI.sendTitle(t, 10, 10, 100, "งcงlYou Were Hacked", msg);
+					TitleAPI.sendTitle(t, 10, 10, 100, "ยงcยงlYou Were Hacked", msg);
 					
 					plugin.cooldownList.add(p.getName());
 					plugin.cooldownList.add(t.getName());
@@ -130,16 +130,16 @@ public class HackTimer extends BukkitRunnable{
 				plugin.setPlayerBitcoins(t.getName(), vbtc-btc);
 				plugin.setPlayerBitcoins(p.getName(), plugin.getPlayerBitcoin(p.getName())+btc);
 				msg=p.getName()+" stole "+btc+" BTC from you";
-				p.sendMessage("ง8[ง2!ง8] ง7You stole ง6"+btc+" BTC ง7from ง6"+t.getName());
+				p.sendMessage("ยง8[ยง2!ยง8] ยง7You stole ยง6"+btc+" BTC ยง7from ยง6"+t.getName());
 			}else{
 				msg=p.getName()+" stole "+vbtc+" BTC from you";
 				plugin.setPlayerBitcoins(t.getName(), 0);
 				plugin.setPlayerBitcoins(p.getName(), plugin.getPlayerBitcoin(p.getName())+vbtc);
-				p.sendMessage("ง8[ง2!ง8] ง7You stole ง6"+vbtc+" BTC ง7from ง6"+t.getName());
+				p.sendMessage("ยง8[ยง2!ยง8] ยง7You stole ยง6"+vbtc+" BTC ยง7from ยง6"+t.getName());
 			}
 			
 			int exp = plugin.generateEXP(firewallLevel, 3);
-			p.sendMessage("ง8[ง2!ง8] ง7You generated ง3"+exp+" EXP ง7from the Cryptolocker!");
+			p.sendMessage("ยง8[ยง2!ยง8] ยง7You generated ยง3"+exp+" EXP ยง7from the Cryptolocker!");
 			plugin.addExp(p.getName(), exp);
 		}
 		
@@ -151,14 +151,14 @@ public class HackTimer extends BukkitRunnable{
 			
 			plugin.setPlayerBitcoins(p.getName(), pbtc+ri);
 			msg="Your system is temporarily disabled";
-			p.sendMessage("ง8[ง2!ง8] ง7You generated ง6"+ri+" BTC ง7from the Adware!");
+			p.sendMessage("ยง8[ยง2!ยง8] ยง7You generated ยง6"+ri+" BTC ยง7from the Adware!");
 		}
 		
 		//Killdisc (2)
 		if(v.isSimilar(Items.killdiscVirus())){
 			int exp = plugin.generateEXP(firewallLevel, 2);
 			msg="Your system is temporarily disabled";
-			p.sendMessage("ง8[ง2!ง8] ง7You generated ง3"+exp+" EXP ง7from the Killdisc!");
+			p.sendMessage("ยง8[ยง2!ยง8] ยง7You generated ยง3"+exp+" EXP ยง7from the Killdisc!");
 			plugin.addExp(p.getName(), exp);
 		}
 		
@@ -166,7 +166,7 @@ public class HackTimer extends BukkitRunnable{
 		if(v.isSimilar(Items.ddosVirus())){
 			int exp = plugin.generateEXP(firewallLevel, 2);
 			msg="Your system is temporarily disabled";
-			p.sendMessage("ง8[ง2!ง8] ง7You generated ง3"+exp+" EXP ง7from the DDoS attack!");
+			p.sendMessage("ยง8[ยง2!ยง8] ยง7You generated ยง3"+exp+" EXP ยง7from the DDoS attack!");
 			plugin.addExp(p.getName(), exp);
 		}
 		
@@ -174,7 +174,7 @@ public class HackTimer extends BukkitRunnable{
 		if(v.isSimilar(Items.sqlVirus())){
 			int exp = plugin.generateEXP(firewallLevel, 1);
 			msg="Your system is temporarily disabled";
-			p.sendMessage("ง8[ง2!ง8] ง7You generated ง3"+exp+" EXP ง7from the SQL Slammer!");
+			p.sendMessage("ยง8[ยง2!ยง8] ยง7You generated ยง3"+exp+" EXP ยง7from the SQL Slammer!");
 			plugin.addExp(p.getName(), exp);
 		}
 		
@@ -182,7 +182,7 @@ public class HackTimer extends BukkitRunnable{
 		if(v.isSimilar(Items.shutdownVirus())){
 			int exp = plugin.generateEXP(firewallLevel, 1);
 			msg="Your system is temporarily disabled";
-			p.sendMessage("ง8[ง2!ง8] ง7You generated ง3"+exp+" EXP ง7from the Shutdown virus!");
+			p.sendMessage("ยง8[ยง2!ยง8] ยง7You generated ยง3"+exp+" EXP ยง7from the Shutdown virus!");
 			plugin.addExp(p.getName(), exp);
 		}
 		
@@ -197,8 +197,8 @@ public class HackTimer extends BukkitRunnable{
 			
 			plugin.setPlayerBitcoins(p.getName(), plugin.getPlayerBitcoin(p.getName())+btc);
 			plugin.addExp(p.getName(), exp);
-			p.sendMessage("ง8[ง2!ง8] ง7You generated ง3"+exp+" EXP ง7from the Cryptolocker!");
-			p.sendMessage("ง8[ง2!ง8] ง7You generated ง3"+btc+" BTC ง7from the Cryptolocker!");
+			p.sendMessage("ยง8[ยง2!ยง8] ยง7You generated ยง3"+exp+" EXP ยง7from the Cryptolocker!");
+			p.sendMessage("ยง8[ยง2!ยง8] ยง7You generated ยง3"+btc+" BTC ยง7from the Cryptolocker!");
 		}
 		
 		//Adware (2)
@@ -207,34 +207,34 @@ public class HackTimer extends BukkitRunnable{
 			int ri = r.nextInt(5)+1;
 			
 			plugin.setPlayerBitcoins(p.getName(), pbtc+ri);
-			p.sendMessage("ง8[ง2!ง8] ง7You generated ง6"+ri+" BTC ง7from the Adware!");
+			p.sendMessage("ยง8[ยง2!ยง8] ยง7You generated ยง6"+ri+" BTC ยง7from the Adware!");
 		}
 		
 		//Killdisc (2)
 		if(v.isSimilar(Items.killdiscVirus())){
 			int exp = plugin.generateEXP(firewallLevel, 2);
-			p.sendMessage("ง8[ง2!ง8] ง7You generated ง3"+exp+" EXP ง7from the Killdisc!");
+			p.sendMessage("ยง8[ยง2!ยง8] ยง7You generated ยง3"+exp+" EXP ยง7from the Killdisc!");
 			plugin.addExp(p.getName(), exp);
 		}
 		
 		//DDoS (2)
 		if(v.isSimilar(Items.ddosVirus())){
 			int exp = plugin.generateEXP(firewallLevel, 2);
-			p.sendMessage("ง8[ง2!ง8] ง7You generated ง3"+exp+" EXP ง7from the DDoS attack!");
+			p.sendMessage("ยง8[ยง2!ยง8] ยง7You generated ยง3"+exp+" EXP ยง7from the DDoS attack!");
 			plugin.addExp(p.getName(), exp);
 		}
 		
 		//SQL Slammer (1)
 		if(v.isSimilar(Items.sqlVirus())){
 			int exp = plugin.generateEXP(firewallLevel, 1);
-			p.sendMessage("ง8[ง2!ง8] ง7You generated ง3"+exp+" EXP ง7from the SQL Slammer!");
+			p.sendMessage("ยง8[ยง2!ยง8] ยง7You generated ยง3"+exp+" EXP ยง7from the SQL Slammer!");
 			plugin.addExp(p.getName(), exp);
 		}
 		
 		//Shutdown.vbs (1)
 		if(v.isSimilar(Items.shutdownVirus())){
 			int exp = plugin.generateEXP(firewallLevel, 1);
-			p.sendMessage("ง8[ง2!ง8] ง7You generated ง3"+exp+" EXP ง7from the Shutdown virus!");
+			p.sendMessage("ยง8[ยง2!ยง8] ยง7You generated ยง3"+exp+" EXP ยง7from the Shutdown virus!");
 			plugin.addExp(p.getName(), exp);
 		}
 	}

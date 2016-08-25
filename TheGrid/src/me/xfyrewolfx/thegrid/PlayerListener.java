@@ -64,7 +64,7 @@ public class PlayerListener implements Listener{
 			plugin.giveNewScoreboard(e.getPlayer());
 		}
 		
-		e.getPlayer().sendMessage("ง8> ง7Server version งa"+plugin.getDescription().getVersion());
+		e.getPlayer().sendMessage("ยง8> ยง7Server version ยงa"+plugin.getDescription().getVersion());
 	}
 	
 	@EventHandler
@@ -101,8 +101,8 @@ public class PlayerListener implements Listener{
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent e){
 		int lvl = plugin.getPlayerLevel(e.getPlayer().getName());
-		e.getPlayer().setDisplayName("ง8[ ง2"+lvl+" ง8] ง7"+e.getPlayer().getName());
-		e.setMessage("งf"+e.getMessage());
+		e.getPlayer().setDisplayName("ยง8[ ยง2"+lvl+" ยง8] ยง7"+e.getPlayer().getName());
+		e.setMessage("ยงf"+e.getMessage());
 		e.setFormat(e.getPlayer().getDisplayName()+": "+e.getMessage());
 	}
 	
@@ -158,12 +158,12 @@ public class PlayerListener implements Listener{
 					Player p = e.getPlayer();
 					if(plugin.isFirewallActive(p.getName())){
 						ItemStack fw = p.getInventory().getItem(8);
-						fw.removeEnchantment(Enchantment.DURABILITY);
+						fw.removeEnchantment(EnchantGlow.getGlow());
 						p.getInventory().setItem(8, fw);
 					}else{
 						if(p.getLevel() > 0){
 							ItemStack fw = p.getInventory().getItem(8);
-							fw.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
+							fw = EnchantGlow.addGlow(fw);
 							p.getInventory().setItem(8, fw);
 						}else{
 							p.sendMessage(MSG.batteryDepleted());

@@ -21,8 +21,17 @@ public class ShopGUI implements Listener{
 		plugin=c;
 		
 		GUI = Bukkit.createInventory(null, 9, "Shop - $"+plugin.getPlayerBitcoin(p.getName())+" BTC");
-		GUI.setItem(0, Items.adwareVirusSHOP());
-		GUI.setItem(1, Items.killdiscVirusSHOP());
+		
+		if(plugin.getPlayerViruses(p.getName()).contains("adware")){
+			GUI.setItem(0, EnchantGlow.addGlow(Items.adwareVirusSHOP()));
+		}else{
+			GUI.setItem(0, Items.adwareVirusSHOP());
+		}
+		if(plugin.getPlayerViruses(p.getName()).contains("killdisc")){
+			GUI.setItem(1, EnchantGlow.addGlow(Items.killdiscVirusSHOP()));
+		}else{
+			GUI.setItem(1, Items.killdiscVirusSHOP());
+		}
 		GUI.setItem(8, Items.iceSHOP());
 		
 		p.openInventory(GUI);
@@ -42,17 +51,17 @@ public class ShopGUI implements Listener{
 								
 								int btc = plugin.getPlayerBitcoin(p.getName());
 								plugin.setPlayerBitcoins(p.getName(), btc-15);
-								p.sendMessage("ง6-$15 BTC");
+								p.sendMessage("ยง6-$15 BTC");
 								
 								List<String> v =  plugin.getPlayerViruses(p.getName());
 								v.add("adware");
 								plugin.setPlayerViruses(p.getName(), v);
-								p.sendMessage("ง8[ ง2! ง8] ง7You purchased the Adware virus!");
+								p.sendMessage("ยง8[ ยง2! ยง8] ยง7You purchased the Adware virus!");
 							}else{
-								p.sendMessage("ง8[ ง2! ง8] ง7You already own that!");
+								p.sendMessage("ยง8[ ยง2! ยง8] ยง7You already own that!");
 							}
 						}else{
-							p.sendMessage("ง8[ ง2! ง8] ง7Insufficient funds!");
+							p.sendMessage("ยง8[ ยง2! ยง8] ยง7Insufficient funds!");
 						}
 					}
 					
@@ -64,17 +73,17 @@ public class ShopGUI implements Listener{
 								
 								int btc = plugin.getPlayerBitcoin(p.getName());
 								plugin.setPlayerBitcoins(p.getName(), btc-10);
-								p.sendMessage("ง6-$10 BTC");
+								p.sendMessage("ยง6-$10 BTC");
 								
 								List<String> v =  plugin.getPlayerViruses(p.getName());
 								v.add("killdisc");
 								plugin.setPlayerViruses(p.getName(), v);
-								p.sendMessage("ง8[ ง2! ง8] ง7You purchased the Killdisc virus!");
+								p.sendMessage("ยง8[ ยง2! ยง8] ยง7You purchased the Killdisc virus!");
 							}else{
-								p.sendMessage("ง8[ ง2! ง8] ง7You already own that!");
+								p.sendMessage("ยง8[ ยง2! ยง8] ยง7You already own that!");
 							}
 						}else{
-							p.sendMessage("ง8[ ง2! ง8] ง7Insufficient funds!");
+							p.sendMessage("ยง8[ ยง2! ยง8] ยง7Insufficient funds!");
 						}
 					}
 					
@@ -84,7 +93,7 @@ public class ShopGUI implements Listener{
 						if(plugin.getPlayerBitcoin(p.getName())>=5){
 							int btc = plugin.getPlayerBitcoin(p.getName());
 							plugin.setPlayerBitcoins(p.getName(), btc-5);
-							p.sendMessage("ง6-$5 BTC");
+							p.sendMessage("ยง6-$5 BTC");
 							
 							int cubes=0;
 							if(plugin.pdata.get(p).getplayer().contains(p.getUniqueId().toString()+".icecubes"))
@@ -96,10 +105,10 @@ public class ShopGUI implements Listener{
 							plugin.pdata.get(p).saveplayer();
 							
 							
-							p.sendMessage("ง8[ ง2! ง8] ง7You purchased an Ice Cube!");
-							p.sendMessage("ง8[ ง2! ง8] ง8You now own ง6"+cubes+" งbIce Cubes");
+							p.sendMessage("ยง8[ ยง2! ยง8] ยง7You purchased an Ice Cube!");
+							p.sendMessage("ยง8[ ยง2! ยง8] ยง8You now own ยง6"+cubes+" ยงbIce Cubes");
 						}else{
-							p.sendMessage("ง8[ ง2! ง8] ง7Insufficient funds!");
+							p.sendMessage("ยง8[ ยง2! ยง8] ยง7Insufficient funds!");
 						}
 					}
 					

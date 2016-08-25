@@ -7,73 +7,73 @@ public class MSG {
 	public static void tierUnlocked(String name, String tier){
 		if(Bukkit.getPlayer(name)!=null){
 			Player p = Bukkit.getPlayer(name);
-			p.sendMessage("ง8[ ง2! ง8] ง7You have been promoted to the ง6"+tier+" ง7tier!");
+			p.sendMessage("ยง8[ ยง2! ยง8] ยง7You have been promoted to the ยง6"+tier+" ยง7tier!");
 			
 			if(tier.equalsIgnoreCase("specialist")){
-				p.sendMessage("      ง7> ง6HP Pavilion G4 ง7upgraded to ง6Linux-based Laptop");
-				p.sendMessage("      ง7> ง6Virtual Firewall ง7upgraded to ง6Basic Hardware Firewall");
-				p.sendMessage("      ง7> ง6Battery ง7upgraded to ง624W");
-				p.sendMessage("      ง7> Unlocked ง6SQL Slammer Virus");
-				p.sendMessage("      ง7> Unlocked ง6Cryptolocker Virus");
+				p.sendMessage("      ยง7> ยง6HP Pavilion G4 ยง7upgraded to ยง6Linux-based Laptop");
+				p.sendMessage("      ยง7> ยง6Virtual Firewall ยง7upgraded to ยง6Basic Hardware Firewall");
+				p.sendMessage("      ยง7> ยง6Battery ยง7upgraded to ยง624W");
+				p.sendMessage("      ยง7> Unlocked ยง6SQL Slammer Virus");
+				p.sendMessage("      ยง7> Unlocked ยง6Cryptolocker Virus");
 			}
 			if(tier.equalsIgnoreCase("elite")){
-				p.sendMessage("      ง7> ง6Linux-based Laptop ง7upgraded to ง6Alienware 18 Laptop");
-				p.sendMessage("      ง7> ง6Basic Hardware Firewall ง7upgraded to ง6Advanced Hardware Firewall");
-				p.sendMessage("      ง7> ง6Battery ง7upgraded to ง648W");
+				p.sendMessage("      ยง7> ยง6Linux-based Laptop ยง7upgraded to ยง6Alienware 18 Laptop");
+				p.sendMessage("      ยง7> ยง6Basic Hardware Firewall ยง7upgraded to ยง6Advanced Hardware Firewall");
+				p.sendMessage("      ยง7> ยง6Battery ยง7upgraded to ยง648W");
 			}
 			if(tier.equalsIgnoreCase("pro")){
-				p.sendMessage("      ง7> ง6Advanced Hardware Firewall ง7upgraded to ง6Encrypted Hardware Firewall");
-				p.sendMessage("      ง7> ง6Battery ง7upgraded to ง672W");
-				p.sendMessage("      ง7> Unlocked ง6DDoS Virus");
+				p.sendMessage("      ยง7> ยง6Advanced Hardware Firewall ยง7upgraded to ยง6Encrypted Hardware Firewall");
+				p.sendMessage("      ยง7> ยง6Battery ยง7upgraded to ยง672W");
+				p.sendMessage("      ยง7> Unlocked ยง6DDoS Virus");
 			}
 		}
 	}
 	
 	public static String joinMessage(String name){
-		return "ง8[ งa+ ง8] งa"+name;
+		return "ยง8[ ยงa+ ยง8] ยงa"+name;
 	}
 	
 	public static String leaveMessage(String name){
-		return "ง8[ งc- ง8] งa"+name;
+		return "ยง8[ ยงc- ยง8] ยงa"+name;
 	}
 	
 	public static String targetTooStrong(int lvl){
-		return "ง8[ ง2! ง8] ง7The target's firewall is too strong! ง8งl(งeงl"+lvl+"ง8งl)";
+		return "ยง8[ ยง2! ยง8] ยง7The target's firewall is too strong! ยง8ยงl(ยงeยงl"+lvl+"ยง8ยงl)";
 	}
 	
 	public static String batteryDepleted(){
-		return "ง8[ ง2! ง8] ง7Your Battery is exhausted!";
+		return "ยง8[ ยง2! ยง8] ยง7Your Battery is exhausted!";
 	}
 	
 	public static String batteryCharging(){
-		return "ง8[ ง2! ง8] ง7Battery is recharging...";
+		return "ยง8[ ยง2! ยง8] ยง7Battery is recharging...";
 	}
 	
 	public static String batteryFull(){
-		return "ง8[ ง2! ง8] ง7Battery is full!";
+		return "ยง8[ ยง2! ยง8] ยง7Battery is full!";
 	}
 	
 	public static String playerOffline(){
-		return "ง8[ ง2! ง8] ง7That player's system is currently offline.";
+		return "ยง8[ ยง2! ยง8] ยง7That player's system is currently offline.";
 	}
 	
 	public static String systemCooledDown(){
-		return "ง8[ ง2! ง8] ง7Your system has cooled down.";
+		return "ยง8[ ยง2! ยง8] ยง7Your system has cooled down.";
 	}
 	
 	public static String needsCooldown(){
-		return "ง8[ ง2! ง8] ง7Your system must cool down before you can continue.";
+		return "ยง8[ ยง2! ยง8] ยง7Your system must cool down before you can continue.";
 	}
 	
 	public static String outOfRange(){
-		return "ง8[ ง2! ง8] ง7You are out of range! Operation cancelled.";
+		return "ยง8[ ยง2! ยง8] ยง7You are out of range! Operation cancelled.";
 	}
 	
 	public static String targetLoggedOut(){
-		return "ง8[ ง2! ง8] ง7Your target left the game! Hacking cancelled.";
+		return "ยง8[ ยง2! ยง8] ยง7Your target left the game! Hacking cancelled.";
 	}
 	
 	public static String levelUp(){
-		return "ง8[ ง2! ง8] งeงlLEVEL UP!";
+		return "ยง8[ ยง2! ยง8] ยงeยงlLEVEL UP!";
 	}
 }

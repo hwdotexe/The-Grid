@@ -64,9 +64,9 @@ public class Items {
 		ItemStack item = new ItemStack(Material.DAYLIGHT_DETECTOR);
 		ItemMeta im = item.getItemMeta();
 		
-		im.setDisplayName("§e§lHP Pavilion G4");
+		im.setDisplayName("Â§eÂ§lHP Pavilion G4");
 		List<String> lore = new ArrayList<String>();
-		lore.add("§7A simple Laptop from 2011");
+		lore.add("Â§7A simple Laptop from 2011");
 		
 		im.setLore(lore);
 		item.setItemMeta(im);
@@ -77,10 +77,10 @@ public class Items {
 		ItemStack item = new ItemStack(Material.DAYLIGHT_DETECTOR);
 		ItemMeta im = item.getItemMeta();
 		
-		im.setDisplayName("§6§lLinux-powered Laptop");
+		im.setDisplayName("Â§6Â§lLinux-powered Laptop");
 		List<String> lore = new ArrayList<String>();
-		lore.add("§7A decent laptop with a secure");
-		lore.add("§7Operating System");
+		lore.add("Â§7A decent laptop with a secure");
+		lore.add("Â§7Operating System");
 		
 		im.setLore(lore);
 		item.setItemMeta(im);
@@ -91,10 +91,10 @@ public class Items {
 		ItemStack item = new ItemStack(Material.DAYLIGHT_DETECTOR);
 		ItemMeta im = item.getItemMeta();
 		
-		im.setDisplayName("§c§lAlienware 18");
+		im.setDisplayName("Â§cÂ§lAlienware 18");
 		List<String> lore = new ArrayList<String>();
-		lore.add("§7A powerhouse laptop with");
-		lore.add("§7extreme performance");
+		lore.add("Â§7A powerhouse laptop with");
+		lore.add("Â§7extreme performance");
 		
 		im.setLore(lore);
 		item.setItemMeta(im);
@@ -109,9 +109,9 @@ public class Items {
 		ItemStack item = new ItemStack(Material.RECORD_10);
 		ItemMeta im = item.getItemMeta();
 		
-		im.setDisplayName("§a§lVirtual Firewall");
+		im.setDisplayName("Â§aÂ§lVirtual Firewall");
 		List<String> lore = new ArrayList<String>();
-		lore.add("§7A basic software-based firewall");
+		lore.add("Â§7A basic software-based firewall");
 		
 		im.setLore(lore);
 		item.setItemMeta(im);
@@ -122,9 +122,9 @@ public class Items {
 		ItemStack item = new ItemStack(Material.BREWING_STAND_ITEM);
 		ItemMeta im = item.getItemMeta();
 		
-		im.setDisplayName("§2§lBasic Firewall");
+		im.setDisplayName("Â§2Â§lBasic Firewall");
 		List<String> lore = new ArrayList<String>();
-		lore.add("§7A decent physical firewall");
+		lore.add("Â§7A decent physical firewall");
 		
 		im.setLore(lore);
 		item.setItemMeta(im);
@@ -135,9 +135,9 @@ public class Items {
 		ItemStack item = new ItemStack(Material.BREWING_STAND_ITEM);
 		ItemMeta im = item.getItemMeta();
 		
-		im.setDisplayName("§3§lAdvanced Firewall");
+		im.setDisplayName("Â§3Â§lAdvanced Firewall");
 		List<String> lore = new ArrayList<String>();
-		lore.add("§7An advanced physical firewall");
+		lore.add("Â§7An advanced physical firewall");
 		
 		im.setLore(lore);
 		item.setItemMeta(im);
@@ -148,10 +148,10 @@ public class Items {
 		ItemStack item = new ItemStack(Material.BREWING_STAND_ITEM);
 		ItemMeta im = item.getItemMeta();
 		
-		im.setDisplayName("§c§lEncrypted Firewall");
+		im.setDisplayName("Â§cÂ§lEncrypted Firewall");
 		List<String> lore = new ArrayList<String>();
-		lore.add("§7An encrypted firewall that");
-		lore.add("§7is difficult to bypass");
+		lore.add("Â§7An encrypted firewall that");
+		lore.add("Â§7is difficult to bypass");
 		
 		im.setLore(lore);
 		item.setItemMeta(im);
@@ -167,9 +167,9 @@ public class Items {
 		ItemStack item = new ItemStack(Material.RABBIT_HIDE);
 		ItemMeta im = item.getItemMeta();
 		
-		im.setDisplayName("§7§lMy Viruses");
+		im.setDisplayName("Â§7Â§lMy Viruses");
 		List<String> lore = new ArrayList<String>();
-		lore.add("§7List the viruses you own");
+		lore.add("Â§7List the viruses you own");
 		
 		im.setLore(lore);
 		item.setItemMeta(im);
@@ -180,9 +180,9 @@ public class Items {
 		ItemStack item = new ItemStack(Material.WATCH);
 		ItemMeta im = item.getItemMeta();
 		
-		im.setDisplayName("§e§lTraceroute");
+		im.setDisplayName("Â§eÂ§lTraceroute");
 		List<String> lore = new ArrayList<String>();
-		lore.add("§7Scan for nearby systems");
+		lore.add("Â§7Scan for nearby systems");
 		
 		im.setLore(lore);
 		item.setItemMeta(im);
@@ -198,10 +198,10 @@ public class Items {
 		ItemStack item = new ItemStack(Material.RABBIT_HIDE);
 		ItemMeta im = item.getItemMeta();
 		
-		im.setDisplayName("§bAdware Virus §6($15 BTC)");
+		im.setDisplayName("Â§bAdware Virus Â§6($15 BTC)");
 		List<String> lore = new ArrayList<String>();
-		lore.add("§7Adware forces advertisements on the");
-		lore.add("§7target, generating a lot of Bitcoin");
+		lore.add("Â§7Adware forces advertisements on the");
+		lore.add("Â§7target, generating a lot of Bitcoin");
 		
 		im.setLore(lore);
 		item.setItemMeta(im);
@@ -212,10 +212,10 @@ public class Items {
 		ItemStack item = new ItemStack(Material.RABBIT_HIDE);
 		ItemMeta im = item.getItemMeta();
 		
-		im.setDisplayName("§bKilldisc Virus §6($10 BTC)");
+		im.setDisplayName("Â§bKilldisc Virus Â§6($10 BTC)");
 		List<String> lore = new ArrayList<String>();
-		lore.add("§7Use the Killdisc to completely");
-		lore.add("§7erase a target Hard Drive");
+		lore.add("Â§7Use the Killdisc to completely");
+		lore.add("Â§7erase a target Hard Drive");
 		
 		im.setLore(lore);
 		item.setItemMeta(im);
@@ -226,10 +226,10 @@ public class Items {
 		ItemStack item = new ItemStack(Material.ICE);
 		ItemMeta im = item.getItemMeta();
 		
-		im.setDisplayName("§bIce §6($5 BTC)");
+		im.setDisplayName("Â§bIce Â§6($5 BTC)");
 		List<String> lore = new ArrayList<String>();
-		lore.add("§7Cools down your system, eliminating");
-		lore.add("§7the wait time. One-time use.");
+		lore.add("Â§7Cools down your system, eliminating");
+		lore.add("Â§7the wait time. One-time use.");
 		
 		im.setLore(lore);
 		item.setItemMeta(im);
@@ -245,9 +245,9 @@ public class Items {
 		ItemStack item = new ItemStack(Material.RABBIT_HIDE);
 		ItemMeta im = item.getItemMeta();
 		
-		im.setDisplayName("§bSHUTDOWN.vbs");
+		im.setDisplayName("Â§bSHUTDOWN.vbs");
 		List<String> lore = new ArrayList<String>();
-		lore.add("§7Forces the target computer to restart");
+		lore.add("Â§7Forces the target computer to restart");
 		
 		im.setLore(lore);
 		item.setItemMeta(im);
@@ -258,9 +258,9 @@ public class Items {
 		ItemStack item = new ItemStack(Material.RABBIT_HIDE);
 		ItemMeta im = item.getItemMeta();
 		
-		im.setDisplayName("§4SQL Slammer");
+		im.setDisplayName("Â§4SQL Slammer");
 		List<String> lore = new ArrayList<String>();
-		lore.add("§7Crashes and corrupts the target");
+		lore.add("Â§7Crashes and corrupts the target");
 		
 		im.setLore(lore);
 		item.setItemMeta(im);
@@ -271,10 +271,10 @@ public class Items {
 		ItemStack item = new ItemStack(Material.RABBIT_HIDE);
 		ItemMeta im = item.getItemMeta();
 		
-		im.setDisplayName("§2CryptoLocker");
+		im.setDisplayName("Â§2CryptoLocker");
 		List<String> lore = new ArrayList<String>();
-		lore.add("§7Holds the target computer for ransom,");
-		lore.add("§7generating high EXP and some Bitcoin");
+		lore.add("Â§7Holds the target computer for ransom,");
+		lore.add("Â§7generating high EXP and some Bitcoin");
 		
 		im.setLore(lore);
 		item.setItemMeta(im);
@@ -285,10 +285,10 @@ public class Items {
 		ItemStack item = new ItemStack(Material.RABBIT_HIDE);
 		ItemMeta im = item.getItemMeta();
 		
-		im.setDisplayName("§dDDoS Attack");
+		im.setDisplayName("Â§dDDoS Attack");
 		List<String> lore = new ArrayList<String>();
-		lore.add("§7The Distributed Denial of Service");
-		lore.add("§7attack crashes the target");
+		lore.add("Â§7The Distributed Denial of Service");
+		lore.add("Â§7attack crashes the target");
 		
 		im.setLore(lore);
 		item.setItemMeta(im);
@@ -299,10 +299,10 @@ public class Items {
 		ItemStack item = new ItemStack(Material.RABBIT_HIDE);
 		ItemMeta im = item.getItemMeta();
 		
-		im.setDisplayName("§aAdware");
+		im.setDisplayName("Â§aAdware");
 		List<String> lore = new ArrayList<String>();
-		lore.add("§7Adware forces advertisements on the");
-		lore.add("§7target, generating a lot of Bitcoin");
+		lore.add("Â§7Adware forces advertisements on the");
+		lore.add("Â§7target, generating a lot of Bitcoin");
 		
 		im.setLore(lore);
 		item.setItemMeta(im);
@@ -313,10 +313,10 @@ public class Items {
 		ItemStack item = new ItemStack(Material.RABBIT_HIDE);
 		ItemMeta im = item.getItemMeta();
 		
-		im.setDisplayName("§cKilldisc");
+		im.setDisplayName("Â§cKilldisc");
 		List<String> lore = new ArrayList<String>();
-		lore.add("§7Use the Killdisc to completely");
-		lore.add("§7erase a target Hard Drive");
+		lore.add("Â§7Use the Killdisc to completely");
+		lore.add("Â§7erase a target Hard Drive");
 		
 		im.setLore(lore);
 		item.setItemMeta(im);

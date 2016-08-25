@@ -16,13 +16,13 @@ public class TitleAPI {
 		connection.sendPacket(packetPlayOutTimes);
 		
 		if(subtitle != null){
-			subtitle = ChatColor.translateAlternateColorCodes('ง', subtitle);
+			subtitle = ChatColor.translateAlternateColorCodes('ยง', subtitle);
 			IChatBaseComponent titleSub = ChatSerializer.a("{\"text\": \"" + subtitle + "\"}");
 			PacketPlayOutTitle packetPlayOutSubTitle = new PacketPlayOutTitle(EnumTitleAction.SUBTITLE, titleSub);
 			connection.sendPacket(packetPlayOutSubTitle);
 		}
 		if (title != null){
-			title = ChatColor.translateAlternateColorCodes('ง', title);
+			title = ChatColor.translateAlternateColorCodes('ยง', title);
 			IChatBaseComponent titleMain = ChatSerializer.a("{\"text\": \"" + title + "\"}");
 			PacketPlayOutTitle packetPlayOutTitle = new PacketPlayOutTitle(EnumTitleAction.TITLE, titleMain);
 			connection.sendPacket(packetPlayOutTitle);
