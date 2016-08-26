@@ -20,6 +20,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.xfyrewolfx.thegrid.apis.ScoreboardAPI;
+import me.xfyrewolfx.thegrid.apis.TitleAPI;
 import me.xfyrewolfx.thegrid.statics.Items;
 import me.xfyrewolfx.thegrid.statics.MSG;
 import me.xfyrewolfx.thegrid.timers.OutletTick;
@@ -56,7 +57,7 @@ public class Main extends JavaPlugin{
 	    out = new ArrayList<Location>();
 	    pdata = new HashMap<Player, PlayerData>();
 	    
-	    scoreboardObj = "{§a§lTheGrid§f}";
+	    scoreboardObj = "§a-§eTheGrid§a-";
 	    
 	    if(Bukkit.getWorld(this.getConfig().getString("tutorialLocation.w")) != null){
 		    if(this.getConfig().contains("tutorialLocation.x")){
@@ -255,10 +256,10 @@ public class Main extends JavaPlugin{
 				int plevel = this.getPlayerLevel(p.getName());
 				int pbattery = p.getLevel();
 				
-				p.sendMessage("§a~$: connected to "+system+" ("+cpulevel+")");
-				p.playSound(p.getLocation(), Sound.ENTITY_CREEPER_HURT, 5, 1);
-				
 				if(pbattery > 0){
+					p.sendMessage("§a~$: connected to "+system+" ("+cpulevel+")");
+					p.playSound(p.getLocation(), Sound.ENTITY_CREEPER_HURT, 5, 1);
+					
 					if(plevel >= cpulevel){
 						Bukkit.getPluginManager().registerEvents(new VirusesGUI(p, this, true, null, l, cpulevel), this);
 					}else{
@@ -302,21 +303,21 @@ public class Main extends JavaPlugin{
 	public void giveNewScoreboard(Player p){
 		ScoreboardAPI.giveScoreboard(p, scoreboardObj);
 		
-		ScoreboardAPI.setScore(p, "EXP", getPlayerExp(p.getName()));
+		ScoreboardAPI.setScore(p, "§2[*] EXP", getPlayerExp(p.getName()));
 		
 		int lvl = getPlayerLevel(p.getName());
 		
-		ScoreboardAPI.setScore(p, "Level", lvl);
-		ScoreboardAPI.setScore(p, "Bitcoins", this.getPlayerBitcoin(p.getName()));
+		ScoreboardAPI.setScore(p, "§c[#] Level", lvl);
+		ScoreboardAPI.setScore(p, "§6[$] Bitcoins", this.getPlayerBitcoin(p.getName()));
 	}
 	
 	public void updateScoreboard(Player p){
-		ScoreboardAPI.setScore(p, "EXP", getPlayerExp(p.getName()));
+		ScoreboardAPI.setScore(p, "§2[*] EXP", getPlayerExp(p.getName()));
 		
 		int lvl = getPlayerLevel(p.getName());
 		
-		ScoreboardAPI.setScore(p, "Level", lvl);
-		ScoreboardAPI.setScore(p, "Bitcoins", this.getPlayerBitcoin(p.getName()));
+		ScoreboardAPI.setScore(p, "§c[#] Level", lvl);
+		ScoreboardAPI.setScore(p, "§6[$] Bitcoins", this.getPlayerBitcoin(p.getName()));
 	}
 	
 	public void createNewPlayerEntries(String name){
@@ -379,7 +380,8 @@ public class Main extends JavaPlugin{
 				//LEVEL UP
 				this.setPlayerLevel(name, lvl+1);
 				this.setPlayerExp(name, (exp+xp)-maxexp);
-				p.sendMessage(MSG.levelUp());
+				
+				TitleAPI.sendTitle(p, 20, 20, 150, "§8[ §e! §8]", "§e§lLEVEL UP");
 				
 				lvl=lvl+1;
 				

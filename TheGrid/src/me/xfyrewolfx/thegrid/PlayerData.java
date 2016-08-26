@@ -3,6 +3,11 @@ package me.xfyrewolfx.thegrid;
 import java.io.File;
 import java.util.logging.Level;
 
+import org.bukkit.Bukkit;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarFlag;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -12,6 +17,8 @@ public class PlayerData {
 	Player p;
 	private FileConfiguration player;
 	private File playerFile;
+	private BossBar batteryBar;
+	private BossBar cooldownBar;
 	PlayerData(Main c, Player pl){
 		plugin=c;
 		p=pl;
@@ -23,6 +30,17 @@ public class PlayerData {
 		this.player = null;
 	    this.playerFile = null;
 	    reloadplayer();
+	    
+	    batteryBar = Bukkit.createBossBar("Battery", BarColor.YELLOW, BarStyle.SOLID, BarFlag.CREATE_FOG);
+	    cooldownBar = Bukkit.createBossBar("Cooldown", BarColor.BLUE, BarStyle.SOLID, BarFlag.CREATE_FOG);
+	}
+	
+	public BossBar getBatteryBar(){
+		return batteryBar;
+	}
+	
+	public BossBar getCooldownBar(){
+		return cooldownBar;
 	}
 	
 	  public void reloadplayer()

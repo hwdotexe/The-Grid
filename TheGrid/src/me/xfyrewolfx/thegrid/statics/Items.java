@@ -106,7 +106,7 @@ public class Items {
 	 * Firewalls
 	 */
 	public static ItemStack getVirtualFirewall(){
-		ItemStack item = new ItemStack(Material.RECORD_10);
+		ItemStack item = new ItemStack(Material.TRAP_DOOR);
 		ItemMeta im = item.getItemMeta();
 		
 		im.setDisplayName("§a§lVirtual Firewall");
@@ -119,7 +119,7 @@ public class Items {
 	}
 	
 	public static ItemStack getBasicHardwareFirewall(){
-		ItemStack item = new ItemStack(Material.BREWING_STAND_ITEM);
+		ItemStack item = new ItemStack(Material.IRON_TRAPDOOR);
 		ItemMeta im = item.getItemMeta();
 		
 		im.setDisplayName("§2§lBasic Firewall");
@@ -145,7 +145,7 @@ public class Items {
 	}
 	
 	public static ItemStack getEncryptedFirewall(){
-		ItemStack item = new ItemStack(Material.BREWING_STAND_ITEM);
+		ItemStack item = new ItemStack(Material.NOTE_BLOCK);
 		ItemMeta im = item.getItemMeta();
 		
 		im.setDisplayName("§c§lEncrypted Firewall");

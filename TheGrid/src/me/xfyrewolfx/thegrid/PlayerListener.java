@@ -2,7 +2,6 @@ package me.xfyrewolfx.thegrid;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -154,7 +153,7 @@ public class PlayerListener implements Listener{
 				}
 				
 				//Firewall
-				if(e.getItem().isSimilar(Items.getVirtualFirewall()) || e.getItem().isSimilar(Items.getBasicHardwareFirewall()) || e.getItem().isSimilar(Items.getAdvancedHardwareFirewall()) || e.getItem().isSimilar(Items.getEncryptedFirewall()) || e.getItem().containsEnchantment(Enchantment.DURABILITY)){
+				if(e.getItem().isSimilar(Items.getVirtualFirewall()) || e.getItem().isSimilar(Items.getBasicHardwareFirewall()) || e.getItem().isSimilar(Items.getAdvancedHardwareFirewall()) || e.getItem().isSimilar(Items.getEncryptedFirewall()) || e.getItem().containsEnchantment(EnchantGlow.getGlow())){
 					Player p = e.getPlayer();
 					if(plugin.isFirewallActive(p.getName())){
 						ItemStack fw = p.getInventory().getItem(8);

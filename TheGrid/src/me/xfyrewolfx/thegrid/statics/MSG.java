@@ -72,8 +72,4 @@ public class MSG {
 	public static String targetLoggedOut(){
 		return "§8[ §2! §8] §7Your target left the game! Hacking cancelled.";
 	}
-	
-	public static String levelUp(){
-		return "§8[ §2! §8] §e§lLEVEL UP!";
-	}
 }
