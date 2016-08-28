@@ -61,13 +61,13 @@ public class Main extends JavaPlugin{
 	    
 	    if(Bukkit.getWorld(this.getConfig().getString("tutorialLocation.w")) != null){
 		    if(this.getConfig().contains("tutorialLocation.x")){
-		    	tutLoc = new Location(Bukkit.getWorld(this.getConfig().getString("tutorialLocation.w")), this.getConfig().getDouble("tutorialLocation.x"), this.getConfig().getDouble("tutorialLocation.y"), this.getConfig().getDouble("tutorialLocation.z"));
+		    	tutLoc = new Location(Bukkit.getWorld(this.getConfig().getString("tutorialLocation.w")), this.getConfig().getDouble("tutorialLocation.x"), this.getConfig().getDouble("tutorialLocation.y"), this.getConfig().getDouble("tutorialLocation.z"), this.getConfig().getInt("tutorialLocation.yaw"), this.getConfig().getInt("tutorialLocation.pitch"));
 		    }else{
 		    	tutLoc = null;
 		    }
 		    
 		    if(this.getConfig().contains("spawnLocation.x")){
-		    	swnLoc = new Location(Bukkit.getWorld(this.getConfig().getString("spawnLocation.w")), this.getConfig().getDouble("spawnLocation.x"), this.getConfig().getDouble("spawnLocation.y"), this.getConfig().getDouble("spawnLocation.z"));
+		    	swnLoc = new Location(Bukkit.getWorld(this.getConfig().getString("spawnLocation.w")), this.getConfig().getDouble("spawnLocation.x"), this.getConfig().getDouble("spawnLocation.y"), this.getConfig().getDouble("spawnLocation.z"), this.getConfig().getInt("spawnLocation.yaw"), this.getConfig().getInt("spawnLocation.pitch"));
 		    }else{
 		    	swnLoc = null;
 		    }
@@ -81,9 +81,9 @@ public class Main extends JavaPlugin{
 	    reloadoutlets();
 	    
 	    if(this.getConfig().contains("motd")){
-			motd=this.getConfig().getString("motd").replaceAll("&", "§");
+			motd=this.getConfig().getString("motd").replaceAll("&", "§").replaceAll("#BREAK", "\n");;
 		}else{
-			this.getConfig().set("motd", "       &f-- &a&kii&8&l [&2&lTheGrid&8&l] &a&kii&f --");
+			this.getConfig().set("motd", "                &f- &a&kii&8&l [&2&lThe &a&k/&2&l Grid&8&l] &a&kii&f -#BREAK&c&lBETA&f - Join Today!");
 			this.saveConfig();
 			motd="       §f-- §a§kii§8§l [§2§lTheGrid§8§l] §a§kii§f --";
 		}
@@ -93,7 +93,7 @@ public class Main extends JavaPlugin{
 				int x = this.getoutlets().getInt(n+".x");
 				int y = this.getoutlets().getInt(n+".y");
 				int z = this.getoutlets().getInt(n+".z");
-				Location l = new Location(Bukkit.getWorld("world"),x,y,z);
+				Location l = new Location(Bukkit.getWorld(this.getConfig().getString("spawnLocation.w")),x,y,z);
 				out.add(l);
 			}
 		}
@@ -104,7 +104,7 @@ public class Main extends JavaPlugin{
 				int y = this.getsystems().getInt(n+".y");
 				int z = this.getsystems().getInt(n+".z");
 				int level = this.getsystems().getInt(n+".level");
-				Location l = new Location(Bukkit.getWorld("world"),x,y,z);
+				Location l = new Location(Bukkit.getWorld(this.getConfig().getString("spawnLocation.w")),x,y,z);
 				sys.put(l, level);
 			}
 		}
@@ -204,6 +204,16 @@ public class Main extends JavaPlugin{
 			return true;
 		}
 		
+		if(cmd.getName().equalsIgnoreCase("reloadmotd")){
+			if(sender.isOp()){
+				this.reloadConfig();
+				motd=this.getConfig().getString("motd").replaceAll("&", "§").replaceAll("#BREAK", "\n");;
+				sender.sendMessage("Reloaded Config / MOTD!");
+			}
+			
+			return true;
+		}
+		
 		if(cmd.getName().equalsIgnoreCase("setspawn")){
 			if(sender.isOp()){
 				if(args.length==0){
@@ -211,7 +221,11 @@ public class Main extends JavaPlugin{
 					this.getConfig().set("spawnLocation.x", p.getLocation().getX());
 					this.getConfig().set("spawnLocation.y", p.getLocation().getY());
 					this.getConfig().set("spawnLocation.z", p.getLocation().getZ());
+					this.getConfig().set("spawnLocation.yaw", p.getLocation().getYaw());
+					this.getConfig().set("spawnLocation.pitch", p.getLocation().getPitch());
+					this.getConfig().set("spawnLocation.w", p.getWorld().getName());
 					this.saveConfig();
+					swnLoc = p.getLocation();
 					p.sendMessage("Spawn set!");
 				}
 			}
@@ -225,7 +239,11 @@ public class Main extends JavaPlugin{
 					this.getConfig().set("tutorialLocation.x", p.getLocation().getX());
 					this.getConfig().set("tutorialLocation.y", p.getLocation().getY());
 					this.getConfig().set("tutorialLocation.z", p.getLocation().getZ());
+					this.getConfig().set("tutorialLocation.yaw", p.getLocation().getYaw());
+					this.getConfig().set("tutorialLocation.pitch", p.getLocation().getPitch());
+					this.getConfig().set("tutorialLocation.w", p.getWorld().getName());
 					this.saveConfig();
+					tutLoc = p.getLocation();
 					p.sendMessage("Tutorial set!");
 				}
 			}

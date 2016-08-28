@@ -36,13 +36,13 @@ public class Cooldown extends BukkitRunnable{
 			}
 			
 			int cubes=0;
-			if(plugin.getConfig().contains(p.getUniqueId().toString()+".icecubes"))
-				cubes = plugin.getConfig().getInt(p.getUniqueId().toString()+".icecubes");
+			if(plugin.pdata.get(p).getplayer().contains(p.getUniqueId().toString()+".icecubes"))
+				cubes = plugin.pdata.get(p).getplayer().getInt(p.getUniqueId().toString()+".icecubes");
 			
 			if(cubes > 0){
 				cubes = cubes-1;
 				
-				plugin.getConfig().set(p.getUniqueId().toString()+".icecubes", cubes);
+				plugin.pdata.get(p).getplayer().set(p.getUniqueId().toString()+".icecubes", cubes);
 				plugin.saveConfig();
 				p.sendMessage("§8[ §2! §8] §7Used an §bIce Cube§7! §8[§6"+cubes+" §8remaining]");
 				this.end();

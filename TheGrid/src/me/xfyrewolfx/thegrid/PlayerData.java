@@ -31,8 +31,8 @@ public class PlayerData {
 	    this.playerFile = null;
 	    reloadplayer();
 	    
-	    batteryBar = Bukkit.createBossBar("Battery", BarColor.YELLOW, BarStyle.SOLID, BarFlag.CREATE_FOG);
-	    cooldownBar = Bukkit.createBossBar("Cooldown", BarColor.BLUE, BarStyle.SOLID, BarFlag.CREATE_FOG);
+	    batteryBar = Bukkit.createBossBar("Battery", BarColor.YELLOW, BarStyle.SOLID, BarFlag.PLAY_BOSS_MUSIC);
+	    cooldownBar = Bukkit.createBossBar("Cooldown", BarColor.BLUE, BarStyle.SOLID, BarFlag.DARKEN_SKY);
 	}
 	
 	public BossBar getBatteryBar(){

@@ -99,10 +99,15 @@ public class PlayerListener implements Listener{
 	
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent e){
-		int lvl = plugin.getPlayerLevel(e.getPlayer().getName());
-		e.getPlayer().setDisplayName("§8[ §2"+lvl+" §8] §7"+e.getPlayer().getName());
-		e.setMessage("§f"+e.getMessage());
-		e.setFormat(e.getPlayer().getDisplayName()+": "+e.getMessage());
+		if(!e.getPlayer().hasMetadata("tutorial")){
+			int lvl = plugin.getPlayerLevel(e.getPlayer().getName());
+			e.getPlayer().setDisplayName("§8[ §2"+lvl+" §8] §7"+e.getPlayer().getName());
+			e.setMessage("§f"+e.getMessage());
+			e.setFormat(e.getPlayer().getDisplayName()+": "+e.getMessage());
+		}else{
+			e.setCancelled(true);
+			e.getPlayer().sendMessage("§cPlease finish the tutorial before chatting!");
+		}
 	}
 	
 	@EventHandler
