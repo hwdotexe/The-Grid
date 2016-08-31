@@ -388,7 +388,7 @@ public class Main extends JavaPlugin{
 	}
 	
 	public void addExp(String name, int xp){
-		if(Bukkit.getPlayer(name)!=null){
+		if(Bukkit.getPlayer(name).isOnline()){
 			Player p = Bukkit.getPlayer(name);
 			int exp = this.getPlayerExp(name);
 			int lvl = this.getPlayerLevel(name);

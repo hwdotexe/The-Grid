@@ -55,6 +55,10 @@ public class VirusesGUI implements Listener{
 				GUI.addItem(Items.killdiscVirus());
 		}
 		
+		if(!isFunctional){
+			GUI.setItem(8,Items.iceCube(plugin.pdata.get(p).getplayer().getInt(p.getUniqueId().toString()+".icecubes")));
+		}
+		
 		p.openInventory(GUI);
 	}
 	

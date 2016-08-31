@@ -30,26 +30,27 @@ public class Cooldown extends BukkitRunnable{
 	public void run(){
 		if(secs > 0){
 			secs=secs-1;
-			
-			if(!bb.getPlayers().contains(p)){
-				bb.addPlayer(p);
-			}
-			
-			int cubes=0;
-			if(plugin.pdata.get(p).getplayer().contains(p.getUniqueId().toString()+".icecubes"))
-				cubes = plugin.pdata.get(p).getplayer().getInt(p.getUniqueId().toString()+".icecubes");
-			
-			if(cubes > 0){
-				cubes = cubes-1;
+			if(p != null && p.isOnline()){
+				if(!bb.getPlayers().contains(p)){
+					bb.addPlayer(p);
+				}
 				
-				plugin.pdata.get(p).getplayer().set(p.getUniqueId().toString()+".icecubes", cubes);
-				plugin.saveConfig();
-				p.sendMessage("§8[ §2! §8] §7Used an §bIce Cube§7! §8[§6"+cubes+" §8remaining]");
-				this.end();
-			}else{
-				bb.setProgress(secs/osecs);
+				int cubes=0;
+				if(plugin.pdata.get(p).getplayer().contains(p.getUniqueId().toString()+".icecubes"))
+					cubes = plugin.pdata.get(p).getplayer().getInt(p.getUniqueId().toString()+".icecubes");
+				
+				if(cubes > 0){
+					cubes = cubes-1;
+					
+					plugin.pdata.get(p).getplayer().set(p.getUniqueId().toString()+".icecubes", cubes);
+					plugin.saveConfig();
+					p.sendMessage("§8[ §2! §8] §7Used an §bIce Cube§7! §8[§6"+cubes+" §8remaining]");
+					this.end();
+				}else{
+					bb.setProgress(secs/osecs);
+				}
+				
 			}
-			
 		}else{
 			this.end();
 		}

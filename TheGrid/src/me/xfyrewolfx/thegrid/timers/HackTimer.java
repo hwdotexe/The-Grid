@@ -45,7 +45,7 @@ public class HackTimer extends BukkitRunnable{
 	}
 	
 	public void run(){
-		if(p != null){
+		if(p != null && p.isOnline()){
 			if(secs > 0){
 				secs=secs-1;
 				

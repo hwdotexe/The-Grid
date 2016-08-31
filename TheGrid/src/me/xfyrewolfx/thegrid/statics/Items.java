@@ -189,6 +189,20 @@ public class Items {
 		return item;
 	}
 	
+	public static ItemStack iceCube(int amount){
+		ItemStack item = new ItemStack(Material.ICE, amount);
+		ItemMeta im = item.getItemMeta();
+		
+		im.setDisplayName("§bIce Cube");
+		List<String> lore = new ArrayList<String>();
+		lore.add("§7Cools down your system, eliminating");
+		lore.add("§7the wait time. One-time use.");
+		
+		im.setLore(lore);
+		item.setItemMeta(im);
+		return item;
+	}
+	
 	
 	/**
 	 * Shop Viruses

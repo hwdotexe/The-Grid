@@ -2,6 +2,8 @@ package me.xfyrewolfx.thegrid;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -150,6 +152,13 @@ public class PlayerListener implements Listener{
 		if(e.getAction()==Action.RIGHT_CLICK_AIR || e.getAction()==Action.RIGHT_CLICK_BLOCK){
 			if(!e.getPlayer().isOp())
 				e.setCancelled(true);//No interactions!
+			
+			if(e.getAction()==Action.RIGHT_CLICK_BLOCK){
+				Block b = e.getClickedBlock();
+				if(b.getType()==Material.TRAP_DOOR || b.getType()==Material.ACACIA_DOOR || b.getType()==Material.BIRCH_DOOR || b.getType()==Material.DARK_OAK_DOOR || b.getType()==Material.JUNGLE_DOOR || b.getType()==Material.SPRUCE_DOOR || b.getType()==Material.WOOD_DOOR || b.getType()==Material.WOODEN_DOOR){
+					e.setCancelled(false);
+				}
+			}
 			
 			if(e.getItem() != null){
 				//List viruses
