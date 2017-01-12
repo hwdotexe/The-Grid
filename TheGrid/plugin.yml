@@ -1,6 +1,6 @@
-name: The-Grid
-version: 0.2.9
-main: me.xfyrewolfx.thegrid.Main
+name: The Grid
+version: 0.3.0
+main: tech.xfyrewolfx.thegrid.Main
 Author: xFyreWolfx
 commands:
   spawn:
