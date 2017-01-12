@@ -44,6 +44,7 @@ public class Messages {
 		vals.put("title", getMessages().getString("title").replaceAll("&", "§")+" ");
 		vals.put("wrong-command", getMessages().getString("wrong-command").replaceAll("&", "§"));
 		vals.put("no-permission", getMessages().getString("no-permission").replaceAll("&", "§"));
+		plugin.getLogger().log(Level.INFO, "Loaded custom messages");
 	}
 	
 	public String getTitle(){

@@ -1,17 +1,9 @@
 name: The Grid
 version: 0.3.0
-main: tech.xfyrewolfx.thegrid.Main
+main: tech.xfyrewolfx.thegrid.TheGrid
 Author: xFyreWolfx
 commands:
-  spawn:
-  addsystem:
-  addoutlet:
-  removesystem:
-  shop:
-  ?:
-  help:
-  pl:
-  plugins:
-  setspawn:
-  settutorial:
-  reloadmotd:
+  thegrid:
+permissions:
+  thegrid.admin:
+    default: op

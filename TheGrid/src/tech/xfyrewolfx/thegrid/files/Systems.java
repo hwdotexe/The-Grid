@@ -31,10 +31,12 @@ public class Systems {
 	}
 	
 	public void loadValues(){
+		sysObjs.clear();
 		for(int i=0; i<this.getSystems().getInt("size"); i++){
 			Location l = new Location(Bukkit.getWorld(this.getSystems().getString(i+".w")), this.getSystems().getDouble(i+".x"), this.getSystems().getDouble(i+".y"), this.getSystems().getDouble(i+".z"));
 			int level = this.getSystems().getInt(i+".level");
-			sysObjs.add(new System(l, level));
+			String name = this.getSystems().getString(i+".name");
+			sysObjs.add(new System(l, name, level));
 		}
 		plugin.getLogger().log(Level.INFO, "Loaded NPC systems");
 	}
@@ -46,6 +48,7 @@ public class Systems {
 			this.getSystems().set(i+".y", this.sysObjs.get(i).getLocation().getBlockY());
 			this.getSystems().set(i+".z", this.sysObjs.get(i).getLocation().getBlockZ());
 			this.getSystems().set(i+".level", this.sysObjs.get(i).getLevel());
+			this.getSystems().set(i+".name", this.sysObjs.get(i).getName());
 		}
 		this.saveSystems();
 		plugin.getLogger().log(Level.INFO, "Saved NPC systems");
@@ -57,21 +60,21 @@ public class Systems {
 	
 	/* File Operations*/
 	
-	public void reloadSystems(){
+	private void reloadSystems(){
 		if(this.systemsFile == null){
 			this.systemsFile = new File(plugin.getDataFolder(), "systems.grid");
 		    this.systems = YamlConfiguration.loadConfiguration(this.systemsFile);
 		}
 	}
 		 
-	public FileConfiguration getSystems(){
+	private FileConfiguration getSystems(){
 		if(this.systems == null){
 			reloadSystems();
 		}
 	   return this.systems;
 	}
 		 
-	public void saveSystems(){
+	private void saveSystems(){
 		if ((this.systems == null) || (this.systemsFile == null)) {
 			return;
 		}

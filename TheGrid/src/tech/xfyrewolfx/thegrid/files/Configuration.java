@@ -13,12 +13,13 @@ public class Configuration {
 	private TheGrid plugin;
 	public Configuration(TheGrid c){
 		plugin=c;
-		plugin.saveDefaultConfig();
-		plugin.reloadConfig();
 		this.loadValues();
 	}
 	
 	public void loadValues(){
+		plugin.saveDefaultConfig();
+		plugin.reloadConfig();
+		
 		if(plugin.getConfig().contains("tutorial-location")){
 			tutorial = new Location(Bukkit.getWorld(plugin.getConfig().getString("tutorial-location.w")), plugin.getConfig().getDouble("tutorial-location.x"), plugin.getConfig().getDouble("tutorial-location.y"), plugin.getConfig().getDouble("tutorial-location.z"), plugin.getConfig().getInt("tutorial-location.yaw"), plugin.getConfig().getInt("tutorial-location.pitch"));
 		}else{
@@ -43,8 +44,30 @@ public class Configuration {
 		return tutorial;
 	}
 	
+	public void setTutorialLocation(Location l){
+		tutorial = l;
+		plugin.getConfig().set("tutorial-location.w", l.getWorld().getName());
+		plugin.getConfig().set("tutorial-location.x", l.getX());
+		plugin.getConfig().set("tutorial-location.y", l.getY());
+		plugin.getConfig().set("tutorial-location.z", l.getZ());
+		plugin.getConfig().set("tutorial-location.yaw", l.getYaw());
+		plugin.getConfig().set("tutorial-location.pitch", l.getPitch());
+		plugin.saveConfig();
+	}
+	
 	public Location getSpawnLocation(){
 		return spawn;
+	}
+	
+	public void setSpawnLocation(Location l){
+		spawn = l;
+		plugin.getConfig().set("spawn-location.w", l.getWorld().getName());
+		plugin.getConfig().set("spawn-location.x", l.getX());
+		plugin.getConfig().set("spawn-location.y", l.getY());
+		plugin.getConfig().set("spawn-location.z", l.getZ());
+		plugin.getConfig().set("spawn-location.yaw", l.getYaw());
+		plugin.getConfig().set("spawn-location.pitch", l.getPitch());
+		plugin.saveConfig();
 	}
 	
 	public String getMOTD(){

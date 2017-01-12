@@ -20,9 +20,14 @@ public class TheGrid extends JavaPlugin{
 		config = new Configuration(this);
 		
 		//TODO register listeners, start timers for sparks/tips. 
-		//TODO create command handler (/thegrid).
+		this.getCommand("thegrid").setExecutor(new CMD(this));
 		// Be thinking about XP / Bitcoin rewards. Players' max EXP should increase by ~100 per level.
 		// GUIs should be more efficient. Create a GUI class with all necessary actions and implement it in subsequent GUIs.
+	}
+	
+	public void onDisable(){
+		outlets.saveValues();
+		systems.saveValues();
 	}
 	
 	public Messages getMessages(){

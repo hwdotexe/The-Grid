@@ -30,6 +30,7 @@ public class Outlets {
 	}
 	
 	public void loadValues(){
+		outObjs.clear();
 		for(int i=0; i<this.getOutlets().getInt("size"); i++){
 			Location l = new Location(Bukkit.getWorld(this.getOutlets().getString(i+".w")), this.getOutlets().getDouble(i+".x"), this.getOutlets().getDouble(i+".y"), this.getOutlets().getDouble(i+".z"));
 			outObjs.add(new Outlet(l));
@@ -54,21 +55,21 @@ public class Outlets {
 	
 	/* File Operations*/
 	
-	public void reloadOutlets(){
+	private void reloadOutlets(){
 		if(this.outletsFile == null){
 			this.outletsFile = new File(plugin.getDataFolder(), "outlets.grid");
 		    this.outlets = YamlConfiguration.loadConfiguration(this.outletsFile);
 		}
 	}
 		 
-	public FileConfiguration getOutlets(){
+	private FileConfiguration getOutlets(){
 		if(this.outlets == null){
 			reloadOutlets();
 		}
 	   return this.outlets;
 	}
 		 
-	public void saveOutlets(){
+	private void saveOutlets(){
 		if ((this.outlets == null) || (this.outletsFile == null)) {
 			return;
 		}
