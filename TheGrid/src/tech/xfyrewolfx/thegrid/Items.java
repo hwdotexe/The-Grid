@@ -10,6 +10,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class Items {
+	
+	// TODO make item names configurable
+	
 	public static ItemStack[] getBasicInventory(){
 		Inventory inv = Bukkit.createInventory(null, 36);
 		inv.setItem(0, getHP());

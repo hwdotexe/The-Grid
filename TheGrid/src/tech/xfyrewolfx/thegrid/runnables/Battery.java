@@ -13,7 +13,7 @@ import tech.xfyrewolfx.thegrid.apis.TitleAPI;
 public class Battery extends BukkitRunnable{
 	private TheGrid plugin;
 	private Player p;
-	private int max;
+	private double max;
 	private BossBar bb;
 	public Battery(TheGrid c, Player pl){
 		plugin=c;

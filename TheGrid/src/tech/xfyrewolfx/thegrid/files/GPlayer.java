@@ -85,6 +85,18 @@ public class GPlayer {
 		return battery;
 	}
 	
+	public int getExp(){
+		return exp;
+	}
+	
+	public int getLevel(){
+		return level;
+	}
+	
+	public int getBTC(){
+		return btc;
+	}
+	
 	public boolean getFirewallActive(){
 		return firewallActive;
 	}

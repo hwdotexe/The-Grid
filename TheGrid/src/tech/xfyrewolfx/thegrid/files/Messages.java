@@ -32,10 +32,11 @@ public class Messages {
 	
 	public void saveDefaultValues(){
 		this.getMessages().set("title", "&8[&aThe Grid&8]");
-		this.getMessages().set("wrong-command", "&cWrong command or usage!");
-		this.getMessages().set("no-permission", "&cYou don't have permission!");
-		this.getMessages().set("player-joined", "&8[ &a+ &8] &7%PLAYER% joined the Grid");
-		this.getMessages().set("player-quit", "&8[ &a- &8] &7%PLAYER% quit the Grid");
+		this.getMessages().set("wrong-command", "&cError 404: syntax not found");
+		this.getMessages().set("no-permission", "&cOperation not permitted");
+		this.getMessages().set("player-joined", "&8[ &a+ &8] &7%PLAYER% established connection to the Grid");
+		this.getMessages().set("player-quit", "&8[ &a- &8] &7%PLAYER% disconnected from the Grid");
+		this.getMessages().set("scoreboard-title", "&e-&aTheGrid&e-");
 
 		this.saveMessages();
 		this.loadValues();
@@ -48,6 +49,15 @@ public class Messages {
 		vals.put("no-permission", getMessages().getString("no-permission").replaceAll("&", "§"));
 		vals.put("player-joined", getMessages().getString("player-joined").replaceAll("&", "§"));
 		vals.put("player-quit", getMessages().getString("player-quit").replaceAll("&", "§"));
+		
+		// Make sure we're using safe values
+		String sb_title = getMessages().getString("scoreboard-title").replaceAll("&", "§");
+		if(sb_title.length()<=16){
+			vals.put("scoreboard-title", sb_title);
+		}else{
+			vals.put("scoreboard-title", "§e-§aTheGrid§e-");
+			plugin.getLogger().log(Level.INFO, "Value of `scoreboard-title` cannot exceed 16 characters! Using default value.");
+		}
 		
 		plugin.getLogger().log(Level.INFO, "Loaded custom messages");
 	}
@@ -66,6 +76,9 @@ public class Messages {
 	}
 	public String playerQuit(String name){
 		return vals.get("player-quit").replaceAll("%PLAYER%", name);
+	}
+	public String scoreboardTitle(){
+		return vals.get("scoreboard-title");
 	}
 	
 	/* File Operations*/

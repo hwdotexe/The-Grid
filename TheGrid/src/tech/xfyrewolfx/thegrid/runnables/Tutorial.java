@@ -38,16 +38,20 @@ public class Tutorial extends BukkitRunnable{
 	}
 	
 	public void run(){
-		if(i < (msgs.size()-1)){
-			
-			if(i==0){
-				p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS,1650,1));
+		if(p != null && p.isOnline()){
+			if(i < (msgs.size()-1)){
+				
+				if(i==0){
+					p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS,1650,1));
+				}
+				
+				TitleAPI.sendTitle(p, 10, 10, 90, msgs.get(i).substring(0, msgs.get(i).indexOf("]")+1),msgs.get(i).substring(msgs.get(i).indexOf("]")+1));
+				i++;
+			}else{
+				this.endTutorial();
 			}
-			
-			TitleAPI.sendTitle(p, 10, 10, 90, msgs.get(i).substring(0, msgs.get(i).indexOf("]")+1),msgs.get(i).substring(msgs.get(i).indexOf("]")+1));
-			i++;
 		}else{
-			this.endTutorial();
+			this.cancel();
 		}
 	}
 	
@@ -57,9 +61,10 @@ public class Tutorial extends BukkitRunnable{
 			p.teleport(sl);
 		}
 		
-		// TODO inventory, battery, scoreboard
+		p.setLevel(plugin.getGPlayer(p).getBattery());
 		new Battery(plugin, p).runTaskTimer(plugin, 600, 600);
 		p.getInventory().setContents(plugin.getGPlayer(p).getInventoryItems());
+		plugin.giveNewScoreboard(p);
 		
 		this.cancel();
 	}
