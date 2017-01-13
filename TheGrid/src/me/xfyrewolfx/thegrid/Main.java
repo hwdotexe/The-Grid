@@ -19,13 +19,13 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import me.xfyrewolfx.thegrid.apis.ScoreboardAPI;
-import me.xfyrewolfx.thegrid.apis.TitleAPI;
 import me.xfyrewolfx.thegrid.statics.Items;
 import me.xfyrewolfx.thegrid.statics.MSG;
 import me.xfyrewolfx.thegrid.timers.OutletTick;
 import me.xfyrewolfx.thegrid.timers.SystemTick;
 import me.xfyrewolfx.thegrid.timers.Tips;
+import tech.xfyrewolfx.thegrid.apis.ScoreboardAPI;
+import tech.xfyrewolfx.thegrid.apis.TitleAPI;
 
 public class Main extends JavaPlugin{
 

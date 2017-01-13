@@ -11,9 +11,9 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.xfyrewolfx.thegrid.Main;
-import me.xfyrewolfx.thegrid.apis.TitleAPI;
 import me.xfyrewolfx.thegrid.statics.Items;
 import me.xfyrewolfx.thegrid.statics.MSG;
+import tech.xfyrewolfx.thegrid.apis.TitleAPI;
 
 public class HackTimer extends BukkitRunnable{
 	

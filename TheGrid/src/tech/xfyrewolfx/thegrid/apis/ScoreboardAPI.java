@@ -1,11 +1,10 @@
-package me.xfyrewolfx.thegrid.apis;
+package tech.xfyrewolfx.thegrid.apis;
 
 /* ScoreboardAPI v2.1.1 by FireBreath15
  * 
- * Built for the sole purpose of private use by FireBreath15.
- * Any unwarranted use of this API is strictly prohibited. 
+ * It's pretty cruddy, but if you want to use it, be my guest.
  * 
- * (c) 2015, All Rights Reserved
+ * (c) 2015 - 2017, All Rights Reserved
  */
 
 import org.bukkit.Bukkit;

@@ -1,23 +1,24 @@
-package me.xfyrewolfx.thegrid;
+package tech.xfyrewolfx.thegrid.runnables;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import me.xfyrewolfx.thegrid.timers.BatteryTick;
+import tech.xfyrewolfx.thegrid.TheGrid;
 import tech.xfyrewolfx.thegrid.apis.TitleAPI;
 
 public class Tutorial extends BukkitRunnable{
 	
-	Main plugin;
+	TheGrid plugin;
 	Player p;
 	int i;
 	List<String> msgs;
-	Tutorial(Main c, Player pl){
+	public Tutorial(TheGrid c, Player pl){
 		plugin=c;
 		p=pl;
 		msgs = new ArrayList<String>();
@@ -51,16 +52,14 @@ public class Tutorial extends BukkitRunnable{
 	}
 	
 	private void endTutorial(){
-		if(plugin.swnLoc != null)
-			p.teleport(plugin.swnLoc);
+		Location sl = plugin.getUserConfig().getSpawnLocation();
+		if(sl != null){
+			p.teleport(sl);
+		}
 		
-		p.getInventory().setContents(plugin.getPlayerInventory(p.getName()));
-		p.setLevel(plugin.getPlayerBattery(p.getName()));
-		new BatteryTick(p, plugin).runTaskTimer(plugin, 600, 600);
-		
-		plugin.giveNewScoreboard(p);
-		
-		p.removeMetadata("tutorial", plugin);
+		// TODO inventory, battery, scoreboard
+		new Battery(plugin, p).runTaskTimer(plugin, 600, 600);
+		p.getInventory().setContents(plugin.getGPlayer(p).getInventoryItems());
 		
 		this.cancel();
 	}

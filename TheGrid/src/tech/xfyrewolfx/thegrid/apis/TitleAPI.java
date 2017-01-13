@@ -1,13 +1,14 @@
-package me.xfyrewolfx.thegrid.apis;
+package tech.xfyrewolfx.thegrid.apis;
 
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_10_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
-import net.minecraft.server.v1_10_R1.IChatBaseComponent;
-import net.minecraft.server.v1_10_R1.IChatBaseComponent.ChatSerializer;
-import net.minecraft.server.v1_10_R1.PacketPlayOutTitle;
-import net.minecraft.server.v1_10_R1.PacketPlayOutTitle.EnumTitleAction;
-import net.minecraft.server.v1_10_R1.PlayerConnection;
+
+import net.minecraft.server.v1_11_R1.IChatBaseComponent;
+import net.minecraft.server.v1_11_R1.IChatBaseComponent.ChatSerializer;
+import net.minecraft.server.v1_11_R1.PacketPlayOutTitle;
+import net.minecraft.server.v1_11_R1.PacketPlayOutTitle.EnumTitleAction;
+import net.minecraft.server.v1_11_R1.PlayerConnection;
 
 public class TitleAPI {
 	public static void sendTitle(Player p, int fadeIn, int fadeOut, int stay, String title, String subtitle){

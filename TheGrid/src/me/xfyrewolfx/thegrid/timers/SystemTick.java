@@ -4,7 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.xfyrewolfx.thegrid.Main;
-import me.xfyrewolfx.thegrid.apis.Particle;
+import tech.xfyrewolfx.thegrid.apis.Particle;
 
 public class SystemTick extends BukkitRunnable{
 	

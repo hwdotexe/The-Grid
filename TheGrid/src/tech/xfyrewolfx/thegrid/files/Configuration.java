@@ -1,5 +1,7 @@
 package tech.xfyrewolfx.thegrid.files;
 
+import java.util.logging.Level;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
@@ -38,6 +40,7 @@ public class Configuration {
 			motd = "        §f-- §a§kii§8§l [§2§lTheGrid§8§l] §a§kii§f --";
 		}
 		
+		plugin.getLogger().log(Level.INFO, "Loaded configuration");
 	}
 	
 	public Location getTutorialLocation(){

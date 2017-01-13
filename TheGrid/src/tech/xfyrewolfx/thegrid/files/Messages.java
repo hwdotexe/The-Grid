@@ -34,6 +34,8 @@ public class Messages {
 		this.getMessages().set("title", "&8[&aThe Grid&8]");
 		this.getMessages().set("wrong-command", "&cWrong command or usage!");
 		this.getMessages().set("no-permission", "&cYou don't have permission!");
+		this.getMessages().set("player-joined", "&8[ &a+ &8] &7%PLAYER% joined the Grid");
+		this.getMessages().set("player-quit", "&8[ &a- &8] &7%PLAYER% quit the Grid");
 
 		this.saveMessages();
 		this.loadValues();
@@ -44,18 +46,26 @@ public class Messages {
 		vals.put("title", getMessages().getString("title").replaceAll("&", "§")+" ");
 		vals.put("wrong-command", getMessages().getString("wrong-command").replaceAll("&", "§"));
 		vals.put("no-permission", getMessages().getString("no-permission").replaceAll("&", "§"));
+		vals.put("player-joined", getMessages().getString("player-joined").replaceAll("&", "§"));
+		vals.put("player-quit", getMessages().getString("player-quit").replaceAll("&", "§"));
+		
 		plugin.getLogger().log(Level.INFO, "Loaded custom messages");
 	}
 	
 	public String getTitle(){
 		return vals.get("title");
 	}
-	
 	public String wrongCommand(){
 		return vals.get("title")+vals.get("wrong-command");
 	}
 	public String noPermission(){
 		return vals.get("title")+vals.get("no-permission");
+	}
+	public String playerJoined(String name){
+		return vals.get("player-joined").replaceAll("%PLAYER%", name);
+	}
+	public String playerQuit(String name){
+		return vals.get("player-quit").replaceAll("%PLAYER%", name);
 	}
 	
 	/* File Operations*/
@@ -67,14 +77,14 @@ public class Messages {
 		}
 	}
 		 
-	public FileConfiguration getMessages(){
+	private FileConfiguration getMessages(){
 		if(this.messages == null){
 			reloadMessages();
 		}
 	   return this.messages;
 	}
 		 
-	public void saveMessages(){
+	private void saveMessages(){
 		if ((this.messages == null) || (this.messagesFile == null)) {
 			return;
 		}

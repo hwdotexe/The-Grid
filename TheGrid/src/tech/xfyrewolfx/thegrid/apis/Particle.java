@@ -1,16 +1,16 @@
-package me.xfyrewolfx.thegrid.apis;
+package tech.xfyrewolfx.thegrid.apis;
 
 import java.util.Random;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_10_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
-import net.minecraft.server.v1_10_R1.EnumParticle;
-import net.minecraft.server.v1_10_R1.Packet;
-import net.minecraft.server.v1_10_R1.PacketPlayOutWorldParticles;
+import net.minecraft.server.v1_11_R1.EnumParticle;
+import net.minecraft.server.v1_11_R1.Packet;
+import net.minecraft.server.v1_11_R1.PacketPlayOutWorldParticles;
 
 public class Particle{
     public static final Particle SPARKLE = new Particle(21, "happyVillager", 0F, 20);

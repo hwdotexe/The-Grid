@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.xfyrewolfx.thegrid.Main;
-import me.xfyrewolfx.thegrid.apis.TitleAPI;
+import tech.xfyrewolfx.thegrid.apis.TitleAPI;
 
 public class Traceroute extends BukkitRunnable{
 	

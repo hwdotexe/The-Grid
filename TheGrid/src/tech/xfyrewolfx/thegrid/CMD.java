@@ -6,6 +6,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import tech.xfyrewolfx.thegrid.listeners.AddOutlet;
+import tech.xfyrewolfx.thegrid.listeners.AddSystem;
+
 public class CMD implements CommandExecutor{
 	
 	TheGrid plugin;
