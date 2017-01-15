@@ -36,6 +36,7 @@ public class Messages {
 		this.getMessages().set("no-permission", "&cOperation not permitted");
 		this.getMessages().set("player-joined", "&8[ &a+ &8] &7%PLAYER% established connection to the Grid");
 		this.getMessages().set("player-quit", "&8[ &a- &8] &7%PLAYER% disconnected from the Grid");
+		this.getMessages().set("battery-depleted", "&cYour battery is exhausted");
 		this.getMessages().set("scoreboard-title", "&e-&aTheGrid&e-");
 
 		this.saveMessages();
@@ -49,6 +50,7 @@ public class Messages {
 		vals.put("no-permission", getMessages().getString("no-permission").replaceAll("&", "§"));
 		vals.put("player-joined", getMessages().getString("player-joined").replaceAll("&", "§"));
 		vals.put("player-quit", getMessages().getString("player-quit").replaceAll("&", "§"));
+		vals.put("battery-depleted", getMessages().getString("battery-depleted").replaceAll("&", "§"));
 		
 		// Make sure we're using safe values
 		String sb_title = getMessages().getString("scoreboard-title").replaceAll("&", "§");
@@ -62,9 +64,6 @@ public class Messages {
 		plugin.getLogger().log(Level.INFO, "Loaded custom messages");
 	}
 	
-	public String getTitle(){
-		return vals.get("title");
-	}
 	public String wrongCommand(){
 		return vals.get("title")+vals.get("wrong-command");
 	}
@@ -79,6 +78,9 @@ public class Messages {
 	}
 	public String scoreboardTitle(){
 		return vals.get("scoreboard-title");
+	}
+	public String batteryDepleted(){
+		return vals.get("title")+vals.get("battery-depleted");
 	}
 	
 	/* File Operations*/

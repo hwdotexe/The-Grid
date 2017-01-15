@@ -30,6 +30,7 @@ public class GPlayer {
 	private int btc;
 	private int exp;
 	private int battery;
+	private int iceCubes;
 	private List<String> viruses;
 	
 	private boolean firewallActive;
@@ -60,11 +61,13 @@ public class GPlayer {
 			exp = getPlayer().getInt("exp");
 			battery = getPlayer().getInt("battery");
 			viruses = getPlayer().getStringList("viruses");
+			iceCubes = getPlayer().getInt("icecubes");
 		}else{
 			level = 1;
 			btc = 5;
 			exp = 0;
 			battery = 12;
+			iceCubes = 1;
 			viruses = new ArrayList<String>();
 			viruses.add("shutdown");
 		}
@@ -111,6 +114,14 @@ public class GPlayer {
 	
 	public void setIsCharging(boolean charging){
 		isCharging = charging;
+	}
+	
+	public List<String> getViruses(){
+		return viruses;
+	}
+	
+	public int getIceCubes(){
+		return iceCubes;
 	}
 	
 	public ItemStack[] getInventoryItems(){
