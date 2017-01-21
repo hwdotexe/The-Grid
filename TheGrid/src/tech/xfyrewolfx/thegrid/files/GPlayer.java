@@ -35,6 +35,7 @@ public class GPlayer {
 	
 	private boolean firewallActive;
 	private boolean isCharging;
+	private boolean isTracing;
 	
 	public GPlayer(TheGrid c, Player pl){
 		plugin=c;
@@ -74,6 +75,15 @@ public class GPlayer {
 		
 		firewallActive = false;
 		isCharging = false;
+		isTracing = false;
+	}
+	
+	public boolean getIsTracing(){
+		return isTracing;
+	}
+	
+	public void setIsTracing(boolean tracing){
+		isTracing = tracing;
 	}
 	
 	public BossBar getBatteryBar(){

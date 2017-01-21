@@ -2,11 +2,11 @@ package tech.xfyrewolfx.thegrid;
 
 import org.bukkit.Location;
 
-public class System {
+public class GSystem {
 	private Location loc;
 	private String name;
 	private int level;
-	public System(Location l, String n, int lvl){
+	public GSystem(Location l, String n, int lvl){
 		loc = l;
 		level = lvl;
 		name=n;

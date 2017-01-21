@@ -37,6 +37,7 @@ public class Messages {
 		this.getMessages().set("player-joined", "&8[ &a+ &8] &7%PLAYER% established connection to the Grid");
 		this.getMessages().set("player-quit", "&8[ &a- &8] &7%PLAYER% disconnected from the Grid");
 		this.getMessages().set("battery-depleted", "&cYour battery is exhausted");
+		this.getMessages().set("battery-full", "&aYour battery is full");
 		this.getMessages().set("scoreboard-title", "&e-&aTheGrid&e-");
 
 		this.saveMessages();
@@ -51,6 +52,7 @@ public class Messages {
 		vals.put("player-joined", getMessages().getString("player-joined").replaceAll("&", "§"));
 		vals.put("player-quit", getMessages().getString("player-quit").replaceAll("&", "§"));
 		vals.put("battery-depleted", getMessages().getString("battery-depleted").replaceAll("&", "§"));
+		vals.put("battery-full", getMessages().getString("battery-full").replaceAll("&", "§"));
 		
 		// Make sure we're using safe values
 		String sb_title = getMessages().getString("scoreboard-title").replaceAll("&", "§");
@@ -81,6 +83,9 @@ public class Messages {
 	}
 	public String batteryDepleted(){
 		return vals.get("title")+vals.get("battery-depleted");
+	}
+	public String batteryFull(){
+		return vals.get("title")+vals.get("battery-full");
 	}
 	
 	/* File Operations*/

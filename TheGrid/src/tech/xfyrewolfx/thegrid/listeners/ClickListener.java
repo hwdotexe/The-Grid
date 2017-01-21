@@ -11,10 +11,14 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
+import tech.xfyrewolfx.thegrid.GSystem;
 import tech.xfyrewolfx.thegrid.Items;
+import tech.xfyrewolfx.thegrid.Outlet;
 import tech.xfyrewolfx.thegrid.TheGrid;
 import tech.xfyrewolfx.thegrid.apis.EnchantGlow;
 import tech.xfyrewolfx.thegrid.gui.VirusesGUI;
+import tech.xfyrewolfx.thegrid.runnables.Charge;
+import tech.xfyrewolfx.thegrid.runnables.Trace;
 
 public class ClickListener implements Listener{
 	private TheGrid plugin;
@@ -62,12 +66,20 @@ public class ClickListener implements Listener{
 				}
 				
 				if(e.getItem().isSimilar(Items.getTraceroute())){
-					// TODO run a traceroute, but prevent spam.
+					new Trace(e.getPlayer(), plugin).runTaskTimer(plugin, 10, 10);
 				}
 				
 				if(e.getItem().isSimilar(Items.getHP()) || e.getItem().isSimilar(Items.getLinux()) || e.getItem().isSimilar(Items.getAlienware())){
 					if(e.getAction()==Action.RIGHT_CLICK_BLOCK){
-						// TODO hacking an NPC
+						GSystem s = plugin.isBlockSystem(e.getClickedBlock().getLocation());
+						Outlet o = plugin.isBlockOutlet(e.getClickedBlock().getLocation());
+						if(s != null){
+							// TODO hacking a NPC
+						}else{
+							if(o != null){
+								new Charge(e.getPlayer(), plugin, o).runTaskTimer(plugin, 20, 100);
+							}
+						}
 					}
 				}
 			}

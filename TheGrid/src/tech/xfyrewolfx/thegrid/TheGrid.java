@@ -3,6 +3,7 @@ package tech.xfyrewolfx.thegrid;
 import java.util.HashMap;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -74,5 +75,23 @@ public class TheGrid extends JavaPlugin{
 		ScoreboardAPI.setScore(p, "§2[*] EXP", getGPlayer(p).getExp());
 		ScoreboardAPI.setScore(p, "§c[#] Level", getGPlayer(p).getLevel());
 		ScoreboardAPI.setScore(p, "§6[$] Bitcoins", getGPlayer(p).getBTC());
+	}
+	
+	public GSystem isBlockSystem(Location l){
+		for(GSystem sys : getSystems().getSystemObjects()){
+			if(l==sys.getLocation()){
+				return sys;
+			}
+		}
+		return null;
+	}
+	
+	public Outlet isBlockOutlet(Location l){
+		for(Outlet out : getOutlets().getOutletObjects()){
+			if(l==out.getLocation()){
+				return out;
+			}
+		}
+		return null;
 	}
 }
