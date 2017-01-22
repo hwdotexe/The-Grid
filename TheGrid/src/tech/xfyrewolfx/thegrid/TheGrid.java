@@ -13,8 +13,10 @@ import tech.xfyrewolfx.thegrid.files.GPlayer;
 import tech.xfyrewolfx.thegrid.files.Messages;
 import tech.xfyrewolfx.thegrid.files.Outlets;
 import tech.xfyrewolfx.thegrid.files.Systems;
+import tech.xfyrewolfx.thegrid.gui.VirusesGUI;
 import tech.xfyrewolfx.thegrid.listeners.ClickListener;
 import tech.xfyrewolfx.thegrid.listeners.PlayerListener;
+import tech.xfyrewolfx.thegrid.runnables.HackNPC;
 import tech.xfyrewolfx.thegrid.runnables.Sparks;
 
 public class TheGrid extends JavaPlugin{
@@ -93,5 +95,70 @@ public class TheGrid extends JavaPlugin{
 			}
 		}
 		return null;
+	}
+	
+	public void hackCPU(Player p, GSystem s){
+		if(getGPlayer(p).getBatteryBar().getProgress()>0.0){
+			p.sendMessage("§a~$: connected to "+s.getName()+" (lv. "+s.getLevel()+")");
+			
+			VirusesGUI vgui = new VirusesGUI(this, p, true);
+			Bukkit.getPluginManager().registerEvents(vgui, this);
+			String virus = "";
+			
+			while(true){
+				if(vgui.getClickedVirus().length()>0){
+					virus = vgui.getClickedVirus();
+					break;
+				}
+			}
+			
+			if(virus != "closed"){
+				if(s.getLevel() <= getGPlayer(p).getLevel()){
+					new HackNPC(this, s, p, virus).runTaskTimer(this, 20, 20);
+				}else{
+					p.sendMessage(getMessages().getFirewallTooStrong());
+				}
+			}else{
+				p.sendMessage("§a~$: disconnected from "+s.getName());
+			}
+		}else{
+			p.sendMessage(getMessages().batteryDepleted());
+		}
+	}
+	
+	public void hackPlayer(Player h, Player t){
+		if(getGPlayer(h).getBatteryBar().getProgress()>0.0){
+			h.sendMessage("§a~$: connected to "+t.getName()+" (lv. "+getGPlayer(t).getLevel()+")");
+			
+			VirusesGUI vgui = new VirusesGUI(this, h, true);
+			Bukkit.getPluginManager().registerEvents(vgui, this);
+			String virus = "";
+			
+			while(true){
+				if(vgui.getClickedVirus().length()>0){
+					virus = vgui.getClickedVirus();
+					break;
+				}
+			}
+			
+			if(virus != "closed"){
+				
+				int levels = getGPlayer(t).getLevel();
+				if(getGPlayer(t).getFirewallActive()){
+					levels += 5; // firewall gives +5
+				}
+				
+				if(levels <= getGPlayer(h).getLevel()){
+					// TODO start hack timer
+				}else{
+					h.sendMessage(getMessages().getFirewallTooStrong());
+					h.sendMessage("§a~$: disconnected from "+t.getName());
+				}
+			}else{
+				h.sendMessage("§a~$: disconnected from "+t.getName());
+			}
+		}else{
+			h.sendMessage(getMessages().batteryDepleted());
+		}
 	}
 }

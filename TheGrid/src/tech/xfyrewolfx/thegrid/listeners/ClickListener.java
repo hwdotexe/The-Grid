@@ -74,7 +74,7 @@ public class ClickListener implements Listener{
 						GSystem s = plugin.isBlockSystem(e.getClickedBlock().getLocation());
 						Outlet o = plugin.isBlockOutlet(e.getClickedBlock().getLocation());
 						if(s != null){
-							// TODO hacking a NPC
+							plugin.hackCPU(p, s);
 						}else{
 							if(o != null){
 								new Charge(e.getPlayer(), plugin, o).runTaskTimer(plugin, 20, 100);
@@ -90,8 +90,7 @@ public class ClickListener implements Listener{
 	public void playerClickPlayer(PlayerInteractEntityEvent e){
 		if(e.getRightClicked() instanceof Player){
 			e.setCancelled(true);
-			
-			// TODO we're hacking a player, so let's screw up their system. Really bad this time.
+			plugin.hackPlayer(e.getPlayer(), (Player)e.getRightClicked());
 		}
 	}
 }

@@ -36,6 +36,7 @@ public class GPlayer {
 	private boolean firewallActive;
 	private boolean isCharging;
 	private boolean isTracing;
+	private boolean isCoolingDown;
 	
 	public GPlayer(TheGrid c, Player pl){
 		plugin=c;
@@ -63,6 +64,7 @@ public class GPlayer {
 			battery = getPlayer().getInt("battery");
 			viruses = getPlayer().getStringList("viruses");
 			iceCubes = getPlayer().getInt("icecubes");
+			isCoolingDown = getPlayer().getBoolean("coolingdown");
 		}else{
 			level = 1;
 			btc = 5;
@@ -71,6 +73,7 @@ public class GPlayer {
 			iceCubes = 1;
 			viruses = new ArrayList<String>();
 			viruses.add("shutdown");
+			isCoolingDown = false;
 		}
 		
 		firewallActive = false;
@@ -84,6 +87,14 @@ public class GPlayer {
 	
 	public void setIsTracing(boolean tracing){
 		isTracing = tracing;
+	}
+	
+	public boolean getIsCoolingDown(){
+		return isCoolingDown;
+	}
+	
+	public void setIsCoolingDown(boolean cooling){
+		isCoolingDown = cooling;
 	}
 	
 	public BossBar getBatteryBar(){
@@ -134,6 +145,10 @@ public class GPlayer {
 		return iceCubes;
 	}
 	
+	public void setIceCubes(int cubes){
+		iceCubes = cubes;
+	}
+	
 	public ItemStack[] getInventoryItems(){
 		if(level < 5){
 			return Items.getBasicInventory();
@@ -160,6 +175,8 @@ public class GPlayer {
 		getPlayer().set("exp", exp);
 		getPlayer().set("battery", battery);
 		getPlayer().set("viruses", viruses);
+		getPlayer().set("icecubes", iceCubes);
+		getPlayer().set("coolingdown", isCoolingDown);
 		savePlayer();
 	}
 	

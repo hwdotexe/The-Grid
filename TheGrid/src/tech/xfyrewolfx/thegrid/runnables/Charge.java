@@ -41,7 +41,7 @@ public class Charge extends BukkitRunnable{
 		if(p.getLevel() < maxBattery && p.getLocation().distance(outlet.getLocation())<=10){
 			p.setLevel(p.getLevel()+1);
 		}else{
-			p.sendMessage(plugin.getMessages().batteryFull());
+			p.sendMessage(plugin.getMessages().chargingFinished());
 			bb.setColor(BarColor.YELLOW);
 			plugin.getGPlayer(p).setIsCharging(false);
 			this.cancel();

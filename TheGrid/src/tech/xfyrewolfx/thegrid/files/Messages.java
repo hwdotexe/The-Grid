@@ -37,7 +37,11 @@ public class Messages {
 		this.getMessages().set("player-joined", "&8[ &a+ &8] &7%PLAYER% established connection to the Grid");
 		this.getMessages().set("player-quit", "&8[ &a- &8] &7%PLAYER% disconnected from the Grid");
 		this.getMessages().set("battery-depleted", "&cYour battery is exhausted");
-		this.getMessages().set("battery-full", "&aYour battery is full");
+		this.getMessages().set("charging-finished", "&aCharging finished");
+		this.getMessages().set("firewallTooStrong", "&cThat system's firewall is too strong");
+		this.getMessages().set("player-out-of-range", "&cYou are out of range!");
+		this.getMessages().set("usedIceCube", "&aYou used an Ice Cube!");
+		this.getMessages().set("player-cooled-down", "&aYour system cooled down");
 		this.getMessages().set("scoreboard-title", "&e-&aTheGrid&e-");
 
 		this.saveMessages();
@@ -52,7 +56,11 @@ public class Messages {
 		vals.put("player-joined", getMessages().getString("player-joined").replaceAll("&", "§"));
 		vals.put("player-quit", getMessages().getString("player-quit").replaceAll("&", "§"));
 		vals.put("battery-depleted", getMessages().getString("battery-depleted").replaceAll("&", "§"));
-		vals.put("battery-full", getMessages().getString("battery-full").replaceAll("&", "§"));
+		vals.put("charging-finished", getMessages().getString("charging-finished").replaceAll("&", "§"));
+		vals.put("firewallTooStrong", getMessages().getString("firewallTooStrong").replaceAll("&", "§"));
+		vals.put("player-out-of-range", getMessages().getString("player-out-of-range").replaceAll("&", "§"));
+		vals.put("usedIceCube", getMessages().getString("usedIceCube").replaceAll("&", "§"));
+		vals.put("player-cooled-down", getMessages().getString("player-cooled-down").replaceAll("&", "§"));
 		
 		// Make sure we're using safe values
 		String sb_title = getMessages().getString("scoreboard-title").replaceAll("&", "§");
@@ -84,8 +92,20 @@ public class Messages {
 	public String batteryDepleted(){
 		return vals.get("title")+vals.get("battery-depleted");
 	}
-	public String batteryFull(){
-		return vals.get("title")+vals.get("battery-full");
+	public String chargingFinished(){
+		return vals.get("title")+vals.get("charging-finished");
+	}
+	public String getFirewallTooStrong(){
+		return vals.get("title")+vals.get("firewallTooStrong");
+	}
+	public String outOfRange(){
+		return vals.get("title")+vals.get("player-out-of-range");
+	}
+	public String usedIceCube(){
+		return vals.get("title")+vals.get("usedIceCube");
+	}
+	public String cooledDown(){
+		return vals.get("title")+vals.get("player-cooled-down");
 	}
 	
 	/* File Operations*/

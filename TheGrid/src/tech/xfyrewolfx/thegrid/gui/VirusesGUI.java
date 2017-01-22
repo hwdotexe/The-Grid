@@ -55,10 +55,6 @@ public class VirusesGUI implements Listener{
 		
 		p.openInventory(GUI);
 	}
-	
-	// TODO while loop, check if a virus has been selected. Make a method here to return the virus clicked. Unregister listener.
-	// that way we don't have to pass in any targets, and we can probably disable the isActive flag as well.
-	
 
 	@EventHandler
 	public void onClick(InventoryClickEvent e){
@@ -81,6 +77,10 @@ public class VirusesGUI implements Listener{
 	@EventHandler
 	public void onClose(InventoryCloseEvent e){
 		if(e.getInventory()==GUI){
+			
+			if(clickedVirus.length()==0)
+				clickedVirus = "closed";
+			
 			InventoryClickEvent.getHandlerList().unregister(this);
 			InventoryCloseEvent.getHandlerList().unregister(this);
 		}

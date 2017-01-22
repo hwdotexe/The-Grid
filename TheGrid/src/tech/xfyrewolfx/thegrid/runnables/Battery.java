@@ -46,6 +46,7 @@ public class Battery extends BukkitRunnable{
 					ItemStack fw = p.getInventory().getItem(8);
 					fw.removeEnchantment(EnchantGlow.getGlow());
 					p.getInventory().setItem(8, fw);
+					plugin.getGPlayer(p).setFirewallActive(false);
 				}
 				
 				TitleAPI.sendTitle(p, 0, 0, 100, "§8[§4 ! §8]", "§7Your Battery is Exhausted!"); //TODO make this configurable
