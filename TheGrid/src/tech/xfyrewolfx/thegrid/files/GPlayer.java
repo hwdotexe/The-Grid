@@ -17,6 +17,7 @@ import org.bukkit.inventory.ItemStack;
 
 import me.xfyrewolfx.thegrid.statics.Items;
 import tech.xfyrewolfx.thegrid.TheGrid;
+import tech.xfyrewolfx.thegrid.apis.TitleAPI;
 
 public class GPlayer {
 	private Player p;
@@ -109,12 +110,24 @@ public class GPlayer {
 		return battery;
 	}
 	
+	public void setBattery(int bat){
+		battery = bat;
+	}
+	
 	public int getExp(){
 		return exp;
 	}
 	
+	public void setExp(int xp){
+		exp = xp;
+	}
+	
 	public int getLevel(){
 		return level;
+	}
+	
+	public void setLevel(int lvl){
+		level = lvl;
 	}
 	
 	public int getBTC(){
@@ -167,6 +180,43 @@ public class GPlayer {
 		}
 		
 		return null;
+	}
+	
+	public void addExp(int nexp){
+		int maxexp = level * 100;
+		
+		if(exp+nexp >= maxexp){
+			this.setLevel(level+1);
+			this.setExp((exp+nexp)-maxexp);
+			
+			TitleAPI.sendTitle(p, 20, 20, 150, "§8[ §e! §8]", "§e§lLEVEL UP");
+			
+			// TODO add notifications
+			if(getLevel() == 5){ 
+				p.getInventory().setContents(Items.getBasicInventoryTraceroute());
+			}
+			
+			if(getLevel() == 10){ 
+				p.getInventory().setContents(Items.getSpecialistInventory());
+				getViruses().add("sql");
+				getViruses().add("cryptolocker");
+				setBattery(24);
+			}
+			
+			if(getLevel() == 20){ 
+				p.getInventory().setContents(Items.getEliteInventory());
+				setBattery(48);
+			}
+			
+			if(getLevel() == 30){ 
+				p.getInventory().setContents(Items.getProInventory());
+				getViruses().add("ddos");
+				setBattery(72);
+			}
+			
+		}
+		
+		plugin.updateScoreboard(p);
 	}
 	
 	public void saveValues(){

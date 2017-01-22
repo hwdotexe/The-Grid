@@ -43,6 +43,8 @@ public class Messages {
 		this.getMessages().set("usedIceCube", "&aYou used an Ice Cube!");
 		this.getMessages().set("player-cooled-down", "&aYour system cooled down");
 		this.getMessages().set("scoreboard-title", "&e-&aTheGrid&e-");
+		this.getMessages().set("exp-gained", "&aYou got %EXP% EXP!");
+		this.getMessages().set("bitcoin-gained", "&aYou got %BTC% BTC!");
 
 		this.saveMessages();
 		this.loadValues();
@@ -61,6 +63,8 @@ public class Messages {
 		vals.put("player-out-of-range", getMessages().getString("player-out-of-range").replaceAll("&", "§"));
 		vals.put("usedIceCube", getMessages().getString("usedIceCube").replaceAll("&", "§"));
 		vals.put("player-cooled-down", getMessages().getString("player-cooled-down").replaceAll("&", "§"));
+		vals.put("exp-gained", getMessages().getString("exp-gained").replaceAll("&", "§"));
+		vals.put("btc-gained", getMessages().getString("btc-gained").replaceAll("&", "§"));
 		
 		// Make sure we're using safe values
 		String sb_title = getMessages().getString("scoreboard-title").replaceAll("&", "§");
@@ -106,6 +110,12 @@ public class Messages {
 	}
 	public String cooledDown(){
 		return vals.get("title")+vals.get("player-cooled-down");
+	}
+	public String gotEXP(int exp){
+		return vals.get("title")+vals.get("exp-gained").replaceAll("%EXP%", Integer.toString(exp));
+	}
+	public String gotBTC(int btc){
+		return vals.get("title")+vals.get("btc-gained").replaceAll("%BTC%", Integer.toString(btc));
 	}
 	
 	/* File Operations*/

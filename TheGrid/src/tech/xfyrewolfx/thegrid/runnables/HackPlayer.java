@@ -3,22 +3,23 @@ package tech.xfyrewolfx.thegrid.runnables;
 import java.util.Random;
 
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import tech.xfyrewolfx.thegrid.GSystem;
 import tech.xfyrewolfx.thegrid.TheGrid;
 import tech.xfyrewolfx.thegrid.apis.TitleAPI;
 
-public class HackNPC extends BukkitRunnable{
+public class HackPlayer extends BukkitRunnable{
 	private TheGrid plugin;
-	private GSystem system;
+	private Player t;
 	private Player p;
 	private int ticks;
 	private String virus;
 	private Random r;
-	public HackNPC(TheGrid c, GSystem sys, Player pl, String vir){
+	public HackPlayer(TheGrid c, Player target, Player pl, String vir){
 		plugin=c;
-		system=sys;
+		t=target;
 		p=pl;
 		ticks=10;
 		virus=vir;
@@ -31,8 +32,13 @@ public class HackNPC extends BukkitRunnable{
 			return;
 		}
 		
+		if(!t.isOnline() || t==null){
+			this.cancel();
+			return;
+		}
+		
 		if(ticks>0){
-			if(p.getLocation().distance(system.getLocation())>15){
+			if(p.getLocation().distance(t.getLocation())>15){
 				p.sendMessage(plugin.getMessages().outOfRange());
 				this.cancel();
 				return;
@@ -61,6 +67,12 @@ public class HackNPC extends BukkitRunnable{
 			TitleAPI.sendTitle(p, 0, 0, 25, "", bar);
 		}else{
 			new Cooldown(plugin, p).runTaskTimer(plugin, 20, 20);
+			
+			// TODO tell the target they got hacked
+			t.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS,100,1));
+			t.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION,100,1));
+			
+			new Cooldown(plugin, t).runTaskTimer(plugin, 20, 20);
 			awardPlayer();
 			this.cancel();
 		}
@@ -68,13 +80,13 @@ public class HackNPC extends BukkitRunnable{
 	
 	private void awardPlayer(){
 		if(virus.equals("SHUTDOWN.vbs")){
-			int exp = generateEXP(system.getLevel(), 1);
+			int exp = generateEXP(plugin.getGPlayer(t).getLevel(), 1);
 			plugin.getGPlayer(p).addExp(exp);
 			p.sendMessage(plugin.getMessages().gotEXP(exp));
 		}
 		
 		if(virus.equals("SQL Slammer")){
-			int exp = generateEXP(system.getLevel(), 1);
+			int exp = generateEXP(plugin.getGPlayer(t).getLevel(), 1);
 			plugin.getGPlayer(p).addExp(exp);
 			p.sendMessage(plugin.getMessages().gotEXP(exp));
 		}
@@ -85,7 +97,7 @@ public class HackNPC extends BukkitRunnable{
 		}
 		
 		if(virus.equals("DDoS Attack")){
-			int exp = generateEXP(system.getLevel(), 2);
+			int exp = generateEXP(plugin.getGPlayer(t).getLevel(), 2);
 			plugin.getGPlayer(p).addExp(exp);
 			p.sendMessage(plugin.getMessages().gotEXP(exp));
 		}
@@ -96,7 +108,7 @@ public class HackNPC extends BukkitRunnable{
 		}
 		
 		if(virus.equals("Killdisc")){
-			int exp = generateEXP(system.getLevel(), 2);
+			int exp = generateEXP(plugin.getGPlayer(t).getLevel(), 2);
 			plugin.getGPlayer(p).addExp(exp);
 			p.sendMessage(plugin.getMessages().gotEXP(exp));
 		}

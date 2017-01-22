@@ -17,6 +17,7 @@ import tech.xfyrewolfx.thegrid.gui.VirusesGUI;
 import tech.xfyrewolfx.thegrid.listeners.ClickListener;
 import tech.xfyrewolfx.thegrid.listeners.PlayerListener;
 import tech.xfyrewolfx.thegrid.runnables.HackNPC;
+import tech.xfyrewolfx.thegrid.runnables.HackPlayer;
 import tech.xfyrewolfx.thegrid.runnables.Sparks;
 
 public class TheGrid extends JavaPlugin{
@@ -149,7 +150,7 @@ public class TheGrid extends JavaPlugin{
 				}
 				
 				if(levels <= getGPlayer(h).getLevel()){
-					// TODO start hack timer
+					new HackPlayer(this, t, h, virus).runTaskTimer(this, 20, 20);
 				}else{
 					h.sendMessage(getMessages().getFirewallTooStrong());
 					h.sendMessage("§a~$: disconnected from "+t.getName());

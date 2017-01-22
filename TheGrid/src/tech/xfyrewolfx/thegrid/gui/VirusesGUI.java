@@ -32,22 +32,19 @@ public class VirusesGUI implements Listener{
 			GUI = Bukkit.createInventory(null, 9, "Choose a Virus");
 		}
 		
-		List<String> viruses = plugin.getGPlayer(p).getViruses();
-		for(String v : viruses){
-			
-			if(v.equalsIgnoreCase("shutdown"))
-				GUI.addItem(Items.shutdownVirus());
-			if(v.equalsIgnoreCase("sql"))
-				GUI.addItem(Items.sqlVirus());
-			if(v.equalsIgnoreCase("cryptolocker"))
-				GUI.addItem(Items.cryptolockerVirus());
-			if(v.equalsIgnoreCase("ddos"))
-				GUI.addItem(Items.ddosVirus());
-			if(v.equalsIgnoreCase("adware"))
-				GUI.addItem(Items.adwareVirus());
-			if(v.equalsIgnoreCase("killdisc"))
-				GUI.addItem(Items.killdiscVirus());
-		}
+		List<String> v = plugin.getGPlayer(p).getViruses();
+		if(v.contains("shutdown"))
+			GUI.addItem(Items.shutdownVirus());
+		if(v.contains("sql"))
+			GUI.addItem(Items.sqlVirus());
+		if(v.contains("cryptolocker"))
+			GUI.addItem(Items.cryptolockerVirus());
+		if(v.contains("ddos"))
+			GUI.addItem(Items.ddosVirus());
+		if(v.contains("adware"))
+			GUI.addItem(Items.adwareVirus());
+		if(v.contains("killdisc"))
+			GUI.addItem(Items.killdiscVirus());
 		
 		if(!isActive){
 			GUI.setItem(8,Items.iceCube(plugin.getGPlayer(p).getIceCubes()));
