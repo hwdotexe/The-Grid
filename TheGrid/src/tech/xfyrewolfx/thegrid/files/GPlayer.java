@@ -15,7 +15,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import me.xfyrewolfx.thegrid.statics.Items;
+import tech.xfyrewolfx.thegrid.Items;
 import tech.xfyrewolfx.thegrid.TheGrid;
 import tech.xfyrewolfx.thegrid.apis.TitleAPI;
 
@@ -38,6 +38,7 @@ public class GPlayer {
 	private boolean isCharging;
 	private boolean isTracing;
 	private boolean isCoolingDown;
+	private boolean isHacking;
 	
 	public GPlayer(TheGrid c, Player pl){
 		plugin=c;
@@ -80,6 +81,7 @@ public class GPlayer {
 		firewallActive = false;
 		isCharging = false;
 		isTracing = false;
+		isHacking = false;
 	}
 	
 	public boolean getIsTracing(){
@@ -88,6 +90,14 @@ public class GPlayer {
 	
 	public void setIsTracing(boolean tracing){
 		isTracing = tracing;
+	}
+	
+	public boolean getIsHacking(){
+		return isHacking;
+	}
+	
+	public void setIsHacking(boolean hacking){
+		isHacking = hacking;
 	}
 	
 	public boolean getIsCoolingDown(){
@@ -132,6 +142,10 @@ public class GPlayer {
 	
 	public int getBTC(){
 		return btc;
+	}
+	
+	public void setBTC(int nbtc){
+		btc = nbtc;
 	}
 	
 	public boolean getFirewallActive(){

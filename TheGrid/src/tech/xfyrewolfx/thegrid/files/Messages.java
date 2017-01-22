@@ -37,6 +37,7 @@ public class Messages {
 		this.getMessages().set("player-joined", "&8[ &a+ &8] &7%PLAYER% established connection to the Grid");
 		this.getMessages().set("player-quit", "&8[ &a- &8] &7%PLAYER% disconnected from the Grid");
 		this.getMessages().set("battery-depleted", "&cYour battery is exhausted");
+		this.getMessages().set("other-battery-depleted", "&c%PLAYER%'s battery is exhausted!");
 		this.getMessages().set("charging-finished", "&aCharging finished");
 		this.getMessages().set("firewallTooStrong", "&cThat system's firewall is too strong");
 		this.getMessages().set("player-out-of-range", "&cYou are out of range!");
@@ -45,6 +46,9 @@ public class Messages {
 		this.getMessages().set("scoreboard-title", "&e-&aTheGrid&e-");
 		this.getMessages().set("exp-gained", "&aYou got %EXP% EXP!");
 		this.getMessages().set("bitcoin-gained", "&aYou got %BTC% BTC!");
+		this.getMessages().set("purchase-successful", "&aPurchase successful!");
+		this.getMessages().set("purchase-failed-no-funds", "&cPurchase failed: insufficient funds!");
+		this.getMessages().set("purchase-failed-already-owned", "&cPurchase failed: you already own that!");
 
 		this.saveMessages();
 		this.loadValues();
@@ -58,6 +62,7 @@ public class Messages {
 		vals.put("player-joined", getMessages().getString("player-joined").replaceAll("&", "§"));
 		vals.put("player-quit", getMessages().getString("player-quit").replaceAll("&", "§"));
 		vals.put("battery-depleted", getMessages().getString("battery-depleted").replaceAll("&", "§"));
+		vals.put("other-battery-depleted", getMessages().getString("other-battery-depleted").replaceAll("&", "§"));
 		vals.put("charging-finished", getMessages().getString("charging-finished").replaceAll("&", "§"));
 		vals.put("firewallTooStrong", getMessages().getString("firewallTooStrong").replaceAll("&", "§"));
 		vals.put("player-out-of-range", getMessages().getString("player-out-of-range").replaceAll("&", "§"));
@@ -65,6 +70,9 @@ public class Messages {
 		vals.put("player-cooled-down", getMessages().getString("player-cooled-down").replaceAll("&", "§"));
 		vals.put("exp-gained", getMessages().getString("exp-gained").replaceAll("&", "§"));
 		vals.put("bitcoin-gained", getMessages().getString("bitcoin-gained").replaceAll("&", "§"));
+		vals.put("purchase-successful", getMessages().getString("purchase-successful").replaceAll("&", "§"));
+		vals.put("purchase-failed-no-funds", getMessages().getString("purchase-failed-no-funds").replaceAll("&", "§"));
+		vals.put("purchase-failed-already-owned", getMessages().getString("purchase-failed-already-owned").replaceAll("&", "§"));
 		
 		// Make sure we're using safe values
 		String sb_title = getMessages().getString("scoreboard-title").replaceAll("&", "§");
@@ -96,6 +104,9 @@ public class Messages {
 	public String batteryDepleted(){
 		return vals.get("title")+vals.get("battery-depleted");
 	}
+	public String otherBatteryDepleted(String name){
+		return vals.get("title")+vals.get("other.battery-depleted").replaceAll("%PLAYER%", name);
+	}
 	public String chargingFinished(){
 		return vals.get("title")+vals.get("charging-finished");
 	}
@@ -116,6 +127,15 @@ public class Messages {
 	}
 	public String gotBTC(int btc){
 		return vals.get("title")+vals.get("bitcoin-gained").replaceAll("%BTC%", Integer.toString(btc));
+	}
+	public String purchaseSuccessful(){
+		return vals.get("title")+vals.get("purchase-successful");
+	}
+	public String purchaseFailedNoFunds(){
+		return vals.get("title")+vals.get("purchase-failed-no-funds");
+	}
+	public String purchaseFailedOwned(){
+		return vals.get("title")+vals.get("purchase-failed-already-owned");
 	}
 	
 	/* File Operations*/

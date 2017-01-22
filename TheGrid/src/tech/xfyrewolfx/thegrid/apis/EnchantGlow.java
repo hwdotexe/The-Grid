@@ -44,7 +44,7 @@ public class EnchantGlow extends EnchantmentWrapper
 	@Override
 	public String getName()
 	{
-		return "";
+		return "TheGrid_GLOW";
 	}
 	
 	@Override

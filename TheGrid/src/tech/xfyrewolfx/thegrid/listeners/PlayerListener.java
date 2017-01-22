@@ -18,6 +18,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
@@ -59,6 +60,14 @@ public class PlayerListener implements Listener{
 	@EventHandler
 	public void onLeave(PlayerQuitEvent e){
 		e.setQuitMessage(plugin.getMessages().playerQuit(e.getPlayer().getName()));
+		
+		plugin.getGPlayer(e.getPlayer()).saveValues();
+		plugin.getGPlayers().remove(e.getPlayer().getName());
+	}
+	
+	@EventHandler
+	public void onKick(PlayerKickEvent e){
+		e.setLeaveMessage(plugin.getMessages().playerQuit(e.getPlayer().getName()));
 		
 		plugin.getGPlayer(e.getPlayer()).saveValues();
 		plugin.getGPlayers().remove(e.getPlayer().getName());

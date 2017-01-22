@@ -66,7 +66,11 @@ public class ClickListener implements Listener{
 				}
 				
 				if(e.getItem().isSimilar(Items.getTraceroute())){
-					new Trace(e.getPlayer(), plugin).runTaskTimer(plugin, 10, 10);
+					if(p.getLevel()>0){
+						new Trace(e.getPlayer(), plugin).runTaskTimer(plugin, 10, 10);
+					}else{
+						p.sendMessage(plugin.getMessages().batteryDepleted());
+					}
 				}
 				
 				if(e.getItem().isSimilar(Items.getHP()) || e.getItem().isSimilar(Items.getLinux()) || e.getItem().isSimilar(Items.getAlienware())){
@@ -74,7 +78,8 @@ public class ClickListener implements Listener{
 						GSystem s = plugin.isBlockSystem(e.getClickedBlock().getLocation());
 						Outlet o = plugin.isBlockOutlet(e.getClickedBlock().getLocation());
 						if(s != null){
-							plugin.hackCPU(p, s);
+							if(!plugin.getGPlayer(e.getPlayer()).getIsHacking())
+								plugin.hackCPU(p, s);
 						}else{
 							if(o != null){
 								if(!plugin.getGPlayer(p).getIsCharging())
@@ -91,7 +96,14 @@ public class ClickListener implements Listener{
 	public void playerClickPlayer(PlayerInteractEntityEvent e){
 		if(e.getRightClicked() instanceof Player){
 			e.setCancelled(true);
-			plugin.hackPlayer(e.getPlayer(), (Player)e.getRightClicked());
+			Player t = (Player)e.getRightClicked();
+			if(!plugin.getGPlayer(e.getPlayer()).getIsHacking()){
+				if(t.getLevel() > 0){
+					plugin.hackPlayer(e.getPlayer(), t);
+				}else{
+					e.getPlayer().sendMessage(plugin.getMessages().otherBatteryDepleted(t.getName()));
+				}
+			}
 		}
 	}
 }

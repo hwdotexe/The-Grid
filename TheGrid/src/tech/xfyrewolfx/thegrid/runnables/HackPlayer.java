@@ -74,6 +74,7 @@ public class HackPlayer extends BukkitRunnable{
 			
 			new Cooldown(plugin, t).runTaskTimer(plugin, 20, 20);
 			awardPlayer();
+			plugin.getGPlayer(p).setIsHacking(false);
 			this.cancel();
 		}
 	}
@@ -112,6 +113,8 @@ public class HackPlayer extends BukkitRunnable{
 			plugin.getGPlayer(p).addExp(exp);
 			p.sendMessage(plugin.getMessages().gotEXP(exp));
 		}
+		
+		p.sendMessage("§a~$: disconnected from "+t.getName());
 	}
 	
 	private int generateEXP(int f, int m){

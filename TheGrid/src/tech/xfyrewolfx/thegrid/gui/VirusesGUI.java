@@ -32,9 +32,9 @@ public class VirusesGUI implements Listener{
 		clickedVirus = "";
 		
 		if(!isActive){
-			GUI = Bukkit.createInventory(null, 9, "Your Viruses");
+			GUI = Bukkit.createInventory(null, 18, "Your Viruses");
 		}else{
-			GUI = Bukkit.createInventory(null, 9, "Choose a Virus");
+			GUI = Bukkit.createInventory(null, 18, "Choose a Virus");
 		}
 		
 		List<String> v = plugin.getGPlayer(p).getViruses();
@@ -53,6 +53,7 @@ public class VirusesGUI implements Listener{
 		
 		if(!isActive){
 			GUI.setItem(8,Items.iceCube(plugin.getGPlayer(p).getIceCubes()));
+			GUI.setItem(17,Items.openSHOP());
 		}
 		
 		p.openInventory(GUI);
@@ -71,6 +72,12 @@ public class VirusesGUI implements Listener{
 					}
 				}else{
 					((Player)e.getWhoClicked()).playSound(e.getWhoClicked().getLocation(), Sound.BLOCK_NOTE_BASS, 6, 1);
+				}
+			}else{
+				if(e.getCurrentItem() != null){
+					if(e.getCurrentItem().isSimilar(Items.openSHOP())){
+						Bukkit.getPluginManager().registerEvents(new ShopGUI(plugin, p), plugin);
+					}
 				}
 			}
 		}
@@ -92,10 +99,13 @@ public class VirusesGUI implements Listener{
 						if(((GSystem)target).getLevel() <= plugin.getGPlayer(p).getLevel()){
 							new HackNPC(plugin, (GSystem)target, p, clickedVirus).runTaskTimer(plugin, 20, 20);
 						}else{
+							p.sendMessage("§a~$: disconnected from "+((GSystem)target).getName());
 							p.sendMessage(plugin.getMessages().getFirewallTooStrong());
+							plugin.getGPlayer(p).setIsHacking(false);
 						}
 					}else{
 						p.sendMessage("§a~$: disconnected from "+((GSystem)target).getName());
+						plugin.getGPlayer(p).setIsHacking(false);
 					}
 				}else{
 					if(target instanceof Player){
@@ -111,9 +121,11 @@ public class VirusesGUI implements Listener{
 							}else{
 								p.sendMessage(plugin.getMessages().getFirewallTooStrong());
 								p.sendMessage("§a~$: disconnected from "+((Player)target).getName());
+								plugin.getGPlayer(p).setIsHacking(false);
 							}
 						}else{
 							p.sendMessage("§a~$: disconnected from "+((Player)target).getName());
+							plugin.getGPlayer(p).setIsHacking(false);
 						}
 					}
 				}

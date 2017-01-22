@@ -253,6 +253,20 @@ public class Items {
 		return item;
 	}
 	
+	public static ItemStack openSHOP(){
+		ItemStack item = new ItemStack(Material.CHEST);
+		ItemMeta im = item.getItemMeta();
+		
+		im.setDisplayName("§b§lHackShop");
+		List<String> lore = new ArrayList<String>();
+		lore.add("§7Visit the shop to buy new gear,");
+		lore.add("§7virues, and more.");
+		
+		im.setLore(lore);
+		item.setItemMeta(im);
+		return item;
+	}
+	
 	
 	/**
 	 * Viruses

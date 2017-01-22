@@ -49,7 +49,7 @@ public class Battery extends BukkitRunnable{
 					plugin.getGPlayer(p).setFirewallActive(false);
 				}
 				
-				TitleAPI.sendTitle(p, 0, 0, 100, "§8[§4 ! §8]", "§7Your Battery is Exhausted!"); //TODO make this configurable
+				TitleAPI.sendTitle(p, 0, 0, 100, "§8[§4 ! §8]", "§7Your Battery is Exhausted!");
 				p.playSound(p.getLocation(), Sound.ENTITY_ITEM_BREAK, 5, 1);
 				
 				double x = p.getLevel()/max;

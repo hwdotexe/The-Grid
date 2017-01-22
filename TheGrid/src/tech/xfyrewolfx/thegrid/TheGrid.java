@@ -49,6 +49,10 @@ public class TheGrid extends JavaPlugin{
 	public void onDisable(){
 		outlets.saveValues();
 		systems.saveValues();
+		
+		for(GPlayer gp : this.getGPlayers().values()){
+			gp.saveValues();
+		}
 	}
 	
 	public Messages getMessages(){
@@ -98,6 +102,7 @@ public class TheGrid extends JavaPlugin{
 	
 	public void hackCPU(Player p, GSystem s){
 		if(getGPlayer(p).getBatteryBar().getProgress()>0.0){
+			getGPlayer(p).setIsHacking(true);
 			p.sendMessage("§a~$: connected to "+s.getName()+" (lv. "+s.getLevel()+")");
 			
 			VirusesGUI vgui = new VirusesGUI(this, p, s, true);
@@ -109,6 +114,7 @@ public class TheGrid extends JavaPlugin{
 	
 	public void hackPlayer(Player h, Player t){
 		if(getGPlayer(h).getBatteryBar().getProgress()>0.0){
+			getGPlayer(h).setIsHacking(true);
 			h.sendMessage("§a~$: connected to "+t.getName()+" (lv. "+getGPlayer(t).getLevel()+")");
 			
 			VirusesGUI vgui = new VirusesGUI(this, h, t, true);

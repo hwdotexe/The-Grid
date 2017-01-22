@@ -1,7 +1,8 @@
 name: TheGrid
-version: 0.3.0
+version: 0.3.5
 main: tech.xfyrewolfx.thegrid.TheGrid
 Author: xFyreWolfx
+softdepend: [MultiWorld, Multiverse-Core]
 commands:
   thegrid:
 permissions:

@@ -63,6 +63,7 @@ public class HackNPC extends BukkitRunnable{
 		}else{
 			new Cooldown(plugin, p).runTaskTimer(plugin, 20, 20);
 			awardPlayer();
+			plugin.getGPlayer(p).setIsHacking(false);
 			this.cancel();
 		}
 	}
