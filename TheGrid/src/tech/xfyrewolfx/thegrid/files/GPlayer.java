@@ -213,7 +213,8 @@ public class GPlayer {
 				getViruses().add("ddos");
 				setBattery(72);
 			}
-			
+		}else{
+			this.setExp(exp+nexp);
 		}
 		
 		plugin.updateScoreboard(p);

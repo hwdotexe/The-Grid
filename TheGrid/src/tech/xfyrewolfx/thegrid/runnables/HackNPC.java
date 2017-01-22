@@ -32,6 +32,7 @@ public class HackNPC extends BukkitRunnable{
 		}
 		
 		if(ticks>0){
+			ticks -= 1;
 			if(p.getLocation().distance(system.getLocation())>15){
 				p.sendMessage(plugin.getMessages().outOfRange());
 				this.cancel();
@@ -100,9 +101,11 @@ public class HackNPC extends BukkitRunnable{
 			plugin.getGPlayer(p).addExp(exp);
 			p.sendMessage(plugin.getMessages().gotEXP(exp));
 		}
+		
+		p.sendMessage("§a~$: disconnected from "+system.getName());
 	}
 	
 	private int generateEXP(int f, int m){
-		return (f * m)+r.nextInt(30);
+		return (f * m)+r.nextInt(40);
 	}
 }

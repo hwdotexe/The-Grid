@@ -1,0 +1,5 @@
+Add more messages
+Shop
+While loops crash server
+Work on custom items
+Add isHacking flag so players can't hack two at once

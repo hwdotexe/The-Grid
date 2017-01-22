@@ -44,6 +44,7 @@ public class Outlets {
 			this.getOutlets().set(i+".x", this.outObjs.get(i).getLocation().getBlockX());
 			this.getOutlets().set(i+".y", this.outObjs.get(i).getLocation().getBlockY());
 			this.getOutlets().set(i+".z", this.outObjs.get(i).getLocation().getBlockZ());
+			this.getOutlets().set(i+".w", this.outObjs.get(i).getLocation().getWorld().getName());
 		}
 		this.saveOutlets();
 		plugin.getLogger().log(Level.INFO, "Saved outlets");

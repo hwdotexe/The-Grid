@@ -47,6 +47,7 @@ public class Systems {
 			this.getSystems().set(i+".x", this.sysObjs.get(i).getLocation().getBlockX());
 			this.getSystems().set(i+".y", this.sysObjs.get(i).getLocation().getBlockY());
 			this.getSystems().set(i+".z", this.sysObjs.get(i).getLocation().getBlockZ());
+			this.getSystems().set(i+".w", this.sysObjs.get(i).getLocation().getWorld().getName());
 			this.getSystems().set(i+".level", this.sysObjs.get(i).getLevel());
 			this.getSystems().set(i+".name", this.sysObjs.get(i).getName());
 		}

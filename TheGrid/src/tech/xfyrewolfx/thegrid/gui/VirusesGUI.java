@@ -11,8 +11,11 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 
+import tech.xfyrewolfx.thegrid.GSystem;
 import tech.xfyrewolfx.thegrid.Items;
 import tech.xfyrewolfx.thegrid.TheGrid;
+import tech.xfyrewolfx.thegrid.runnables.HackNPC;
+import tech.xfyrewolfx.thegrid.runnables.HackPlayer;
 
 public class VirusesGUI implements Listener{
 	private TheGrid plugin;
@@ -20,10 +23,12 @@ public class VirusesGUI implements Listener{
 	private Player p;
 	private boolean isActive;
 	private String clickedVirus;
-	public VirusesGUI(TheGrid c, Player pl, boolean active){
+	private Object target;
+	public VirusesGUI(TheGrid c, Player pl, Object t, boolean active){
 		plugin=c;
 		p=pl;
 		isActive=active;
+		target=t;
 		clickedVirus = "";
 		
 		if(!isActive){
@@ -61,8 +66,8 @@ public class VirusesGUI implements Listener{
 			if(isActive){
 				if(e.getCurrentItem() != null){
 					if(e.getCurrentItem().hasItemMeta()){
-						e.getWhoClicked().closeInventory();
 						clickedVirus = e.getCurrentItem().getItemMeta().getDisplayName().substring(2);
+						e.getWhoClicked().closeInventory();
 					}
 				}else{
 					((Player)e.getWhoClicked()).playSound(e.getWhoClicked().getLocation(), Sound.BLOCK_NOTE_BASS, 6, 1);
@@ -73,17 +78,46 @@ public class VirusesGUI implements Listener{
 	
 	@EventHandler
 	public void onClose(InventoryCloseEvent e){
-		if(e.getInventory()==GUI){
+		if(e.getInventory().getName()==GUI.getName()){
 			
 			if(clickedVirus.length()==0)
 				clickedVirus = "closed";
 			
 			InventoryClickEvent.getHandlerList().unregister(this);
 			InventoryCloseEvent.getHandlerList().unregister(this);
+			
+			if(target != null){
+				if(target instanceof GSystem){
+					if(clickedVirus != "closed"){
+						if(((GSystem)target).getLevel() <= plugin.getGPlayer(p).getLevel()){
+							new HackNPC(plugin, (GSystem)target, p, clickedVirus).runTaskTimer(plugin, 20, 20);
+						}else{
+							p.sendMessage(plugin.getMessages().getFirewallTooStrong());
+						}
+					}else{
+						p.sendMessage("§a~$: disconnected from "+((GSystem)target).getName());
+					}
+				}else{
+					if(target instanceof Player){
+						if(clickedVirus != "closed"){
+							
+							int levels = plugin.getGPlayer((Player)target).getLevel();
+							if(plugin.getGPlayer((Player)target).getFirewallActive()){
+								levels += 5; // firewall gives +5
+							}
+							
+							if(levels <= plugin.getGPlayer(p).getLevel()){
+								new HackPlayer(plugin, (Player)target, p, clickedVirus).runTaskTimer(plugin, 20, 20);
+							}else{
+								p.sendMessage(plugin.getMessages().getFirewallTooStrong());
+								p.sendMessage("§a~$: disconnected from "+((Player)target).getName());
+							}
+						}else{
+							p.sendMessage("§a~$: disconnected from "+((Player)target).getName());
+						}
+					}
+				}
+			}
 		}
-	}
-	
-	public String getClickedVirus(){
-		return clickedVirus;
 	}
 }

@@ -24,10 +24,10 @@ public class Cooldown extends BukkitRunnable{
 		r = new Random();
 		gp = plugin.getGPlayer(p);
 		
-		ticks = (gp.getLevel())+r.nextInt(30);
+		ticks = r.nextInt(35)+1;
 		oticks = ticks;
 		cb = gp.getCooldownBar();
-		double x = p.getLevel()/oticks;
+		double x = ticks/oticks;
 		cb.setProgress(x);
 		cb.addPlayer(p);
 	}
@@ -57,6 +57,7 @@ public class Cooldown extends BukkitRunnable{
 			gp.saveValues();
 		}
 		
+		cb.removePlayer(p);
 		this.cancel();
 	}
 }

@@ -43,7 +43,7 @@ public class ClickListener implements Listener{
 				Player p = e.getPlayer();
 				
 				if(e.getItem().isSimilar(Items.listViruses())){
-					VirusesGUI vgui = new VirusesGUI(plugin, p, false);
+					VirusesGUI vgui = new VirusesGUI(plugin, p, null, false);
 					Bukkit.getPluginManager().registerEvents(vgui, plugin);
 				}
 				
@@ -77,7 +77,8 @@ public class ClickListener implements Listener{
 							plugin.hackCPU(p, s);
 						}else{
 							if(o != null){
-								new Charge(e.getPlayer(), plugin, o).runTaskTimer(plugin, 20, 100);
+								if(!plugin.getGPlayer(p).getIsCharging())
+									new Charge(e.getPlayer(), plugin, o).runTaskTimer(plugin, 20, 100);
 							}
 						}
 					}

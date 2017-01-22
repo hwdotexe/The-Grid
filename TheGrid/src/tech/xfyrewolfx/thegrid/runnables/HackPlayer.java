@@ -115,6 +115,6 @@ public class HackPlayer extends BukkitRunnable{
 	}
 	
 	private int generateEXP(int f, int m){
-		return (f * m)+r.nextInt(30);
+		return (f * m)+r.nextInt(80);
 	}
 }

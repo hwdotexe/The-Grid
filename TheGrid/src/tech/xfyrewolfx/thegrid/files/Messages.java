@@ -64,7 +64,7 @@ public class Messages {
 		vals.put("usedIceCube", getMessages().getString("usedIceCube").replaceAll("&", "§"));
 		vals.put("player-cooled-down", getMessages().getString("player-cooled-down").replaceAll("&", "§"));
 		vals.put("exp-gained", getMessages().getString("exp-gained").replaceAll("&", "§"));
-		vals.put("btc-gained", getMessages().getString("btc-gained").replaceAll("&", "§"));
+		vals.put("bitcoin-gained", getMessages().getString("bitcoin-gained").replaceAll("&", "§"));
 		
 		// Make sure we're using safe values
 		String sb_title = getMessages().getString("scoreboard-title").replaceAll("&", "§");
@@ -115,7 +115,7 @@ public class Messages {
 		return vals.get("title")+vals.get("exp-gained").replaceAll("%EXP%", Integer.toString(exp));
 	}
 	public String gotBTC(int btc){
-		return vals.get("title")+vals.get("btc-gained").replaceAll("%BTC%", Integer.toString(btc));
+		return vals.get("title")+vals.get("bitcoin-gained").replaceAll("%BTC%", Integer.toString(btc));
 	}
 	
 	/* File Operations*/

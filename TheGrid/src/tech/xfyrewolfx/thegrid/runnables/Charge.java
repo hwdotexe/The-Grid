@@ -15,7 +15,7 @@ public class Charge extends BukkitRunnable{
 	private Outlet outlet;
 	
 	private BossBar bb;
-	private int maxBattery;
+	private double maxBattery;
 	public Charge(Player pl, TheGrid c, Outlet out){
 		plugin=c;
 		p=pl;
