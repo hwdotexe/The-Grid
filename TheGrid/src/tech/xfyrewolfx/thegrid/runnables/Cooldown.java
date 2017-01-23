@@ -30,6 +30,8 @@ public class Cooldown extends BukkitRunnable{
 		double x = ticks/oticks;
 		cb.setProgress(x);
 		cb.addPlayer(p);
+		
+		gp.setIsCoolingDown(true);
 	}
 	
 	public void run(){

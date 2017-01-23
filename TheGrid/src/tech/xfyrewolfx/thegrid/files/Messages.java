@@ -43,6 +43,7 @@ public class Messages {
 		this.getMessages().set("player-out-of-range", "&cYou are out of range!");
 		this.getMessages().set("usedIceCube", "&aYou used an Ice Cube!");
 		this.getMessages().set("player-cooled-down", "&aYour system cooled down");
+		this.getMessages().set("player-not-cooled-down", "&cYou must cool down first!");
 		this.getMessages().set("scoreboard-title", "&e-&aTheGrid&e-");
 		this.getMessages().set("exp-gained", "&aYou got %EXP% EXP!");
 		this.getMessages().set("bitcoin-gained", "&aYou got %BTC% BTC!");
@@ -68,6 +69,7 @@ public class Messages {
 		vals.put("player-out-of-range", getMessages().getString("player-out-of-range").replaceAll("&", "§"));
 		vals.put("usedIceCube", getMessages().getString("usedIceCube").replaceAll("&", "§"));
 		vals.put("player-cooled-down", getMessages().getString("player-cooled-down").replaceAll("&", "§"));
+		vals.put("player-not-cooled-down", getMessages().getString("player-not-cooled-down").replaceAll("&", "§"));
 		vals.put("exp-gained", getMessages().getString("exp-gained").replaceAll("&", "§"));
 		vals.put("bitcoin-gained", getMessages().getString("bitcoin-gained").replaceAll("&", "§"));
 		vals.put("purchase-successful", getMessages().getString("purchase-successful").replaceAll("&", "§"));
@@ -121,6 +123,9 @@ public class Messages {
 	}
 	public String cooledDown(){
 		return vals.get("title")+vals.get("player-cooled-down");
+	}
+	public String notCooledDown(){
+		return vals.get("title")+vals.get("player-not-cooled-down");
 	}
 	public String gotEXP(int exp){
 		return vals.get("title")+vals.get("exp-gained").replaceAll("%EXP%", Integer.toString(exp));

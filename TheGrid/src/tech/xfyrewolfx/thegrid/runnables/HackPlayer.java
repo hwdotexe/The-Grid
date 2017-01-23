@@ -38,6 +38,7 @@ public class HackPlayer extends BukkitRunnable{
 		}
 		
 		if(ticks>0){
+			ticks -= 1;
 			if(p.getLocation().distance(t.getLocation())>15){
 				p.sendMessage(plugin.getMessages().outOfRange());
 				this.cancel();

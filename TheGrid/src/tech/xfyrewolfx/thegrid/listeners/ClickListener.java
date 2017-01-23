@@ -78,8 +78,13 @@ public class ClickListener implements Listener{
 						GSystem s = plugin.isBlockSystem(e.getClickedBlock().getLocation());
 						Outlet o = plugin.isBlockOutlet(e.getClickedBlock().getLocation());
 						if(s != null){
-							if(!plugin.getGPlayer(e.getPlayer()).getIsHacking())
-								plugin.hackCPU(p, s);
+							if(!plugin.getGPlayer(e.getPlayer()).getIsHacking()){
+								if(!plugin.getGPlayer(e.getPlayer()).getIsCoolingDown()){
+									plugin.hackCPU(p, s);
+								}else{
+									e.getPlayer().sendMessage(plugin.getMessages().notCooledDown());
+								}
+							}
 						}else{
 							if(o != null){
 								if(!plugin.getGPlayer(p).getIsCharging())
@@ -99,7 +104,11 @@ public class ClickListener implements Listener{
 			Player t = (Player)e.getRightClicked();
 			if(!plugin.getGPlayer(e.getPlayer()).getIsHacking()){
 				if(t.getLevel() > 0){
-					plugin.hackPlayer(e.getPlayer(), t);
+					if(!plugin.getGPlayer(e.getPlayer()).getIsCoolingDown()){
+						plugin.hackPlayer(e.getPlayer(), t);
+					}else{
+						e.getPlayer().sendMessage(plugin.getMessages().notCooledDown());
+					}
 				}else{
 					e.getPlayer().sendMessage(plugin.getMessages().otherBatteryDepleted(t.getName()));
 				}
