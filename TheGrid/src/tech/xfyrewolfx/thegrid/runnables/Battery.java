@@ -6,8 +6,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import me.xfyrewolfx.thegrid.EnchantGlow;
 import tech.xfyrewolfx.thegrid.TheGrid;
+import tech.xfyrewolfx.thegrid.apis.EnchantGlow;
 import tech.xfyrewolfx.thegrid.apis.TitleAPI;
 
 public class Battery extends BukkitRunnable{
