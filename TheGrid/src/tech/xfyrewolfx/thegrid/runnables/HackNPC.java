@@ -107,6 +107,6 @@ public class HackNPC extends BukkitRunnable{
 	}
 	
 	private int generateEXP(int f, int m){
-		return (f * m)+r.nextInt(40);
+		return (f * m)+r.nextInt(30);
 	}
 }

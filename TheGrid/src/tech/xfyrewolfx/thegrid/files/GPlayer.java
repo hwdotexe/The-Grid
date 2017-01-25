@@ -39,6 +39,7 @@ public class GPlayer {
 	private boolean isTracing;
 	private boolean isCoolingDown;
 	private boolean isHacking;
+	private boolean isTutorial;
 	
 	public GPlayer(TheGrid c, Player pl){
 		plugin=c;
@@ -82,6 +83,7 @@ public class GPlayer {
 		isCharging = false;
 		isTracing = false;
 		isHacking = false;
+		isTutorial = false;
 	}
 	
 	public boolean getIsTracing(){
@@ -90,6 +92,14 @@ public class GPlayer {
 	
 	public void setIsTracing(boolean tracing){
 		isTracing = tracing;
+	}
+	
+	public boolean getIsTutorial(){
+		return isTutorial;
+	}
+	
+	public void setIsTutorial(boolean tut){
+		isTutorial = tut;
 	}
 	
 	public boolean getIsHacking(){

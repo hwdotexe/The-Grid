@@ -50,6 +50,9 @@ public class Messages {
 		this.getMessages().set("purchase-successful", "&aPurchase successful!");
 		this.getMessages().set("purchase-failed-no-funds", "&cPurchase failed: insufficient funds!");
 		this.getMessages().set("purchase-failed-already-owned", "&cPurchase failed: you already own that!");
+		this.getMessages().set("player-lost-btc", "&cYou had %BTC% BTC stolen from you!");
+		this.getMessages().set("player-got-hacked", "&cYou were hacked!");
+		this.getMessages().set("chat-in-tutorial", "&cYou cannot chat while in the tutorial!");
 
 		this.saveMessages();
 		this.loadValues();
@@ -75,6 +78,9 @@ public class Messages {
 		vals.put("purchase-successful", getMessages().getString("purchase-successful").replaceAll("&", "§"));
 		vals.put("purchase-failed-no-funds", getMessages().getString("purchase-failed-no-funds").replaceAll("&", "§"));
 		vals.put("purchase-failed-already-owned", getMessages().getString("purchase-failed-already-owned").replaceAll("&", "§"));
+		vals.put("player-lost-btc", getMessages().getString("player-lost-btc").replaceAll("&", "§"));
+		vals.put("player-got-hacked", getMessages().getString("player-got-hacked").replaceAll("&", "§"));
+		vals.put("chat-in-tutorial", getMessages().getString("chat-in-tutorial").replaceAll("&", "§"));
 		
 		// Make sure we're using safe values
 		String sb_title = getMessages().getString("scoreboard-title").replaceAll("&", "§");
@@ -133,6 +139,9 @@ public class Messages {
 	public String gotBTC(int btc){
 		return vals.get("title")+vals.get("bitcoin-gained").replaceAll("%BTC%", Integer.toString(btc));
 	}
+	public String lostBTC(int btc){
+		return vals.get("title")+vals.get("player-lost-btc").replaceAll("%BTC%", Integer.toString(btc));
+	}
 	public String purchaseSuccessful(){
 		return vals.get("title")+vals.get("purchase-successful");
 	}
@@ -141,6 +150,12 @@ public class Messages {
 	}
 	public String purchaseFailedOwned(){
 		return vals.get("title")+vals.get("purchase-failed-already-owned");
+	}
+	public String gotHacked(){
+		return vals.get("title")+vals.get("player-got-hacked");
+	}
+	public String chatInTutorial(){
+		return vals.get("title")+vals.get("chat-in-tutorial");
 	}
 	
 	/* File Operations*/

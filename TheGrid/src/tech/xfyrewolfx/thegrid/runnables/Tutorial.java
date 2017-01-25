@@ -35,6 +35,8 @@ public class Tutorial extends BukkitRunnable{
 		msgs.add("§8[ §fYou Are Ready §8] §7Hack players, company systems, and more. Have fun!");
 		msgs.add("§8[ §ki§fLoading§8§ki§8 ] §7Porting you to §aThe Grid...");
 		i=0;
+		
+		plugin.getGPlayer(p).setIsTutorial(true);
 	}
 	
 	public void run(){
@@ -42,7 +44,8 @@ public class Tutorial extends BukkitRunnable{
 			if(i < (msgs.size()-1)){
 				
 				if(i==0){
-					p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS,1650,1));
+					if(plugin.getUserConfig().getDoTutorialPotionEffects())
+						p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS,1650,1));
 				}
 				
 				TitleAPI.sendTitle(p, 10, 10, 90, msgs.get(i).substring(0, msgs.get(i).indexOf("]")+1),msgs.get(i).substring(msgs.get(i).indexOf("]")+1));
@@ -65,6 +68,8 @@ public class Tutorial extends BukkitRunnable{
 		new Battery(plugin, p).runTaskTimer(plugin, 600, 600);
 		p.getInventory().setContents(plugin.getGPlayer(p).getInventoryItems());
 		plugin.giveNewScoreboard(p);
+		
+		plugin.getGPlayer(p).setIsTutorial(false);
 		
 		this.cancel();
 	}

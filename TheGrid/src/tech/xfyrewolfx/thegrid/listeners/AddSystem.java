@@ -25,6 +25,22 @@ public class AddSystem implements Listener{
 	public void onClick(PlayerInteractEvent e){
 		if(e.getAction()==Action.RIGHT_CLICK_BLOCK){
 			if(e.getPlayer().getName().equalsIgnoreCase(p.getName())){
+				e.setCancelled(true);
+				
+				for(GSystem s : plugin.getSystems().getSystemObjects()){
+					if(s.getName().equalsIgnoreCase(name)){
+						p.sendMessage("Error: A System with that name already exists!");
+						PlayerInteractEvent.getHandlerList().unregister(this);
+						return;
+					}
+					
+					if(s.getLocation().getBlockX() == e.getClickedBlock().getX() && s.getLocation().getBlockY() == e.getClickedBlock().getY() && s.getLocation().getBlockZ() == e.getClickedBlock().getZ() && s.getLocation().getWorld().getName().equalsIgnoreCase(e.getClickedBlock().getWorld().getName())){
+						p.sendMessage("Error: There is already a System in that location!");
+						PlayerInteractEvent.getHandlerList().unregister(this);
+						return;
+					}
+				}
+				
 				plugin.getSystems().getSystemObjects().add(new GSystem(e.getClickedBlock().getLocation(), name, level));
 				
 				p.sendMessage("System added!");

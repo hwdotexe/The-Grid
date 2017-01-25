@@ -69,7 +69,7 @@ public class HackPlayer extends BukkitRunnable{
 		}else{
 			new Cooldown(plugin, p).runTaskTimer(plugin, 20, 20);
 			
-			// TODO tell the target they got hacked
+			t.sendMessage(plugin.getMessages().gotHacked());
 			t.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS,100,1));
 			t.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION,100,1));
 			
@@ -82,35 +82,53 @@ public class HackPlayer extends BukkitRunnable{
 	
 	private void awardPlayer(){
 		if(virus.equals("SHUTDOWN.vbs")){
-			int exp = generateEXP(plugin.getGPlayer(t).getLevel(), 1);
+			int exp = generateEXP(plugin.getGPlayer(t).getLevel(), 2);
 			plugin.getGPlayer(p).addExp(exp);
 			p.sendMessage(plugin.getMessages().gotEXP(exp));
 		}
 		
 		if(virus.equals("SQL Slammer")){
-			int exp = generateEXP(plugin.getGPlayer(t).getLevel(), 1);
+			int exp = generateEXP(plugin.getGPlayer(t).getLevel(), 2);
 			plugin.getGPlayer(p).addExp(exp);
 			p.sendMessage(plugin.getMessages().gotEXP(exp));
 		}
 		
 		if(virus.equals("Cryptolocker")){
-			int btc = r.nextInt(3)+1;
+			int btc = r.nextInt(5)+1;
+			int tbtc = plugin.getGPlayer(t).getBTC();
+			
+			if(tbtc >= btc){
+				plugin.getGPlayer(t).setBTC(tbtc-btc);
+			}else{
+				plugin.getGPlayer(t).setBTC(0);
+			}
+			
 			p.sendMessage(plugin.getMessages().gotBTC(btc));
+			t.sendMessage(plugin.getMessages().lostBTC(btc));
 		}
 		
 		if(virus.equals("DDoS Attack")){
-			int exp = generateEXP(plugin.getGPlayer(t).getLevel(), 2);
+			int exp = generateEXP(plugin.getGPlayer(t).getLevel(), 3);
 			plugin.getGPlayer(p).addExp(exp);
 			p.sendMessage(plugin.getMessages().gotEXP(exp));
 		}
 		
 		if(virus.equals("Adware")){
-			int btc = r.nextInt(2)+1;
+			int btc = r.nextInt(4)+1;
+			int tbtc = plugin.getGPlayer(t).getBTC();
+			
+			if(tbtc >= btc){
+				plugin.getGPlayer(t).setBTC(tbtc-btc);
+			}else{
+				plugin.getGPlayer(t).setBTC(0);
+			}
+			
 			p.sendMessage(plugin.getMessages().gotBTC(btc));
+			t.sendMessage(plugin.getMessages().lostBTC(btc));
 		}
 		
 		if(virus.equals("Killdisc")){
-			int exp = generateEXP(plugin.getGPlayer(t).getLevel(), 2);
+			int exp = generateEXP(plugin.getGPlayer(t).getLevel(), 3);
 			plugin.getGPlayer(p).addExp(exp);
 			p.sendMessage(plugin.getMessages().gotEXP(exp));
 		}
@@ -119,6 +137,6 @@ public class HackPlayer extends BukkitRunnable{
 	}
 	
 	private int generateEXP(int f, int m){
-		return (f * m)+r.nextInt(80);
+		return (f * m)+r.nextInt(60);
 	}
 }

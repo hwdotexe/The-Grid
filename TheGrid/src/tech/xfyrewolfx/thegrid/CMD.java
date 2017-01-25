@@ -24,6 +24,7 @@ public class CMD implements CommandExecutor{
 					sender.sendMessage("§a===§8===§a===§8===§a===§8===§a===§8===§a===§8===");
 					sender.sendMessage("§7/thegrid addSystem <name> <level>");
 					sender.sendMessage("§7/thegrid addOutlet");
+					sender.sendMessage("§7/thegrid addBitcoin <onlineplayer> <amount>");
 					sender.sendMessage("§7/thegrid setSpawn");
 					sender.sendMessage("§7/thegrid setTutorial");
 					sender.sendMessage("§7/thegrid reload");
@@ -57,7 +58,25 @@ public class CMD implements CommandExecutor{
 										plugin.getMessages().loadValues();
 										sender.sendMessage("Configuration and Messages reloaded!");
 									}else{
-										sender.sendMessage(plugin.getMessages().wrongCommand());
+										if(args[0].equalsIgnoreCase("addBitcoin")){
+											if(args.length==3){
+												Player p = Bukkit.getPlayer(args[1]);
+												if(p != null){
+													if(p.isOnline()){
+														plugin.getGPlayer(p).setBTC(plugin.getGPlayer(p).getBTC() + Integer.parseInt(args[2]));
+														sender.sendMessage("Gave "+args[2]+ "Bitcoin to "+p.getName());
+													}else{
+														sender.sendMessage("Player isn't online!");
+													}
+												}else{
+													sender.sendMessage("Player wasn't found!");
+												}
+											}else{
+												sender.sendMessage(plugin.getMessages().wrongCommand());
+											}
+										}else{
+											sender.sendMessage(plugin.getMessages().wrongCommand());
+										}
 									}
 								}
 							}

@@ -11,6 +11,8 @@ public class Configuration {
 	private Location tutorial;
 	private Location spawn;
 	private String motd;
+	private boolean doTutorialPotionEffects;
+	private boolean overrideMOTD;
 	
 	private TheGrid plugin;
 	public Configuration(TheGrid c){
@@ -32,6 +34,18 @@ public class Configuration {
 			spawn = new Location(Bukkit.getWorld(plugin.getConfig().getString("spawn-location.w")), plugin.getConfig().getDouble("spawn-location.x"), plugin.getConfig().getDouble("spawn-location.y"), plugin.getConfig().getDouble("spawn-location.z"), plugin.getConfig().getInt("spawn-location.yaw"), plugin.getConfig().getInt("spawn-location.pitch"));
 		}else{
 			spawn = null;
+		}
+		
+		if(plugin.getConfig().contains("doTutorialPotionEffects")){
+			doTutorialPotionEffects = plugin.getConfig().getBoolean("doTutorialPotionEffects");
+		}else{
+			doTutorialPotionEffects = true;
+		}
+		
+		if(plugin.getConfig().contains("overrideMOTD")){
+			overrideMOTD = plugin.getConfig().getBoolean("overrideMOTD");
+		}else{
+			overrideMOTD = true;
 		}
 		
 		if(plugin.getConfig().contains("motd")){
@@ -75,5 +89,13 @@ public class Configuration {
 	
 	public String getMOTD(){
 		return motd;
+	}
+	
+	public boolean getOverrideMOTD(){
+		return overrideMOTD;
+	}
+	
+	public boolean getDoTutorialPotionEffects(){
+		return doTutorialPotionEffects;
 	}
 }

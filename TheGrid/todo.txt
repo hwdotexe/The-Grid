@@ -1,3 +1,11 @@
 Add level up notifications
 Make items configurable (name, block ID, etc.)
-Players not teleporting to tutorial loc on join
++ Adding systems with same name (prevent)
++ Command to give bitcoin
++ Add outlets in the same location (prevent)
++ Reward more EXP for hacking players
++ Chat in tutorial
++ Switch hands
++ remove potion fx in tutorial (or make conf)
++ Players told they got hacked
++ Better config.yml

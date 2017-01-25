@@ -20,6 +20,7 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
@@ -81,8 +82,15 @@ public class PlayerListener implements Listener{
 	}
 	
 	@EventHandler
+	public void stopHandSwap(PlayerSwapHandItemsEvent e){
+		if(!e.getPlayer().isOp())
+			e.setCancelled(true);
+	}
+	
+	@EventHandler
 	public void onPing(ServerListPingEvent e){
-		e.setMotd(plugin.getUserConfig().getMOTD());
+		if(plugin.getUserConfig().getOverrideMOTD())
+			e.setMotd(plugin.getUserConfig().getMOTD());
 	}
 	
 	@EventHandler
@@ -94,11 +102,15 @@ public class PlayerListener implements Listener{
 	
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent e){
-		cal = Calendar.getInstance();
-        String time = sdf.format(cal.getTime());
-		e.getPlayer().setDisplayName("§8[§a"+time+"§8] §7"+e.getPlayer().getName());
-		e.setMessage("§f"+e.getMessage());
-		e.setFormat(e.getPlayer().getDisplayName()+": "+e.getMessage());
+		if(!plugin.getGPlayer(e.getPlayer()).getIsTutorial()){
+			cal = Calendar.getInstance();
+	        String time = sdf.format(cal.getTime());
+			e.getPlayer().setDisplayName("§8[§a"+time+"§8] §7"+e.getPlayer().getName());
+			e.setMessage("§f"+e.getMessage());
+			e.setFormat(e.getPlayer().getDisplayName()+": "+e.getMessage());
+		}else{
+			e.getPlayer().sendMessage(plugin.getMessages().chatInTutorial());
+		}
 	}
 	
 	@EventHandler

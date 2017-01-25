@@ -23,6 +23,16 @@ public class AddOutlet implements Listener{
 		if(e.getAction()==Action.RIGHT_CLICK_BLOCK){
 			if(e.getClickedBlock().getType()==Material.TRIPWIRE_HOOK){
 				if(e.getPlayer().getName().equalsIgnoreCase(p.getName())){
+					e.setCancelled(true);
+					
+					for(Outlet o : plugin.getOutlets().getOutletObjects()){
+						if(o.getLocation().getBlockX() == e.getClickedBlock().getX() && o.getLocation().getBlockY() == e.getClickedBlock().getY() && o.getLocation().getBlockZ() == e.getClickedBlock().getZ() && o.getLocation().getWorld().getName().equalsIgnoreCase(e.getClickedBlock().getWorld().getName())){
+							p.sendMessage("Error: There is already an Outlet in that location!");
+							PlayerInteractEvent.getHandlerList().unregister(this);
+							return;
+						}
+					}
+					
 					plugin.getOutlets().getOutletObjects().add(new Outlet(e.getClickedBlock().getLocation()));
 					
 					p.sendMessage("Outlet added!");
