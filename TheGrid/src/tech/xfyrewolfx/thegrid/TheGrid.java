@@ -33,6 +33,7 @@ public class TheGrid extends JavaPlugin{
 		gplayers = new HashMap<String, GPlayer>();
 		
 		this.getCommand("thegrid").setExecutor(new CMD(this));
+		this.getCommand("gridspawn").setExecutor(new CMD(this));
 		Bukkit.getPluginManager().registerEvents(new PlayerListener(this), this);
 		Bukkit.getPluginManager().registerEvents(new ClickListener(this), this);
 		new Sparks(this).runTaskTimer(this, 100, 100);

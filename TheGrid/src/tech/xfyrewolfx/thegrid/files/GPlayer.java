@@ -253,6 +253,9 @@ public class GPlayer {
 		getPlayer().set("icecubes", iceCubes);
 		getPlayer().set("coolingdown", isCoolingDown);
 		savePlayer();
+		
+		this.getCooldownBar().removePlayer(p);
+		this.getBatteryBar().removePlayer(p);
 	}
 	
 	/* File Operations*/

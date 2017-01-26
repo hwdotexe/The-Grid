@@ -1,10 +1,13 @@
 name: TheGrid
-version: 0.3.7
+version: 0.3.8
 main: tech.xfyrewolfx.thegrid.TheGrid
 Author: xFyreWolfx
 softdepend: [MultiWorld, Multiverse-Core]
 commands:
   thegrid:
+  gridspawn:
 permissions:
   thegrid.admin:
     default: op
+  thegrid.spawn:
+    default: true

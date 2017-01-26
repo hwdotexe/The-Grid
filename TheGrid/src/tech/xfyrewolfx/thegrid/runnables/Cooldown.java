@@ -34,6 +34,22 @@ public class Cooldown extends BukkitRunnable{
 		gp.setIsCoolingDown(true);
 	}
 	
+	public Cooldown(TheGrid c, Player pl, int cdticks){
+		plugin=c;
+		p=pl;
+		r = new Random();
+		gp = plugin.getGPlayer(p);
+		
+		ticks = cdticks;
+		oticks = cdticks;
+		cb = gp.getCooldownBar();
+		double x = ticks/oticks;
+		cb.setProgress(x);
+		cb.addPlayer(p);
+		
+		gp.setIsCoolingDown(true);
+	}
+	
 	public void run(){
 		if(ticks > 0){
 			ticks -= 1;
@@ -54,12 +70,9 @@ public class Cooldown extends BukkitRunnable{
 		if(plugin.getGPlayers().containsValue(gp)){
 			p.sendMessage(plugin.getMessages().cooledDown());
 			plugin.getGPlayer(p).setIsCoolingDown(false);
-		}else{
-			gp.setIsCoolingDown(false);
-			gp.saveValues();
+			cb.removePlayer(p);
 		}
 		
-		cb.removePlayer(p);
 		this.cancel();
 	}
 }

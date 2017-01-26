@@ -19,11 +19,7 @@ public class Trace extends BukkitRunnable{
 		plugin=c;
 		ticks=16;
 		
-		if(plugin.getGPlayer(p).getIsTracing()){
-			this.cancel();
-		}else{
-			plugin.getGPlayer(p).setIsTracing(true);
-		}
+		plugin.getGPlayer(p).setIsTracing(true);
 	}
 	
 	public void run(){
@@ -37,16 +33,16 @@ public class Trace extends BukkitRunnable{
 			String title = "";
 			
 			if(ticks == 1 || ticks == 5 || ticks == 9 || ticks == 13){
-				title="[\\]";
+				title="[ \\\\ ]";
 			}
 			if(ticks == 2 || ticks == 6 || ticks == 10 || ticks == 14){
-				title="[|]";
+				title="[ | ]";
 			}
 			if(ticks == 3 || ticks == 7 || ticks == 11 || ticks == 15){
-				title="[/]";
+				title="[ / ]";
 			}
 			if(ticks == 4 || ticks == 8 || ticks == 12 || ticks == 16){
-				title="[-]";
+				title="[ - ]";
 			}
 			
 			TitleAPI.sendTitle(p, 0, 0, 15, "§ki§e§l Traceroute §f§ki", title);
@@ -73,7 +69,7 @@ public class Trace extends BukkitRunnable{
 			
 			if(sys.size()>0){
 				for(GSystem s : sys){
-					p.sendMessage("§8[§eTraceroute§8] §7Found system at x§e"+s.getLocation().getBlockX()+" §7y§e"+s.getLocation().getBlockY()+" §7z§e"+s.getLocation().getBlockZ()+" §8[Level "+s.getLevel()+"]");
+					p.sendMessage("§8[§eTraceroute§8] §a["+s.getName()+" (lv."+s.getLevel()+")] §7 @ x§e"+s.getLocation().getBlockX()+" §7y§e"+s.getLocation().getBlockY()+" §7z§e"+s.getLocation().getBlockZ());
 				}
 			}else{
 				p.sendMessage("§8[§eTraceroute§8] §7No systems were found in this area.");

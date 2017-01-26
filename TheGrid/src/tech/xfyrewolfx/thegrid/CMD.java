@@ -28,6 +28,7 @@ public class CMD implements CommandExecutor{
 					sender.sendMessage("§7/thegrid setSpawn");
 					sender.sendMessage("§7/thegrid setTutorial");
 					sender.sendMessage("§7/thegrid reload");
+					sender.sendMessage("§e/gridspawn §7- Used by players to return to Spawn");
 					sender.sendMessage("§a===§8===§a===§8===§a===§8===§a===§8===§a===§8===");
 				}else{
 					if(args[0].equalsIgnoreCase("addSystem")){
@@ -82,6 +83,25 @@ public class CMD implements CommandExecutor{
 							}
 						}
 					}
+				}
+			}else{
+				sender.sendMessage(plugin.getMessages().noPermission());
+			}
+			return true;
+		}
+		
+		if(cmd.getName().equalsIgnoreCase("gridspawn")){
+			if(sender.hasPermission("thegrid.spawn")){
+				if(sender instanceof Player){
+					Player p = (Player)sender;
+					
+					if(plugin.getUserConfig().getSpawnLocation() != null){
+						p.teleport(plugin.getUserConfig().getSpawnLocation());
+					}else{
+						p.sendMessage("§c[!] The Spawn location could not be found!");
+					}
+				}else{
+					sender.sendMessage("§c[!] You must be a player to use that command!");
 				}
 			}else{
 				sender.sendMessage(plugin.getMessages().noPermission());

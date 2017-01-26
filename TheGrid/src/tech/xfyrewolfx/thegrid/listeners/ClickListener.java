@@ -67,7 +67,8 @@ public class ClickListener implements Listener{
 				
 				if(e.getItem().isSimilar(Items.getTraceroute())){
 					if(p.getLevel()>0){
-						new Trace(e.getPlayer(), plugin).runTaskTimer(plugin, 10, 10);
+						if(!plugin.getGPlayer(p).getIsTracing())
+							new Trace(e.getPlayer(), plugin).runTaskTimer(plugin, 10, 10);
 					}else{
 						p.sendMessage(plugin.getMessages().batteryDepleted());
 					}

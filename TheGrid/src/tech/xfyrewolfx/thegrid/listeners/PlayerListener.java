@@ -27,6 +27,7 @@ import org.bukkit.event.weather.WeatherChangeEvent;
 import tech.xfyrewolfx.thegrid.TheGrid;
 import tech.xfyrewolfx.thegrid.files.GPlayer;
 import tech.xfyrewolfx.thegrid.runnables.Battery;
+import tech.xfyrewolfx.thegrid.runnables.Cooldown;
 import tech.xfyrewolfx.thegrid.runnables.Tutorial;
 
 public class PlayerListener implements Listener{
@@ -55,6 +56,9 @@ public class PlayerListener implements Listener{
 			new Battery(plugin, e.getPlayer()).runTaskTimer(plugin, 600, 600);
 			e.getPlayer().getInventory().setContents(plugin.getGPlayer(e.getPlayer()).getInventoryItems());
 			plugin.giveNewScoreboard(e.getPlayer());
+			
+			if(plugin.getGPlayer(e.getPlayer()).getIsCoolingDown())
+				new Cooldown(plugin, e.getPlayer(), 45).runTaskTimer(plugin, 20, 20);
 		}
 	}
 	
@@ -109,6 +113,7 @@ public class PlayerListener implements Listener{
 			e.setMessage("§f"+e.getMessage());
 			e.setFormat(e.getPlayer().getDisplayName()+": "+e.getMessage());
 		}else{
+			e.setCancelled(true);
 			e.getPlayer().sendMessage(plugin.getMessages().chatInTutorial());
 		}
 	}
