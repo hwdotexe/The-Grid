@@ -1,8 +1,9 @@
-Add level up notifications
-Make items configurable (name, block ID, etc.)
-+/spawn command
-+Fix traceroute animation
-+Traceroute should give the name of the system
-+if a player is cooling down & disconnects, just save config as true. When they join again, start a 45s timer to cooldown again.
+Add level up notifications [?]
+Make items configurable (name, block ID, etc.) [!]
+Add a way to list/remove systems [!]
+Fix config.yml header. [!]
+Add a way to do quests [?]
+Add networks (ease of access to other servers) [?]
 
-Add a way to remove systems via GUI or command. Need a way to list systems.
+Bugs:
+ - Make sure, when adding a system, the last arg is an Integer (avoid internal errors)
