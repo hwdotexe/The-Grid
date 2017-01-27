@@ -1,4 +1,4 @@
-### (View the project on Spigot)[https://www.spigotmc.org/resources/thegrid-hacking-adventure-engine-beta.35246/]
+### [View the project on Spigot](https://www.spigotmc.org/resources/thegrid-hacking-adventure-engine-beta.35246/)
 ![TheGrid](http://i.imgur.com/cAu4jtc.png)
 
 # The Grid
