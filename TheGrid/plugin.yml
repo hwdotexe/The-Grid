@@ -1,17 +1,13 @@
-name: The-Grid
-version: 0.2.9
-main: me.xfyrewolfx.thegrid.Main
+name: TheGrid
+version: 0.3.8
+main: tech.xfyrewolfx.thegrid.TheGrid
 Author: xFyreWolfx
+softdepend: [MultiWorld, Multiverse-Core]
 commands:
-  spawn:
-  addsystem:
-  addoutlet:
-  removesystem:
-  shop:
-  ?:
-  help:
-  pl:
-  plugins:
-  setspawn:
-  settutorial:
-  reloadmotd:
+  thegrid:
+  gridspawn:
+permissions:
+  thegrid.admin:
+    default: op
+  thegrid.spawn:
+    default: true

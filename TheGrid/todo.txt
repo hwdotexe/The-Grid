@@ -1,0 +1,9 @@
+Add level up notifications [?]
+Make items configurable (name, block ID, etc.) [!]
+Add a way to list/remove systems [!]
+Fix config.yml header. [!]
+Add a way to do quests [?]
+Add networks (ease of access to other servers) [?]
+
+Bugs:
+ - Make sure, when adding a system, the last arg is an Integer (avoid internal errors)
