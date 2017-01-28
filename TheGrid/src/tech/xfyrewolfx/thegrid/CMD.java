@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 
 import tech.xfyrewolfx.thegrid.listeners.AddOutlet;
 import tech.xfyrewolfx.thegrid.listeners.AddSystem;
+import tech.xfyrewolfx.thegrid.listeners.RemSystem;
 
 public class CMD implements CommandExecutor{
 	
@@ -23,6 +24,7 @@ public class CMD implements CommandExecutor{
 				if(args.length==0){
 					sender.sendMessage("§a===§8===§a===§8===§a===§8===§a===§8===§a===§8===");
 					sender.sendMessage("§7/thegrid addSystem <name> <level>");
+					sender.sendMessage("§7/thegrid remSystem");
 					sender.sendMessage("§7/thegrid addOutlet");
 					sender.sendMessage("§7/thegrid addBitcoin <onlineplayer> <amount>");
 					sender.sendMessage("§7/thegrid setSpawn");
@@ -33,8 +35,12 @@ public class CMD implements CommandExecutor{
 				}else{
 					if(args[0].equalsIgnoreCase("addSystem")){
 						if(args.length==3){
-							Bukkit.getPluginManager().registerEvents(new AddSystem(plugin, (Player)sender, args[1], Integer.parseInt(args[2])), plugin);
-							sender.sendMessage("Click the new system block");
+							if(this.isInteger(args[2])){
+								Bukkit.getPluginManager().registerEvents(new AddSystem(plugin, (Player)sender, args[1], Integer.parseInt(args[2])), plugin);
+								sender.sendMessage("Click the new system block");
+							}else{
+								sender.sendMessage(plugin.getMessages().wrongCommand());
+							}
 						}else{
 							sender.sendMessage(plugin.getMessages().wrongCommand());
 						}
@@ -57,7 +63,8 @@ public class CMD implements CommandExecutor{
 										plugin.getUserConfig().loadValues();
 										plugin.getMessages().reloadMessages();
 										plugin.getMessages().loadValues();
-										sender.sendMessage("Configuration and Messages reloaded!");
+										plugin.getItems().reloadItems();
+										sender.sendMessage("Config files reloaded!");
 									}else{
 										if(args[0].equalsIgnoreCase("addBitcoin")){
 											if(args.length==3){
@@ -76,7 +83,12 @@ public class CMD implements CommandExecutor{
 												sender.sendMessage(plugin.getMessages().wrongCommand());
 											}
 										}else{
-											sender.sendMessage(plugin.getMessages().wrongCommand());
+											if(args[0].equalsIgnoreCase("remSystem")){
+												Bukkit.getPluginManager().registerEvents(new RemSystem(plugin, (Player)sender), plugin);
+												sender.sendMessage("Click the system block to remove");
+											}else{
+												sender.sendMessage(plugin.getMessages().wrongCommand());
+											}
 										}
 									}
 								}
@@ -109,5 +121,14 @@ public class CMD implements CommandExecutor{
 			return true;
 		}
 		return false;
+	}
+	
+	private boolean isInteger(String s){
+		try{
+			Integer.parseInt(s);
+			return true;
+		}catch (Exception e){
+			return false;
+		}
 	}
 }

@@ -15,7 +15,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import tech.xfyrewolfx.thegrid.Items;
 import tech.xfyrewolfx.thegrid.TheGrid;
 import tech.xfyrewolfx.thegrid.apis.TitleAPI;
 
@@ -188,19 +187,19 @@ public class GPlayer {
 	
 	public ItemStack[] getInventoryItems(){
 		if(level < 5){
-			return Items.getBasicInventory();
+			return plugin.getItems().getBasicInventory();
 		}
 		if(level > 4 && level < 10){
-			return Items.getBasicInventoryTraceroute();
+			return plugin.getItems().getBasicInventoryTraceroute();
 		}
 		if(level > 9 && level < 20){
-			return Items.getSpecialistInventory();
+			return plugin.getItems().getSpecialistInventory();
 		}
 		if(level > 19 && level < 30){
-			return Items.getEliteInventory();
+			return plugin.getItems().getEliteInventory();
 		}
 		if(level > 29){
-			return Items.getProInventory();
+			return plugin.getItems().getProInventory();
 		}
 		
 		return null;
@@ -217,23 +216,23 @@ public class GPlayer {
 			
 			// TODO add notifications
 			if(getLevel() == 5){ 
-				p.getInventory().setContents(Items.getBasicInventoryTraceroute());
+				p.getInventory().setContents(plugin.getItems().getBasicInventoryTraceroute());
 			}
 			
 			if(getLevel() == 10){ 
-				p.getInventory().setContents(Items.getSpecialistInventory());
+				p.getInventory().setContents(plugin.getItems().getSpecialistInventory());
 				getViruses().add("sql");
 				getViruses().add("cryptolocker");
 				setBattery(24);
 			}
 			
 			if(getLevel() == 20){ 
-				p.getInventory().setContents(Items.getEliteInventory());
+				p.getInventory().setContents(plugin.getItems().getEliteInventory());
 				setBattery(48);
 			}
 			
 			if(getLevel() == 30){ 
-				p.getInventory().setContents(Items.getProInventory());
+				p.getInventory().setContents(plugin.getItems().getProInventory());
 				getViruses().add("ddos");
 				setBattery(72);
 			}

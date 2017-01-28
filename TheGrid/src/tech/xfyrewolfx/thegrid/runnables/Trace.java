@@ -3,6 +3,7 @@ package tech.xfyrewolfx.thegrid.runnables;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -48,6 +49,7 @@ public class Trace extends BukkitRunnable{
 			TitleAPI.sendTitle(p, 0, 0, 15, "§ki§e§l Traceroute §f§ki", title);
 		}else{
 			List<GSystem> sys = new ArrayList<GSystem>();
+			List<Player> pla = new ArrayList<Player>();
 			int lvl = plugin.getGPlayer(p).getLevel();
 			for(GSystem s : plugin.getSystems().getSystemObjects()){
 				
@@ -67,9 +69,34 @@ public class Trace extends BukkitRunnable{
 				}
 			}
 			
-			if(sys.size()>0){
+			for(Player op : Bukkit.getOnlinePlayers()){
+				if(!op.getName().equals(p.getName())){
+					if(op.getWorld().getName().equals(p.getWorld().getName())){
+						
+						if(lvl > 4 && lvl < 20){
+							if(p.getLocation().distance(op.getLocation()) <= 15)
+								pla.add(op);
+						}
+						
+						if(lvl > 19 && lvl < 30){
+							if(p.getLocation().distance(op.getLocation()) <= 30)
+								pla.add(op);
+						}
+						
+						if(lvl > 29 && lvl < 40){
+							if(p.getLocation().distance(op.getLocation()) <= 50)
+								pla.add(op);
+						}
+					}
+				}
+			}
+			
+			if(sys.size()+pla.size()>0){
 				for(GSystem s : sys){
 					p.sendMessage("§8[§eTraceroute§8] §a["+s.getName()+" (lv."+s.getLevel()+")] §7 @ x§e"+s.getLocation().getBlockX()+" §7y§e"+s.getLocation().getBlockY()+" §7z§e"+s.getLocation().getBlockZ());
+				}
+				for(Player op : pla){
+					p.sendMessage("§8[§eTraceroute§8] §a["+op.getName()+" (lv."+plugin.getGPlayer(op).getLevel()+")] §7 @ x§e"+op.getLocation().getBlockX()+" §7y§e"+op.getLocation().getBlockY()+" §7z§e"+op.getLocation().getBlockZ());
 				}
 			}else{
 				p.sendMessage("§8[§eTraceroute§8] §7No systems were found in this area.");
