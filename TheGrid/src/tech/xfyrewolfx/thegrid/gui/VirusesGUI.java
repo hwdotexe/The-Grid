@@ -12,7 +12,6 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 
 import tech.xfyrewolfx.thegrid.GSystem;
-import tech.xfyrewolfx.thegrid.Items;
 import tech.xfyrewolfx.thegrid.TheGrid;
 import tech.xfyrewolfx.thegrid.runnables.HackNPC;
 import tech.xfyrewolfx.thegrid.runnables.HackPlayer;
@@ -39,21 +38,21 @@ public class VirusesGUI implements Listener{
 		
 		List<String> v = plugin.getGPlayer(p).getViruses();
 		if(v.contains("shutdown"))
-			GUI.addItem(Items.shutdownVirus());
+			GUI.addItem(plugin.getItems().shutdownVirus());
 		if(v.contains("sql"))
-			GUI.addItem(Items.sqlVirus());
+			GUI.addItem(plugin.getItems().sqlVirus());
 		if(v.contains("cryptolocker"))
-			GUI.addItem(Items.cryptolockerVirus());
+			GUI.addItem(plugin.getItems().cryptolockerVirus());
 		if(v.contains("ddos"))
-			GUI.addItem(Items.ddosVirus());
+			GUI.addItem(plugin.getItems().ddosVirus());
 		if(v.contains("adware"))
-			GUI.addItem(Items.adwareVirus());
+			GUI.addItem(plugin.getItems().adwareVirus());
 		if(v.contains("killdisc"))
-			GUI.addItem(Items.killdiscVirus());
+			GUI.addItem(plugin.getItems().killdiscVirus());
 		
 		if(!isActive){
-			GUI.setItem(8,Items.iceCube(plugin.getGPlayer(p).getIceCubes()));
-			GUI.setItem(17,Items.openSHOP());
+			GUI.setItem(8,plugin.getItems().ice_cube(plugin.getGPlayer(p).getIceCubes()));
+			GUI.setItem(17,plugin.getItems().openSHOP());
 		}
 		
 		p.openInventory(GUI);
@@ -75,7 +74,7 @@ public class VirusesGUI implements Listener{
 				}
 			}else{
 				if(e.getCurrentItem() != null){
-					if(e.getCurrentItem().isSimilar(Items.openSHOP())){
+					if(e.getCurrentItem().isSimilar(plugin.getItems().openSHOP())){
 						Bukkit.getPluginManager().registerEvents(new ShopGUI(plugin, p), plugin);
 					}
 				}

@@ -15,10 +15,12 @@ public class Sparks extends BukkitRunnable{
 	
 	public void run(){
 		for(Outlet o : plugin.getOutlets().getOutletObjects()){
-			Particle.CLOUD.showAt(o.getLocation());
+			if(o.getLocation().getWorld() != null)
+				Particle.CLOUD.showAt(o.getLocation());
 		}
 		for(GSystem s : plugin.getSystems().getSystemObjects()){
-			Particle.MAGIC_RUNES.showAt(s.getLocation());
+			if(s.getLocation().getWorld() != null)
+				Particle.MAGIC_RUNES.showAt(s.getLocation());
 		}
 	}
 }

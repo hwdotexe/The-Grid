@@ -12,7 +12,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 import tech.xfyrewolfx.thegrid.GSystem;
-import tech.xfyrewolfx.thegrid.Items;
 import tech.xfyrewolfx.thegrid.Outlet;
 import tech.xfyrewolfx.thegrid.TheGrid;
 import tech.xfyrewolfx.thegrid.apis.EnchantGlow;
@@ -42,12 +41,12 @@ public class ClickListener implements Listener{
 			if(e.getItem() != null){
 				Player p = e.getPlayer();
 				
-				if(e.getItem().isSimilar(Items.listViruses())){
+				if(e.getItem().isSimilar(plugin.getItems().my_items())){
 					VirusesGUI vgui = new VirusesGUI(plugin, p, null, false);
 					Bukkit.getPluginManager().registerEvents(vgui, plugin);
 				}
 				
-				if(e.getItem().isSimilar(Items.getVirtualFirewall()) || e.getItem().isSimilar(Items.getBasicHardwareFirewall()) || e.getItem().isSimilar(Items.getAdvancedHardwareFirewall()) || e.getItem().isSimilar(Items.getEncryptedFirewall()) || e.getItem().containsEnchantment(EnchantGlow.getGlow())){
+				if(e.getItem().isSimilar(plugin.getItems().firewall_1()) || e.getItem().isSimilar(plugin.getItems().firewall_2()) || e.getItem().isSimilar(plugin.getItems().firewall_3()) || e.getItem().isSimilar(plugin.getItems().firewall_4()) || e.getItem().containsEnchantment(EnchantGlow.getGlow())){
 					if(plugin.getGPlayer(p).getFirewallActive()){
 						ItemStack fw = p.getInventory().getItem(8);
 						fw.removeEnchantment(EnchantGlow.getGlow());
@@ -65,7 +64,7 @@ public class ClickListener implements Listener{
 					}
 				}
 				
-				if(e.getItem().isSimilar(Items.getTraceroute())){
+				if(e.getItem().isSimilar(plugin.getItems().traceroute())){
 					if(p.getLevel()>0){
 						if(!plugin.getGPlayer(p).getIsTracing())
 							new Trace(e.getPlayer(), plugin).runTaskTimer(plugin, 10, 10);
@@ -74,7 +73,7 @@ public class ClickListener implements Listener{
 					}
 				}
 				
-				if(e.getItem().isSimilar(Items.getHP()) || e.getItem().isSimilar(Items.getLinux()) || e.getItem().isSimilar(Items.getAlienware())){
+				if(e.getItem().isSimilar(plugin.getItems().laptop_1()) || e.getItem().isSimilar(plugin.getItems().laptop_2()) || e.getItem().isSimilar(plugin.getItems().laptop_3()) || e.getItem().isSimilar(plugin.getItems().laptop_4())){
 					if(e.getAction()==Action.RIGHT_CLICK_BLOCK){
 						GSystem s = plugin.isBlockSystem(e.getClickedBlock().getLocation());
 						Outlet o = plugin.isBlockOutlet(e.getClickedBlock().getLocation());

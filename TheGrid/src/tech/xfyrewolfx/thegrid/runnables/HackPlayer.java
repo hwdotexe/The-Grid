@@ -41,12 +41,16 @@ public class HackPlayer extends BukkitRunnable{
 			ticks -= 1;
 			if(p.getLocation().distance(t.getLocation())>15){
 				p.sendMessage(plugin.getMessages().outOfRange());
+				plugin.getGPlayer(p).setIsHacking(false);
+				p.sendMessage("§a~$: disconnected from "+t.getName());
 				this.cancel();
 				return;
 			}
 			
 			if(p.getLevel()<1){
 				p.sendMessage(plugin.getMessages().batteryDepleted());
+				plugin.getGPlayer(p).setIsHacking(false);
+				p.sendMessage("§a~$: disconnected from "+t.getName());
 				this.cancel();
 				return;
 			}

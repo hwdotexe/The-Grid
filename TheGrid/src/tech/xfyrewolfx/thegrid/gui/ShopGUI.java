@@ -8,7 +8,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 
-import tech.xfyrewolfx.thegrid.Items;
 import tech.xfyrewolfx.thegrid.TheGrid;
 import tech.xfyrewolfx.thegrid.apis.EnchantGlow;
 import tech.xfyrewolfx.thegrid.files.GPlayer;
@@ -26,18 +25,18 @@ public class ShopGUI implements Listener{
 		
 		// Add items
 		if(gp.getViruses().contains("adware")){
-			GUI.setItem(0, EnchantGlow.addGlow(Items.adwareVirusSHOP()));
+			GUI.setItem(0, EnchantGlow.addGlow(plugin.getItems().adwareVirusSHOP()));
 		}else{
-			GUI.setItem(0, Items.adwareVirusSHOP());
+			GUI.setItem(0, plugin.getItems().adwareVirusSHOP());
 		}
 		
 		if(gp.getViruses().contains("killdisc")){
-			GUI.setItem(1, EnchantGlow.addGlow(Items.killdiscVirusSHOP()));
+			GUI.setItem(1, EnchantGlow.addGlow(plugin.getItems().killdiscVirusSHOP()));
 		}else{
-			GUI.setItem(1, Items.killdiscVirusSHOP());
+			GUI.setItem(1, plugin.getItems().killdiscVirusSHOP());
 		}
 		
-		GUI.setItem(8, Items.iceSHOP());
+		GUI.setItem(8, plugin.getItems().iceSHOP());
 		
 		
 		p.openInventory(GUI);
@@ -53,7 +52,7 @@ public class ShopGUI implements Listener{
 					p.closeInventory();
 					
 					//Adware
-					if(e.getCurrentItem().isSimilar(Items.adwareVirusSHOP())){
+					if(e.getCurrentItem().isSimilar(plugin.getItems().adwareVirusSHOP())){
 						if(!gp.getViruses().contains("adware")){
 							if(gp.getBTC() >= 15){
 								p.sendMessage(plugin.getMessages().purchaseSuccessful());
@@ -68,7 +67,7 @@ public class ShopGUI implements Listener{
 					}
 					
 					//Killdisc
-					if(e.getCurrentItem().isSimilar(Items.killdiscVirusSHOP())){
+					if(e.getCurrentItem().isSimilar(plugin.getItems().killdiscVirusSHOP())){
 						if(!gp.getViruses().contains("killdisc")){
 							if(gp.getBTC() >= 10){
 								p.sendMessage(plugin.getMessages().purchaseSuccessful());
@@ -83,7 +82,7 @@ public class ShopGUI implements Listener{
 					}
 					
 					//Ice
-					if(e.getCurrentItem().isSimilar(Items.iceSHOP())){
+					if(e.getCurrentItem().isSimilar(plugin.getItems().iceSHOP())){
 						if(gp.getBTC() >= 5){
 							p.sendMessage(plugin.getMessages().purchaseSuccessful());
 							gp.setBTC(gp.getBTC()-5);

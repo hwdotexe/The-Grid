@@ -10,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import tech.xfyrewolfx.thegrid.apis.ScoreboardAPI;
 import tech.xfyrewolfx.thegrid.files.Configuration;
 import tech.xfyrewolfx.thegrid.files.GPlayer;
+import tech.xfyrewolfx.thegrid.files.Items;
 import tech.xfyrewolfx.thegrid.files.Messages;
 import tech.xfyrewolfx.thegrid.files.Outlets;
 import tech.xfyrewolfx.thegrid.files.Systems;
@@ -24,6 +25,7 @@ public class TheGrid extends JavaPlugin{
 	private Systems systems;
 	private Configuration config;
 	private HashMap<String, GPlayer> gplayers;
+	private Items items;
 	
 	public void onEnable(){
 		msgs = new Messages(this);
@@ -31,12 +33,17 @@ public class TheGrid extends JavaPlugin{
 		systems = new Systems(this);
 		config = new Configuration(this);
 		gplayers = new HashMap<String, GPlayer>();
+		items = new Items(this);
 		
 		this.getCommand("thegrid").setExecutor(new CMD(this));
 		this.getCommand("gridspawn").setExecutor(new CMD(this));
 		Bukkit.getPluginManager().registerEvents(new PlayerListener(this), this);
 		Bukkit.getPluginManager().registerEvents(new ClickListener(this), this);
 		new Sparks(this).runTaskTimer(this, 100, 100);
+	}
+	
+	public Items getItems(){
+		return items;
 	}
 	
 	public GPlayer getGPlayer(Player p){
@@ -85,8 +92,10 @@ public class TheGrid extends JavaPlugin{
 	
 	public GSystem isBlockSystem(Location l){
 		for(GSystem sys : getSystems().getSystemObjects()){
-			if(l.getX() == sys.getLocation().getX() && l.getY()== sys.getLocation().getY() && l.getZ()== sys.getLocation().getZ()){
-				return sys;
+			if(sys.getLocation().getWorld() != null){
+				if(l.getX() == sys.getLocation().getX() && l.getY()== sys.getLocation().getY() && l.getZ()== sys.getLocation().getZ() && l.getWorld().getName() == sys.getLocation().getWorld().getName()){
+					return sys;
+				}
 			}
 		}
 		return null;
@@ -94,8 +103,10 @@ public class TheGrid extends JavaPlugin{
 	
 	public Outlet isBlockOutlet(Location l){
 		for(Outlet out : getOutlets().getOutletObjects()){
-			if(l.getX() == out.getLocation().getX() && l.getY()== out.getLocation().getY() && l.getZ()== out.getLocation().getZ()){
-				return out;
+			if(out.getLocation().getWorld() != null){
+				if(l.getX() == out.getLocation().getX() && l.getY()== out.getLocation().getY() && l.getZ()== out.getLocation().getZ() && l.getWorld().getName() == out.getLocation().getWorld().getName()){
+					return out;
+				}
 			}
 		}
 		return null;
