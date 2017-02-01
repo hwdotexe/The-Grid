@@ -1,17 +1,10 @@
 Add level up notifications [?]
-+ Make items configurable (name, block ID, etc.) [!]
-+ Add a way to remove systems [!]
-+ Fix config.yml header. [!]
 Add a way to do quests [?]
 Add networks (ease of access to other servers) [?]
-+ Is the traceroute looking for nearby players? Now it is.
-+ Out of range & battery depletion bug fix
-
-Bugs:
-+ - Make sure, when adding a system, the last arg is an Integer (avoid internal errors)
-+ - If an outlet/system's world does not exist, don't spark :P
  
 User suggestions:
  - superzyr: hackable doors w/ keycards. Use only if we can open doors with code. Doors will have to close after X seconds.
    (maybe iron doors only?). Blank cards in hackshop, success rate to "pair" it to a door. Usable on that door only once.
    --> Where would they be stored?
+
++ Non-ops can't interact with entities anymore

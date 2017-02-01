@@ -99,8 +99,11 @@ public class ClickListener implements Listener{
 	
 	@EventHandler
 	public void playerClickPlayer(PlayerInteractEntityEvent e){
-		if(e.getRightClicked() instanceof Player){
+		if(!e.getPlayer().isOp()){
 			e.setCancelled(true);
+		}
+				
+		if(e.getRightClicked() instanceof Player){
 			Player t = (Player)e.getRightClicked();
 			if(!plugin.getGPlayer(e.getPlayer()).getIsHacking()){
 				if(t.getLevel() > 0){
