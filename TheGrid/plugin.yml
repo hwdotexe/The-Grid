@@ -1,5 +1,5 @@
 name: TheGrid
-version: 0.4.0_b1
+version: 0.4.0_b2
 main: tech.xfyrewolfx.thegrid.TheGrid
 Author: xFyreWolfx
 softdepend: [MultiWorld, Multiverse-Core]

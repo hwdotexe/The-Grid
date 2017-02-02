@@ -5,6 +5,7 @@ import java.util.Calendar;
 
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.entity.Hanging;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -129,8 +130,8 @@ public class PlayerListener implements Listener{
 	}
 	
 	@EventHandler
-	public void onPlayerDamage(EntityDamageEvent e){
-		if(e.getEntity() instanceof Player){
+	public void onDamage(EntityDamageEvent e){
+		if(e.getEntity() instanceof Player || e.getEntity() instanceof Hanging){
 			e.setCancelled(true);
 		}
 	}
