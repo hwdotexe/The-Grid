@@ -9,7 +9,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import tech.xfyrewolfx.thegrid.GSystem;
 import tech.xfyrewolfx.thegrid.TheGrid;
-import tech.xfyrewolfx.thegrid.apis.TitleAPI;
 
 public class Trace extends BukkitRunnable{
 	private Player p;
@@ -46,7 +45,7 @@ public class Trace extends BukkitRunnable{
 				title="[ - ]";
 			}
 			
-			TitleAPI.sendTitle(p, 0, 0, 15, "Â§kiÂ§eÂ§l Traceroute Â§fÂ§ki", title);
+			p.sendTitle("§ki§e§l Traceroute §f§ki", title, 0, 0, 15);
 		}else{
 			List<GSystem> sys = new ArrayList<GSystem>();
 			List<Player> pla = new ArrayList<Player>();
@@ -93,13 +92,13 @@ public class Trace extends BukkitRunnable{
 			
 			if(sys.size()+pla.size()>0){
 				for(GSystem s : sys){
-					p.sendMessage("Â§8[Â§eTracerouteÂ§8] Â§a["+s.getName()+" (lv."+s.getLevel()+")] Â§7 @ xÂ§e"+s.getLocation().getBlockX()+" Â§7yÂ§e"+s.getLocation().getBlockY()+" Â§7zÂ§e"+s.getLocation().getBlockZ());
+					p.sendMessage("§8[§eTraceroute§8] §a["+s.getName()+" (lv."+s.getLevel()+")] §7 @ x§e"+s.getLocation().getBlockX()+" §7y§e"+s.getLocation().getBlockY()+" §7z§e"+s.getLocation().getBlockZ());
 				}
 				for(Player op : pla){
-					p.sendMessage("Â§8[Â§eTracerouteÂ§8] Â§a["+op.getName()+" (lv."+plugin.getGPlayer(op).getLevel()+")] Â§7 @ xÂ§e"+op.getLocation().getBlockX()+" Â§7yÂ§e"+op.getLocation().getBlockY()+" Â§7zÂ§e"+op.getLocation().getBlockZ());
+					p.sendMessage("§8[§eTraceroute§8] §a["+op.getName()+" (lv."+plugin.getGPlayer(op).getLevel()+")] §7 @ x§e"+op.getLocation().getBlockX()+" §7y§e"+op.getLocation().getBlockY()+" §7z§e"+op.getLocation().getBlockZ());
 				}
 			}else{
-				p.sendMessage("Â§8[Â§eTracerouteÂ§8] Â§7No systems were found in this area.");
+				p.sendMessage("§8[§eTraceroute§8] §7No systems were found in this area.");
 			}
 			
 			plugin.getGPlayer(p).setIsTracing(false);

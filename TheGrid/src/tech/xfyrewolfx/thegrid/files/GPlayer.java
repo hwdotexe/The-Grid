@@ -16,7 +16,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import tech.xfyrewolfx.thegrid.TheGrid;
-import tech.xfyrewolfx.thegrid.apis.TitleAPI;
 
 public class GPlayer {
 	private Player p;
@@ -212,7 +211,7 @@ public class GPlayer {
 			this.setLevel(level+1);
 			this.setExp((exp+nexp)-maxexp);
 			
-			TitleAPI.sendTitle(p, 20, 20, 150, "Â§8[ Â§e! Â§8]", "Â§eÂ§lLEVEL UP");
+			p.sendTitle("§8[ §e! §8]", "§e§lLEVEL UP", 20, 20, 150);
 			
 			// TODO add notifications
 			if(getLevel() == 5){ 

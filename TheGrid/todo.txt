@@ -1,5 +1,4 @@
 Add level up notifications [?]
-Add a way to do quests [?]
 Add networks (ease of access to other servers) [?]
  
 User suggestions:
@@ -8,3 +7,6 @@ User suggestions:
    --> Where would they be stored?
 
 + Non-ops can't interact with entities anymore
+
+
++ Recode a lot of this plugin, because (honestly) it needs it.

@@ -8,7 +8,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import tech.xfyrewolfx.thegrid.TheGrid;
 import tech.xfyrewolfx.thegrid.apis.EnchantGlow;
-import tech.xfyrewolfx.thegrid.apis.TitleAPI;
 
 public class Battery extends BukkitRunnable{
 	private TheGrid plugin;
@@ -49,7 +48,7 @@ public class Battery extends BukkitRunnable{
 					plugin.getGPlayer(p).setFirewallActive(false);
 				}
 				
-				TitleAPI.sendTitle(p, 0, 0, 100, "ยง8[ยง4 ! ยง8]", "ยง7Your Battery is Exhausted!");
+				p.sendTitle("ง8[ง4 ! ง8]", "ง7Your Battery is Exhausted!", 0, 0, 100);
 				p.playSound(p.getLocation(), Sound.ENTITY_ITEM_BREAK, 5, 1);
 				
 				double x = p.getLevel()/max;

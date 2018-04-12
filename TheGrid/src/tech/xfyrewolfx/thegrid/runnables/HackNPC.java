@@ -7,7 +7,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import tech.xfyrewolfx.thegrid.GSystem;
 import tech.xfyrewolfx.thegrid.TheGrid;
-import tech.xfyrewolfx.thegrid.apis.TitleAPI;
 
 public class HackNPC extends BukkitRunnable{
 	private TheGrid plugin;
@@ -36,7 +35,7 @@ public class HackNPC extends BukkitRunnable{
 			if(p.getLocation().distance(system.getLocation())>15){
 				p.sendMessage(plugin.getMessages().outOfRange());
 				plugin.getGPlayer(p).setIsHacking(false);
-				p.sendMessage("Â§a~$: disconnected from "+system.getName());
+				p.sendMessage("§a~$: disconnected from "+system.getName());
 				this.cancel();
 				return;
 			}
@@ -44,7 +43,7 @@ public class HackNPC extends BukkitRunnable{
 			if(p.getLevel()<1){
 				p.sendMessage(plugin.getMessages().batteryDepleted());
 				plugin.getGPlayer(p).setIsHacking(false);
-				p.sendMessage("Â§a~$: disconnected from "+system.getName());
+				p.sendMessage("§a~$: disconnected from "+system.getName());
 				this.cancel();
 				return;
 			}
@@ -52,18 +51,19 @@ public class HackNPC extends BukkitRunnable{
 			// Create a Title progress bar
 			StringBuilder sb = new StringBuilder();
 			String bar="";
-			sb.append("Â§cUPLOAD "+virus+" Â§f[");
+			sb.append("§cUPLOAD "+virus+" §f[");
 			
 			for(int i=0; i<(10-ticks); i++){
-				sb.append("Â§a|");
+				sb.append("§a|");
 			}
 			for(int i=0; i<ticks; i++){
-				sb.append("Â§f|");
+				sb.append("§f|");
 			}
 			
-			sb.append("Â§f]");
+			sb.append("§f]");
 			bar=sb.toString();
-			TitleAPI.sendTitle(p, 0, 0, 25, "", bar);
+			
+			p.sendTitle("", bar, 0, 0, 25);
 		}else{
 			new Cooldown(plugin, p).runTaskTimer(plugin, 20, 20);
 			awardPlayer();
@@ -107,7 +107,7 @@ public class HackNPC extends BukkitRunnable{
 			p.sendMessage(plugin.getMessages().gotEXP(exp));
 		}
 		
-		p.sendMessage("Â§a~$: disconnected from "+system.getName());
+		p.sendMessage("§a~$: disconnected from "+system.getName());
 	}
 	
 	private int generateEXP(int f, int m){
