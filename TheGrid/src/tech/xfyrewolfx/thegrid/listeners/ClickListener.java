@@ -10,9 +10,10 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
-import tech.xfyrewolfx.thegrid.GSystem;
-import tech.xfyrewolfx.thegrid.Outlet;
+import tech.xfyrewolfx.thegrid.GridSystem;
+import tech.xfyrewolfx.thegrid.GridOutlet;
 import tech.xfyrewolfx.thegrid.TheGrid;
 import tech.xfyrewolfx.thegrid.apis.EnchantGlow;
 import tech.xfyrewolfx.thegrid.gui.VirusesGUI;
@@ -46,18 +47,20 @@ public class ClickListener implements Listener{
 					Bukkit.getPluginManager().registerEvents(vgui, plugin);
 				}
 				
-				if(e.getItem().isSimilar(plugin.getItems().firewall_1()) || e.getItem().isSimilar(plugin.getItems().firewall_2()) || e.getItem().isSimilar(plugin.getItems().firewall_3()) || e.getItem().isSimilar(plugin.getItems().firewall_4()) || e.getItem().containsEnchantment(EnchantGlow.getGlow())){
-					if(plugin.getGPlayer(p).getFirewallActive()){
+				if(e.getItem().isSimilar(plugin.getItems().firewall_1()) || e.getItem().isSimilar(plugin.getItems().firewall_2()) || e.getItem().isSimilar(plugin.getItems().firewall_3()) || e.getItem().isSimilar(plugin.getItems().firewall_4()) || e.getItem().containsEnchantment(new EnchantGlow(318))){
+					if(plugin.getGridPlayer(p).getFirewallActive()){
 						ItemStack fw = p.getInventory().getItem(8);
-						fw.removeEnchantment(EnchantGlow.getGlow());
+						fw.removeEnchantment(new EnchantGlow(318));
 						p.getInventory().setItem(8, fw);
-						plugin.getGPlayer(p).setFirewallActive(false);
+						plugin.getGridPlayer(p).setFirewallActive(false);
 					}else{
 						if(p.getLevel() > 0){
 							ItemStack fw = p.getInventory().getItem(8);
-							fw = EnchantGlow.addGlow(fw);
+							ItemMeta im = fw.getItemMeta();
+							im.addEnchant(new EnchantGlow(318), 1, true);
+							fw.setItemMeta(im);
 							p.getInventory().setItem(8, fw);
-							plugin.getGPlayer(p).setFirewallActive(true);
+							plugin.getGridPlayer(p).setFirewallActive(true);
 						}else{
 							p.sendMessage(plugin.getMessages().batteryDepleted());
 						}
@@ -66,7 +69,7 @@ public class ClickListener implements Listener{
 				
 				if(e.getItem().isSimilar(plugin.getItems().traceroute())){
 					if(p.getLevel()>0){
-						if(!plugin.getGPlayer(p).getIsTracing())
+						if(!plugin.getGridPlayer(p).getIsTracing())
 							new Trace(e.getPlayer(), plugin).runTaskTimer(plugin, 10, 10);
 					}else{
 						p.sendMessage(plugin.getMessages().batteryDepleted());
@@ -75,11 +78,11 @@ public class ClickListener implements Listener{
 				
 				if(e.getItem().isSimilar(plugin.getItems().laptop_1()) || e.getItem().isSimilar(plugin.getItems().laptop_2()) || e.getItem().isSimilar(plugin.getItems().laptop_3()) || e.getItem().isSimilar(plugin.getItems().laptop_4())){
 					if(e.getAction()==Action.RIGHT_CLICK_BLOCK){
-						GSystem s = plugin.isBlockSystem(e.getClickedBlock().getLocation());
-						Outlet o = plugin.isBlockOutlet(e.getClickedBlock().getLocation());
+						GridSystem s = plugin.isBlockSystem(e.getClickedBlock().getLocation());
+						GridOutlet o = plugin.isBlockOutlet(e.getClickedBlock().getLocation());
 						if(s != null){
-							if(!plugin.getGPlayer(e.getPlayer()).getIsHacking()){
-								if(!plugin.getGPlayer(e.getPlayer()).getIsCoolingDown()){
+							if(!plugin.getGridPlayer(e.getPlayer()).getIsHacking()){
+								if(!plugin.getGridPlayer(e.getPlayer()).getIsCoolingDown()){
 									plugin.hackCPU(p, s);
 								}else{
 									e.getPlayer().sendMessage(plugin.getMessages().notCooledDown());
@@ -87,7 +90,7 @@ public class ClickListener implements Listener{
 							}
 						}else{
 							if(o != null){
-								if(!plugin.getGPlayer(p).getIsCharging())
+								if(!plugin.getGridPlayer(p).getIsCharging())
 									new Charge(e.getPlayer(), plugin, o).runTaskTimer(plugin, 20, 100);
 							}
 						}
@@ -105,9 +108,9 @@ public class ClickListener implements Listener{
 				
 		if(e.getRightClicked() instanceof Player){
 			Player t = (Player)e.getRightClicked();
-			if(!plugin.getGPlayer(e.getPlayer()).getIsHacking()){
+			if(!plugin.getGridPlayer(e.getPlayer()).getIsHacking()){
 				if(t.getLevel() > 0){
-					if(!plugin.getGPlayer(e.getPlayer()).getIsCoolingDown()){
+					if(!plugin.getGridPlayer(e.getPlayer()).getIsCoolingDown()){
 						plugin.hackPlayer(e.getPlayer(), t);
 					}else{
 						e.getPlayer().sendMessage(plugin.getMessages().notCooledDown());

@@ -55,10 +55,10 @@ public class PlayerListener implements Listener{
 			}
 		}else{
 			new Battery(plugin, e.getPlayer()).runTaskTimer(plugin, 600, 600);
-			e.getPlayer().getInventory().setContents(plugin.getGPlayer(e.getPlayer()).getInventoryItems());
+			e.getPlayer().getInventory().setContents(plugin.getGridPlayer(e.getPlayer()).getInventoryItems());
 			plugin.giveNewScoreboard(e.getPlayer());
 			
-			if(plugin.getGPlayer(e.getPlayer()).getIsCoolingDown())
+			if(plugin.getGridPlayer(e.getPlayer()).getIsCoolingDown())
 				new Cooldown(plugin, e.getPlayer(), 45).runTaskTimer(plugin, 20, 20);
 		}
 	}
@@ -67,7 +67,7 @@ public class PlayerListener implements Listener{
 	public void onLeave(PlayerQuitEvent e){
 		e.setQuitMessage(plugin.getMessages().playerQuit(e.getPlayer().getName()));
 		
-		plugin.getGPlayer(e.getPlayer()).saveValues();
+		plugin.getGridPlayer(e.getPlayer()).saveValues();
 		plugin.getGPlayers().remove(e.getPlayer().getName());
 	}
 	
@@ -75,7 +75,7 @@ public class PlayerListener implements Listener{
 	public void onKick(PlayerKickEvent e){
 		e.setLeaveMessage(plugin.getMessages().playerQuit(e.getPlayer().getName()));
 		
-		plugin.getGPlayer(e.getPlayer()).saveValues();
+		plugin.getGridPlayer(e.getPlayer()).saveValues();
 		plugin.getGPlayers().remove(e.getPlayer().getName());
 	}
 	
@@ -107,11 +107,11 @@ public class PlayerListener implements Listener{
 	
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent e){
-		if(!plugin.getGPlayer(e.getPlayer()).getIsTutorial()){
+		if(!plugin.getGridPlayer(e.getPlayer()).getIsTutorial()){
 			cal = Calendar.getInstance();
 	        String time = sdf.format(cal.getTime());
-			e.getPlayer().setDisplayName("ยง8[ยงa"+time+"ยง8] ยง7"+e.getPlayer().getName());
-			e.setMessage("ยงf"+e.getMessage());
+			e.getPlayer().setDisplayName("ง8[งa"+time+"ง8] ง7"+e.getPlayer().getName());
+			e.setMessage("งf"+e.getMessage());
 			e.setFormat(e.getPlayer().getDisplayName()+": "+e.getMessage());
 		}else{
 			e.setCancelled(true);

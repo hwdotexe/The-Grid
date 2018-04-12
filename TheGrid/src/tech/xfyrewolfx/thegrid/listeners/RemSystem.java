@@ -6,7 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import tech.xfyrewolfx.thegrid.GSystem;
+import tech.xfyrewolfx.thegrid.GridSystem;
 import tech.xfyrewolfx.thegrid.TheGrid;
 
 public class RemSystem implements Listener{
@@ -24,7 +24,7 @@ public class RemSystem implements Listener{
 				e.setCancelled(true);
 				
 				boolean found = false;
-				for(GSystem s : plugin.getSystems().getSystemObjects()){
+				for(GridSystem s : plugin.getSystems().getSystemObjects()){
 					if(s.getLocation().getBlockX() == e.getClickedBlock().getX() && s.getLocation().getBlockY() == e.getClickedBlock().getY() && s.getLocation().getBlockZ() == e.getClickedBlock().getZ() && s.getLocation().getWorld().getName().equalsIgnoreCase(e.getClickedBlock().getWorld().getName())){
 						plugin.getSystems().getSystemObjects().remove(s);
 						found = true;

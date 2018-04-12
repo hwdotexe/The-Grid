@@ -5,30 +5,30 @@ import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import tech.xfyrewolfx.thegrid.Outlet;
+import tech.xfyrewolfx.thegrid.GridOutlet;
 import tech.xfyrewolfx.thegrid.TheGrid;
 
 public class Charge extends BukkitRunnable{
 	
 	private Player p;
 	private TheGrid plugin;
-	private Outlet outlet;
+	private GridOutlet outlet;
 	
 	private BossBar bb;
 	private double maxBattery;
-	public Charge(Player pl, TheGrid c, Outlet out){
+	public Charge(Player pl, TheGrid c, GridOutlet out){
 		plugin=c;
 		p=pl;
 		outlet=out;
-		maxBattery = plugin.getGPlayer(p).getBattery();
+		maxBattery = plugin.getGridPlayer(p).getBattery();
 		
-		if(plugin.getGPlayer(p).getIsCharging()){
+		if(plugin.getGridPlayer(p).getIsCharging()){
 			this.cancel();
 		}else{
-			plugin.getGPlayer(p).setIsCharging(true);
+			plugin.getGridPlayer(p).setIsCharging(true);
 		}
 		
-		bb = plugin.getGPlayer(p).getBatteryBar();
+		bb = plugin.getGridPlayer(p).getBatteryBar();
 		bb.setColor(BarColor.GREEN);
 	}
 	
@@ -43,7 +43,7 @@ public class Charge extends BukkitRunnable{
 		}else{
 			p.sendMessage(plugin.getMessages().chargingFinished());
 			bb.setColor(BarColor.YELLOW);
-			plugin.getGPlayer(p).setIsCharging(false);
+			plugin.getGridPlayer(p).setIsCharging(false);
 			this.cancel();
 		}
 		

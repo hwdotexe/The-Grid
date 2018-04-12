@@ -7,7 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import tech.xfyrewolfx.thegrid.GSystem;
+import tech.xfyrewolfx.thegrid.GridSystem;
 import tech.xfyrewolfx.thegrid.TheGrid;
 
 public class Trace extends BukkitRunnable{
@@ -19,7 +19,7 @@ public class Trace extends BukkitRunnable{
 		plugin=c;
 		ticks=16;
 		
-		plugin.getGPlayer(p).setIsTracing(true);
+		plugin.getGridPlayer(p).setIsTracing(true);
 	}
 	
 	public void run(){
@@ -47,10 +47,10 @@ public class Trace extends BukkitRunnable{
 			
 			p.sendTitle("§ki§e§l Traceroute §f§ki", title, 0, 0, 15);
 		}else{
-			List<GSystem> sys = new ArrayList<GSystem>();
+			List<GridSystem> sys = new ArrayList<GridSystem>();
 			List<Player> pla = new ArrayList<Player>();
-			int lvl = plugin.getGPlayer(p).getLevel();
-			for(GSystem s : plugin.getSystems().getSystemObjects()){
+			int lvl = plugin.getGridPlayer(p).getLevel();
+			for(GridSystem s : plugin.getSystems().getSystemObjects()){
 				
 				if(lvl > 4 && lvl < 20){
 					if(p.getLocation().distance(s.getLocation()) <= 15)
@@ -91,17 +91,17 @@ public class Trace extends BukkitRunnable{
 			}
 			
 			if(sys.size()+pla.size()>0){
-				for(GSystem s : sys){
+				for(GridSystem s : sys){
 					p.sendMessage("§8[§eTraceroute§8] §a["+s.getName()+" (lv."+s.getLevel()+")] §7 @ x§e"+s.getLocation().getBlockX()+" §7y§e"+s.getLocation().getBlockY()+" §7z§e"+s.getLocation().getBlockZ());
 				}
 				for(Player op : pla){
-					p.sendMessage("§8[§eTraceroute§8] §a["+op.getName()+" (lv."+plugin.getGPlayer(op).getLevel()+")] §7 @ x§e"+op.getLocation().getBlockX()+" §7y§e"+op.getLocation().getBlockY()+" §7z§e"+op.getLocation().getBlockZ());
+					p.sendMessage("§8[§eTraceroute§8] §a["+op.getName()+" (lv."+plugin.getGridPlayer(op).getLevel()+")] §7 @ x§e"+op.getLocation().getBlockX()+" §7y§e"+op.getLocation().getBlockY()+" §7z§e"+op.getLocation().getBlockZ());
 				}
 			}else{
 				p.sendMessage("§8[§eTraceroute§8] §7No systems were found in this area.");
 			}
 			
-			plugin.getGPlayer(p).setIsTracing(false);
+			plugin.getGridPlayer(p).setIsTracing(false);
 			this.cancel();
 		}
 	}

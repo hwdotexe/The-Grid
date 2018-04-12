@@ -18,8 +18,8 @@ public class Battery extends BukkitRunnable{
 		plugin=c;
 		p=pl;
 		
-		max = plugin.getGPlayer(p).getBattery();
-		bb = plugin.getGPlayer(p).getBatteryBar();
+		max = plugin.getGridPlayer(p).getBattery();
+		bb = plugin.getGridPlayer(p).getBatteryBar();
 		double x = p.getLevel()/max;
 		bb.setProgress(x);
 		bb.addPlayer(p);
@@ -28,8 +28,8 @@ public class Battery extends BukkitRunnable{
 	public void run(){
 		if(p != null && p.isOnline()){
 			if(p.getLevel() >= 1){
-				if(!plugin.getGPlayer(p).getIsCharging()){
-					if(plugin.getGPlayer(p).getFirewallActive()){
+				if(!plugin.getGridPlayer(p).getIsCharging()){
+					if(plugin.getGridPlayer(p).getFirewallActive()){
 						p.setLevel(p.getLevel()-2);
 					}else{
 						p.setLevel(p.getLevel()-1);
@@ -41,11 +41,11 @@ public class Battery extends BukkitRunnable{
 			}
 			
 			if(p.getLevel()<=0){
-				if(plugin.getGPlayer(p).getFirewallActive()){
+				if(plugin.getGridPlayer(p).getFirewallActive()){
 					ItemStack fw = p.getInventory().getItem(8);
-					fw.removeEnchantment(EnchantGlow.getGlow());
+					fw.removeEnchantment(new EnchantGlow(318));
 					p.getInventory().setItem(8, fw);
-					plugin.getGPlayer(p).setFirewallActive(false);
+					plugin.getGridPlayer(p).setFirewallActive(false);
 				}
 				
 				p.sendTitle("§8[§4 ! §8]", "§7Your Battery is Exhausted!", 0, 0, 100);

@@ -10,7 +10,7 @@ import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import tech.xfyrewolfx.thegrid.GSystem;
+import tech.xfyrewolfx.thegrid.GridSystem;
 
 import tech.xfyrewolfx.thegrid.TheGrid;
 
@@ -19,12 +19,12 @@ public class Systems {
 	TheGrid plugin;
 	private FileConfiguration systems;
 	private File systemsFile;
-	private List<GSystem> sysObjs;
+	private List<GridSystem> sysObjs;
 	public Systems(TheGrid c){
 		plugin=c;
 		this.systems = null;
 	    this.systemsFile = null;
-	    sysObjs = new ArrayList<GSystem>();
+	    sysObjs = new ArrayList<GridSystem>();
 	    
 	    this.reloadSystems();
 	    this.loadValues();
@@ -36,7 +36,7 @@ public class Systems {
 			Location l = new Location(Bukkit.getWorld(this.getSystems().getString(i+".w")), this.getSystems().getDouble(i+".x"), this.getSystems().getDouble(i+".y"), this.getSystems().getDouble(i+".z"));
 			int level = this.getSystems().getInt(i+".level");
 			String name = this.getSystems().getString(i+".name");
-			sysObjs.add(new GSystem(l, name, level));
+			sysObjs.add(new GridSystem(l, name, level));
 		}
 		plugin.getLogger().log(Level.INFO, "Loaded NPC systems");
 	}
@@ -55,7 +55,7 @@ public class Systems {
 		plugin.getLogger().log(Level.INFO, "Saved NPC systems");
 	}
 	
-	public List<GSystem> getSystemObjects(){
+	public List<GridSystem> getSystemObjects(){
 		return this.sysObjs;
 	}
 	

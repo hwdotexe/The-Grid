@@ -40,7 +40,7 @@ public class HackPlayer extends BukkitRunnable{
 			ticks -= 1;
 			if(p.getLocation().distance(t.getLocation())>15){
 				p.sendMessage(plugin.getMessages().outOfRange());
-				plugin.getGPlayer(p).setIsHacking(false);
+				plugin.getGridPlayer(p).setIsHacking(false);
 				p.sendMessage("§a~$: disconnected from "+t.getName());
 				this.cancel();
 				return;
@@ -48,7 +48,7 @@ public class HackPlayer extends BukkitRunnable{
 			
 			if(p.getLevel()<1){
 				p.sendMessage(plugin.getMessages().batteryDepleted());
-				plugin.getGPlayer(p).setIsHacking(false);
+				plugin.getGridPlayer(p).setIsHacking(false);
 				p.sendMessage("§a~$: disconnected from "+t.getName());
 				this.cancel();
 				return;
@@ -78,32 +78,32 @@ public class HackPlayer extends BukkitRunnable{
 			
 			new Cooldown(plugin, t).runTaskTimer(plugin, 20, 20);
 			awardPlayer();
-			plugin.getGPlayer(p).setIsHacking(false);
+			plugin.getGridPlayer(p).setIsHacking(false);
 			this.cancel();
 		}
 	}
 	
 	private void awardPlayer(){
 		if(virus.equals("SHUTDOWN.vbs")){
-			int exp = generateEXP(plugin.getGPlayer(t).getLevel(), 2);
-			plugin.getGPlayer(p).addExp(exp);
+			int exp = generateEXP(plugin.getGridPlayer(t).getLevel(), 2);
+			plugin.getGridPlayer(p).addExp(exp);
 			p.sendMessage(plugin.getMessages().gotEXP(exp));
 		}
 		
 		if(virus.equals("SQL Slammer")){
-			int exp = generateEXP(plugin.getGPlayer(t).getLevel(), 2);
-			plugin.getGPlayer(p).addExp(exp);
+			int exp = generateEXP(plugin.getGridPlayer(t).getLevel(), 2);
+			plugin.getGridPlayer(p).addExp(exp);
 			p.sendMessage(plugin.getMessages().gotEXP(exp));
 		}
 		
 		if(virus.equals("Cryptolocker")){
 			int btc = r.nextInt(5)+1;
-			int tbtc = plugin.getGPlayer(t).getBTC();
+			int tbtc = plugin.getGridPlayer(t).getBTC();
 			
 			if(tbtc >= btc){
-				plugin.getGPlayer(t).setBTC(tbtc-btc);
+				plugin.getGridPlayer(t).setBTC(tbtc-btc);
 			}else{
-				plugin.getGPlayer(t).setBTC(0);
+				plugin.getGridPlayer(t).setBTC(0);
 			}
 			
 			p.sendMessage(plugin.getMessages().gotBTC(btc));
@@ -111,19 +111,19 @@ public class HackPlayer extends BukkitRunnable{
 		}
 		
 		if(virus.equals("DDoS Attack")){
-			int exp = generateEXP(plugin.getGPlayer(t).getLevel(), 3);
-			plugin.getGPlayer(p).addExp(exp);
+			int exp = generateEXP(plugin.getGridPlayer(t).getLevel(), 3);
+			plugin.getGridPlayer(p).addExp(exp);
 			p.sendMessage(plugin.getMessages().gotEXP(exp));
 		}
 		
 		if(virus.equals("Adware")){
 			int btc = r.nextInt(4)+1;
-			int tbtc = plugin.getGPlayer(t).getBTC();
+			int tbtc = plugin.getGridPlayer(t).getBTC();
 			
 			if(tbtc >= btc){
-				plugin.getGPlayer(t).setBTC(tbtc-btc);
+				plugin.getGridPlayer(t).setBTC(tbtc-btc);
 			}else{
-				plugin.getGPlayer(t).setBTC(0);
+				plugin.getGridPlayer(t).setBTC(0);
 			}
 			
 			p.sendMessage(plugin.getMessages().gotBTC(btc));
@@ -131,8 +131,8 @@ public class HackPlayer extends BukkitRunnable{
 		}
 		
 		if(virus.equals("Killdisc")){
-			int exp = generateEXP(plugin.getGPlayer(t).getLevel(), 3);
-			plugin.getGPlayer(p).addExp(exp);
+			int exp = generateEXP(plugin.getGridPlayer(t).getLevel(), 3);
+			plugin.getGridPlayer(p).addExp(exp);
 			p.sendMessage(plugin.getMessages().gotEXP(exp));
 		}
 		

@@ -7,7 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import tech.xfyrewolfx.thegrid.Outlet;
+import tech.xfyrewolfx.thegrid.GridOutlet;
 import tech.xfyrewolfx.thegrid.TheGrid;
 
 public class AddOutlet implements Listener{
@@ -25,15 +25,16 @@ public class AddOutlet implements Listener{
 				if(e.getPlayer().getName().equalsIgnoreCase(p.getName())){
 					e.setCancelled(true);
 					
-					for(Outlet o : plugin.getOutlets().getOutletObjects()){
-						if(o.getLocation().getBlockX() == e.getClickedBlock().getX() && o.getLocation().getBlockY() == e.getClickedBlock().getY() && o.getLocation().getBlockZ() == e.getClickedBlock().getZ() && o.getLocation().getWorld().getName().equalsIgnoreCase(e.getClickedBlock().getWorld().getName())){
+					for(GridOutlet o : plugin.getOutlets().getOutletObjects()){
+						if(o.getLocation().equals(e.getClickedBlock().getLocation())){
 							p.sendMessage("Error: There is already an Outlet in that location!");
+							
 							PlayerInteractEvent.getHandlerList().unregister(this);
 							return;
 						}
 					}
 					
-					plugin.getOutlets().getOutletObjects().add(new Outlet(e.getClickedBlock().getLocation()));
+					plugin.getOutlets().getOutletObjects().add(new GridOutlet(e.getClickedBlock().getLocation()));
 					
 					p.sendMessage("Outlet added!");
 					

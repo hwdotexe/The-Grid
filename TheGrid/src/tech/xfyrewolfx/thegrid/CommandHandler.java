@@ -10,10 +10,10 @@ import tech.xfyrewolfx.thegrid.listeners.AddOutlet;
 import tech.xfyrewolfx.thegrid.listeners.AddSystem;
 import tech.xfyrewolfx.thegrid.listeners.RemSystem;
 
-public class CMD implements CommandExecutor{
+public class CommandHandler implements CommandExecutor{
 	
 	TheGrid plugin;
-	public CMD(TheGrid c){
+	public CommandHandler(TheGrid c){
 		plugin=c;
 	}
 	
@@ -22,16 +22,16 @@ public class CMD implements CommandExecutor{
 		if(cmd.getName().equalsIgnoreCase("thegrid")){
 			if(sender.hasPermission("thegrid.admin")){
 				if(args.length==0){
-					sender.sendMessage("ยงa===ยง8===ยงa===ยง8===ยงa===ยง8===ยงa===ยง8===ยงa===ยง8===");
-					sender.sendMessage("ยง7/thegrid addSystem <name> <level>");
-					sender.sendMessage("ยง7/thegrid remSystem");
-					sender.sendMessage("ยง7/thegrid addOutlet");
-					sender.sendMessage("ยง7/thegrid addBitcoin <onlineplayer> <amount>");
-					sender.sendMessage("ยง7/thegrid setSpawn");
-					sender.sendMessage("ยง7/thegrid setTutorial");
-					sender.sendMessage("ยง7/thegrid reload");
-					sender.sendMessage("ยงe/gridspawn ยง7- Used by players to return to Spawn");
-					sender.sendMessage("ยงa===ยง8===ยงa===ยง8===ยงa===ยง8===ยงa===ยง8===ยงa===ยง8===");
+					sender.sendMessage("งa===ง8===งa===ง8===งa===ง8===งa===ง8===งa===ง8===");
+					sender.sendMessage("ง7/thegrid addSystem <name> <level>");
+					sender.sendMessage("ง7/thegrid remSystem");
+					sender.sendMessage("ง7/thegrid addOutlet");
+					sender.sendMessage("ง7/thegrid addBitcoin <onlineplayer> <amount>");
+					sender.sendMessage("ง7/thegrid setSpawn");
+					sender.sendMessage("ง7/thegrid setTutorial");
+					sender.sendMessage("ง7/thegrid reload");
+					sender.sendMessage("งe/gridspawn ง7- Used by players to return to Spawn");
+					sender.sendMessage("งa===ง8===งa===ง8===งa===ง8===งa===ง8===งa===ง8===");
 				}else{
 					if(args[0].equalsIgnoreCase("addSystem")){
 						if(args.length==3){
@@ -71,7 +71,7 @@ public class CMD implements CommandExecutor{
 												Player p = Bukkit.getPlayer(args[1]);
 												if(p != null){
 													if(p.isOnline()){
-														plugin.getGPlayer(p).setBTC(plugin.getGPlayer(p).getBTC() + Integer.parseInt(args[2]));
+														plugin.getGridPlayer(p).setBTC(plugin.getGridPlayer(p).getBTC() + Integer.parseInt(args[2]));
 														sender.sendMessage("Gave "+args[2]+ "Bitcoin to "+p.getName());
 													}else{
 														sender.sendMessage("Player isn't online!");
@@ -110,10 +110,10 @@ public class CMD implements CommandExecutor{
 					if(plugin.getUserConfig().getSpawnLocation() != null){
 						p.teleport(plugin.getUserConfig().getSpawnLocation());
 					}else{
-						p.sendMessage("ยงc[!] The Spawn location could not be found!");
+						p.sendMessage("งc[!] The Spawn location could not be found!");
 					}
 				}else{
-					sender.sendMessage("ยงc[!] You must be a player to use that command!");
+					sender.sendMessage("งc[!] You must be a player to use that command!");
 				}
 			}else{
 				sender.sendMessage(plugin.getMessages().noPermission());

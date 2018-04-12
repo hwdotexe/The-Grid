@@ -5,7 +5,9 @@ Author: xFyreWolfx
 softdepend: [MultiWorld, Multiverse-Core]
 commands:
   thegrid:
+    aliases: grid
   gridspawn:
+    aliases: gs
 permissions:
   thegrid.admin:
     default: op

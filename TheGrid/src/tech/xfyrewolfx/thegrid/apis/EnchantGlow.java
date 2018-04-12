@@ -4,82 +4,72 @@ import java.lang.reflect.Field;
 
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
-import org.bukkit.enchantments.EnchantmentWrapper;
 import org.bukkit.inventory.ItemStack;
 
-public class EnchantGlow extends EnchantmentWrapper
+public class EnchantGlow extends Enchantment
 {
-	
-	private static Enchantment glow;
-	
-	public EnchantGlow( int id )
-	{
+
+	public EnchantGlow(int id) {
 		super(id);
 	}
-	
+
 	@Override
-	public boolean canEnchantItem(ItemStack item)
-	{
-		return true;
+	public boolean canEnchantItem(ItemStack arg0) {
+		return false;
 	}
-	
+
 	@Override
-	public boolean conflictsWith(Enchantment other)
-	{
+	public boolean conflictsWith(Enchantment arg0) {
+		return false;
+	}
+
+	@Override
+	public EnchantmentTarget getItemTarget() {
+		return null;
+	}
+
+	@Override
+	public int getMaxLevel() {
+		return 0;
+	}
+
+	@Override
+	public String getName() {
+		return null;
+	}
+
+	@Override
+	public int getStartLevel() {
+		return 0;
+	}
+
+	@Override
+	public boolean isCursed() {
+		return false;
+	}
+
+	@Override
+	public boolean isTreasure() {
 		return false;
 	}
 	
-	@Override
-	public EnchantmentTarget getItemTarget()
-	{
-		return null;
+	public static void Register() {
+		try {
+            Field f = Enchantment.class.getDeclaredField("acceptingNew");
+            f.setAccessible(true);
+            f.set(null, true);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            EnchantGlow glow = new EnchantGlow(318);
+            Enchantment.registerEnchantment(glow);
+        }
+        catch (IllegalArgumentException e){
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
 	}
-	
-	@Override
-	public int getMaxLevel()
-	{
-		return 10;
-	}
-	
-	@Override
-	public String getName()
-	{
-		return "TheGrid_GLOW";
-	}
-	
-	@Override
-	public int getStartLevel()
-	{
-		return 1;
-	}
-	
-	public static Enchantment getGlow()
-	{
-		if ( glow != null )
-			return glow;
-		
-		try
-		{
-			Field f = Enchantment.class.getDeclaredField("acceptingNew");
-			f.setAccessible(true);
-			f.set(null , true);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		
-		glow = new EnchantGlow(255);
-		Enchantment.registerEnchantment(glow);
-		return glow;
-	}
-	
-	public static ItemStack addGlow(ItemStack item)
-	{
-		Enchantment glow = getGlow();
-		
-		item.addEnchantment(glow , 1);
-		return item;
-	}
-	
 }

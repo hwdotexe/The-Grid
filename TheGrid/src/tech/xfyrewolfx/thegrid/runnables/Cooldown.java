@@ -22,7 +22,7 @@ public class Cooldown extends BukkitRunnable{
 		plugin=c;
 		p=pl;
 		r = new Random();
-		gp = plugin.getGPlayer(p);
+		gp = plugin.getGridPlayer(p);
 		
 		ticks = r.nextInt(35)+1;
 		oticks = ticks;
@@ -38,7 +38,7 @@ public class Cooldown extends BukkitRunnable{
 		plugin=c;
 		p=pl;
 		r = new Random();
-		gp = plugin.getGPlayer(p);
+		gp = plugin.getGridPlayer(p);
 		
 		ticks = cdticks;
 		oticks = cdticks;
@@ -69,7 +69,7 @@ public class Cooldown extends BukkitRunnable{
 	private void endTask(){
 		if(plugin.getGPlayers().containsValue(gp)){
 			p.sendMessage(plugin.getMessages().cooledDown());
-			plugin.getGPlayer(p).setIsCoolingDown(false);
+			plugin.getGridPlayer(p).setIsCoolingDown(false);
 			cb.removePlayer(p);
 		}
 		

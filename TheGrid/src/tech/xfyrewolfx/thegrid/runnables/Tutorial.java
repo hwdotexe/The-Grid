@@ -35,7 +35,7 @@ public class Tutorial extends BukkitRunnable{
 		msgs.add("§8[ §ki§fLoading§8§ki§8 ] §7Porting you to §aThe Grid...");
 		i=0;
 		
-		plugin.getGPlayer(p).setIsTutorial(true);
+		plugin.getGridPlayer(p).setIsTutorial(true);
 	}
 	
 	public void run(){
@@ -63,12 +63,12 @@ public class Tutorial extends BukkitRunnable{
 			p.teleport(sl);
 		}
 		
-		p.setLevel(plugin.getGPlayer(p).getBattery());
+		p.setLevel(plugin.getGridPlayer(p).getBattery());
 		new Battery(plugin, p).runTaskTimer(plugin, 600, 600);
-		p.getInventory().setContents(plugin.getGPlayer(p).getInventoryItems());
+		p.getInventory().setContents(plugin.getGridPlayer(p).getInventoryItems());
 		plugin.giveNewScoreboard(p);
 		
-		plugin.getGPlayer(p).setIsTutorial(false);
+		plugin.getGridPlayer(p).setIsTutorial(false);
 		
 		this.cancel();
 	}

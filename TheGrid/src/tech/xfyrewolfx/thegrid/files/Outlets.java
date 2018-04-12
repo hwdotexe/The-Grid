@@ -10,7 +10,7 @@ import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import tech.xfyrewolfx.thegrid.Outlet;
+import tech.xfyrewolfx.thegrid.GridOutlet;
 import tech.xfyrewolfx.thegrid.TheGrid;
 
 public class Outlets {
@@ -18,12 +18,12 @@ public class Outlets {
 	TheGrid plugin;
 	private FileConfiguration outlets;
 	private File outletsFile;
-	private List<Outlet> outObjs;
+	private List<GridOutlet> outObjs;
 	public Outlets(TheGrid c){
 		plugin=c;
 		this.outlets = null;
 	    this.outletsFile = null;
-	    outObjs = new ArrayList<Outlet>();
+	    outObjs = new ArrayList<GridOutlet>();
 	    
 	    this.reloadOutlets();
 	    this.loadValues();
@@ -33,7 +33,7 @@ public class Outlets {
 		outObjs.clear();
 		for(int i=0; i<this.getOutlets().getInt("size"); i++){
 			Location l = new Location(Bukkit.getWorld(this.getOutlets().getString(i+".w")), this.getOutlets().getDouble(i+".x"), this.getOutlets().getDouble(i+".y"), this.getOutlets().getDouble(i+".z"));
-			outObjs.add(new Outlet(l));
+			outObjs.add(new GridOutlet(l));
 		}
 		plugin.getLogger().log(Level.INFO, "Loaded outlets");
 	}
@@ -50,7 +50,7 @@ public class Outlets {
 		plugin.getLogger().log(Level.INFO, "Saved outlets");
 	}
 	
-	public List<Outlet> getOutletObjects(){
+	public List<GridOutlet> getOutletObjects(){
 		return this.outObjs;
 	}
 	

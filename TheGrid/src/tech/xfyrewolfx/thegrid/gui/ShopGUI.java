@@ -9,7 +9,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 
 import tech.xfyrewolfx.thegrid.TheGrid;
-import tech.xfyrewolfx.thegrid.apis.EnchantGlow;
 import tech.xfyrewolfx.thegrid.files.GPlayer;
 
 public class ShopGUI implements Listener{
@@ -20,19 +19,15 @@ public class ShopGUI implements Listener{
 	public ShopGUI(TheGrid c, Player pl){
 		plugin=c;
 		p=pl;
-		gp=plugin.getGPlayer(p);
-		GUI = Bukkit.createInventory(null, 9, "ยง4HackShop - ยง8"+gp.getBTC()+" BTC");
+		gp=plugin.getGridPlayer(p);
+		GUI = Bukkit.createInventory(null, 9, "ง4HackShop - ง8"+gp.getBTC()+" BTC");
 		
 		// Add items
-		if(gp.getViruses().contains("adware")){
-			GUI.setItem(0, EnchantGlow.addGlow(plugin.getItems().adwareVirusSHOP()));
-		}else{
+		if(!gp.getViruses().contains("adware")){
 			GUI.setItem(0, plugin.getItems().adwareVirusSHOP());
 		}
 		
-		if(gp.getViruses().contains("killdisc")){
-			GUI.setItem(1, EnchantGlow.addGlow(plugin.getItems().killdiscVirusSHOP()));
-		}else{
+		if(!gp.getViruses().contains("killdisc")){
 			GUI.setItem(1, plugin.getItems().killdiscVirusSHOP());
 		}
 		
